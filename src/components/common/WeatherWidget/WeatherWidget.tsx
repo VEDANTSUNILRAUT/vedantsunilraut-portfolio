@@ -1,10 +1,10 @@
 "use client";
 
-import { CloudRain, Users } from "lucide-react";
-import { siteConfig } from "@/constants/site";
+import { Users } from "lucide-react";
 import { useLiveDateTime } from "@/hooks/useLiveDateTime";
 import { useVisitorCount } from "@/hooks/useVisitorCount";
 import { WeatherWidgetProps } from "./WeatherWidget.types";
+
 
 export function WeatherWidget({ className = "", showVisitors = true }: WeatherWidgetProps) {
   const { timeStr, dateStr } = useLiveDateTime();
@@ -12,18 +12,11 @@ export function WeatherWidget({ className = "", showVisitors = true }: WeatherWi
 
   return (
     <div className={`hidden sm:flex items-center gap-2.5 px-3.5 py-1.5 rounded-full glass-nav text-[11px] font-mono text-neutral-300 border border-white/10 bg-black/40 backdrop-blur-xl ${className}`}>
-      {/* 1. Temp */}
-      <div className="flex items-center gap-1.5 text-sky-400">
-        <CloudRain className="h-3.5 w-3.5" />
-        <span className="font-semibold text-white">{siteConfig.weatherWidget.temp}</span>
-      </div>
-      
-      <span className="text-neutral-500">•</span>
-      
-      {/* 2. Date */}
+      {/* 1. Date */}
       <span className="text-neutral-300 font-medium">
         {dateStr || "Jul 30"}
       </span>
+
       
       <span className="text-neutral-500">•</span>
       
