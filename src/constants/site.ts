@@ -13,7 +13,7 @@ export const siteConfig: SiteConfig = {
     { label: "Home", href: "/", active: true },
     { label: "About", href: "/about" },
     { label: "Work", href: "/work" },
-    { label: "Blog", href: "/blog" },
+    { label: "Projects", href: "/projects" },
     { label: "Hire Me", href: "/hire" },
     { label: "Book a Call", href: "/book", isButton: true },
   ],

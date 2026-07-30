@@ -67,7 +67,23 @@ export function getBotResponse(userQuery: string): BotResponse {
     };
   }
 
-  // 5. Bio / Who is Vedant
+  // 4b. Work Experience & Career History
+  if (query.includes("experience") || query.includes("company") || query.includes("career") || query.includes("role") || query.includes("internship") || query.includes("job") || query.includes("fulltime") || query.includes("full-time")) {
+    return {
+      reply: `💼 **Vedant's Work & Experience Summary:**\n\n1. 📱 **Software Engineer (Native Android):** Currently working at a tech company (~1 Year) developing native Android features with Kotlin, Jetpack Compose, & Clean Architecture.\n2. 🚀 **Android Developer Intern:** 7 months building mobile interfaces, Retrofit API layers, and design design integration.\n3. 💻 **Software Engineering Intern:** 6 months full-stack web and mobile development experience.\n\nYou can view the full **Work Experience** timeline on the **Work** tab!`,
+      quickReplies: ["What is Vedant's tech stack?", "Tell me about Vedant's projects"],
+    };
+  }
+
+  // 5. Education & Academic Background
+  if (query.includes("education") || query.includes("study") || query.includes("degree") || query.includes("college") || query.includes("school") || query.includes("qualification") || query.includes("cgpa") || query.includes("10th") || query.includes("12th") || query.includes("graduation")) {
+    return {
+      reply: `🎓 **Vedant's Academic Qualifications:**\n\n1. 🎓 **Graduation (B.Tech):** Computer Science & Engineering (8.85 CGPA - First Class with Distinction)\n2. 📚 **12th Grade (HSC):** Science Stream with Computer Science (91.80% - Passed with High Distinction)\n3. 🏆 **10th Grade (SSC):** General Academics & STEM (94.50% - School Distinction Topper)\n\nYou can view the interactive **Education** timeline on the **About** page!`,
+      quickReplies: ["What is Vedant's tech stack?", "Tell me about Vedant's projects"],
+    };
+  }
+
+  // 6. Bio / Who is Vedant
   if (query.includes("who") || query.includes("about") || query.includes("vedant") || query.includes("bio") || query.includes("background")) {
     return {
       reply: `👋 **Meet Vedant Raut:**\n\n${VEDANT_KNOWLEDGE_BASE.bio}\n\nHe focuses on crafting digital journeys that spark innovation through native Android performance and modern full-stack web engineering!`,

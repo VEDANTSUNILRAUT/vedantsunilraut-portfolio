@@ -5,6 +5,7 @@ import { BentoGrid } from "@/components/sections/BentoGrid";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { SkillsSection } from "@/components/sections/SkillsSection";
 import { FeaturedWorkSection } from "@/components/sections/FeaturedWorkSection";
+import { CtaSection } from "@/components/sections/CtaSection";
 
 export default function Home() {
   return (
@@ -23,6 +24,9 @@ export default function Home() {
 
       {/* SECTION 5: FEATURED WORK */}
       <FeaturedWorkSection />
+
+      {/* SECTION 6: CTA BANNER */}
+      <CtaSection />
     </div>
   );
 }

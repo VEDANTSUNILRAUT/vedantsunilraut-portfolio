@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { Outfit, EB_Garamond, Alata, Shadows_Into_Light, Henny_Penny, Source_Code_Pro } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
+import { DeveloperLoader } from "@/components/common/DeveloperLoader";
+import { LenisScroll } from "@/components/common/ScrollProviders";
 import { InfiniteCanvasBackground } from "@/components/ui/InfiniteCanvasBackground";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { DeviceLayoutSwitcher } from "@/components/layout/DeviceLayoutSwitcher/DeviceLayoutSwitcher";
-import { PortfolioChatbot } from "@/components/ui/PortfolioChatbot/PortfolioChatbot";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -42,8 +43,8 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "Premium Developer Portfolio",
-  description: "Modern Full Stack Developer Portfolio built with Next.js, Tailwind v4, and Framer Motion",
+  title: "Premium Developer Portfolio | Vedant Raut",
+  description: "Modern Full Stack & Native Android Engineer Portfolio built with Next.js, Tailwind, and Framer Motion",
 };
 
 export default function RootLayout({
@@ -64,29 +65,33 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* Noise overlay */}
-          <div 
-            className="pointer-events-none fixed inset-0 z-50 mix-blend-overlay"
-            style={{ 
-              backgroundImage: 'url("https://dhirajbhawsar.in/noise.webp")', 
-              backgroundSize: '256px 256px',
-              opacity: 'var(--noise-opacity)'
-            }} 
-          />
+          {/* Global Lenis Smooth Momentum Scroll Wrapper */}
+          <LenisScroll>
+            {/* Global Developer Loader (Temporarily hidden) */}
+            {/* <DeveloperLoader /> */}
 
-          {/* Persistent Background for both Web & Mobile */}
-          <InfiniteCanvasBackground />
+            {/* Noise overlay */}
+            <div 
+              className="pointer-events-none fixed inset-0 z-50 mix-blend-overlay"
+              style={{ 
+                backgroundImage: 'url("https://dhirajbhawsar.in/noise.webp")', 
+                backgroundSize: '256px 256px',
+                opacity: 'var(--noise-opacity)'
+              }} 
+            />
 
-          {/* Automatic View Switcher: Desktop Web vs Native Android Mobile App */}
-          <DeviceLayoutSwitcher>
-            <Header />
-            <div className="relative z-10 w-full min-h-screen flex flex-col items-center">
-              {children}
-            </div>
-            <Footer />
-            {/* Interactive AI Chatbot Widget (Temporarily hidden for later development) */}
-            {/* <PortfolioChatbot /> */}
-          </DeviceLayoutSwitcher>
+            {/* Persistent Background for both Web & Mobile */}
+            <InfiniteCanvasBackground />
+
+            {/* Automatic View Switcher: Desktop Web vs Native Android Mobile App */}
+            <DeviceLayoutSwitcher>
+              <Header />
+              <div className="relative z-10 w-full min-h-screen flex flex-col items-center">
+                {children}
+              </div>
+              <Footer />
+            </DeviceLayoutSwitcher>
+          </LenisScroll>
         </ThemeProvider>
       </body>
     </html>
