@@ -23,7 +23,7 @@ export default function Home() {
       <SkillsSection />
 
       {/* SECTION 5: FEATURED WORK */}
-      <FeaturedWorkSection />
+      <FeaturedWorkSection limit={2} showViewMore={true} />
 
       {/* SECTION 6: CTA BANNER */}
       <CtaSection />
