@@ -4,8 +4,8 @@ export const siteConfig: SiteConfig = {
   brand: {
     logoText: "VR",
     name: "Vedant",
-    fullName: "Vedant Raut",
-    role: "Software Engineer & Android Developer",
+    fullName: "Vedant Sunil Raut",
+    role: "Software Engineer & Native Android Developer",
     email: "vedantsunilraut@gmail.com",
     connectMailto: "mailto:vedantsunilraut@gmail.com",
   },
@@ -38,12 +38,13 @@ export const siteConfig: SiteConfig = {
   },
   weatherWidget: {
     temp: "27°C",
-    location: "Konkan Divi...",
+    location: "Konkan Divi / Amravati",
   },
   socials: {
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
+    github: "https://github.com/VEDANTSUNILRAUT",
+    linkedin: "https://www.linkedin.com/in/vedantsunilraut",
     twitter: "https://x.com",
-    instagram: "https://instagram.com",
+    instagram: "https://www.instagram.com/vedantsunilraut",
   },
 };
+

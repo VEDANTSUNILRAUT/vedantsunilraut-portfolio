@@ -29,25 +29,25 @@ export interface EducationItem {
 export const EDUCATION_DATA: EducationItem[] = [
   {
     id: "graduation",
-    levelTag: "BACHELOR'S DEGREE",
+    levelTag: "BACHELOR'S DEGREE (B.TECH / B.E.)",
     degree: "Bachelor of Technology (B.Tech)",
     field: "Computer Science & Engineering",
-    institution: "Institute of Engineering & Technology",
+    institution: "Sipna College of Engineering & Technology, Amravati",
     location: "Maharashtra, India",
     duration: "2021 – 2025",
     score: {
       type: "CGPA",
-      value: "8.85 / 10.0",
+      value: "9.60 / 8.85 CGPA",
       label: "First Class with Distinction",
     },
     status: "Graduation (Completed)",
     description:
-      "Comprehensive 4-year degree specializing in core computer science, software engineering principles, native mobile architecture, cloud systems, and modern full-stack web applications.",
+      "Comprehensive degree specializing in core computer science, software engineering principles, native mobile architecture, cloud systems, and modern full-stack web applications.",
     highlights: [
-      "Specialized in Native Android (Kotlin/Compose) & Full-Stack Web Development",
-      "Lead Student Developer for Campus Technical Fest & Engineering Society",
-      "Created Capstone Project on High-Performance Mobile & Edge Computing Architecture",
-      "Maintained top academic standing with 8.85 CGPA across all semesters",
+      "Class & Department Topper in 8th Semester & 7th Semester",
+      "Class Topper & 2nd in Department in 4th Semester",
+      "Lead Student Developer & Organizer for Campus Technical Fest & Engineering Society",
+      "Vidyoten Makeathon Winner & Kridayan Cricket Team Member",
     ],
     courses: [
       "Data Structures & Algorithms",
@@ -74,7 +74,7 @@ export const EDUCATION_DATA: EducationItem[] = [
     levelTag: "HIGHER SECONDARY (12TH)",
     degree: "Higher Secondary Certificate (HSC)",
     field: "Science Stream (Physics, Chemistry, Maths & CS)",
-    institution: "Junior College of Science & Higher Secondary",
+    institution: "Adarsha Science, Jairamdas Bhagchand Arts and Birla Commerce Mahavidyalaya",
     location: "Maharashtra, India",
     duration: "2019 – 2021",
     score: {
@@ -89,7 +89,7 @@ export const EDUCATION_DATA: EducationItem[] = [
       "Secured 91.80% overall score with High Distinction",
       "Achieved 98/100 in Computer Science paper & practicals",
       "Selected as Science Olympiad representative and Mathematics topper",
-      "Built strong foundation in algorithmic logic, physics, and analytical calculus",
+      "Setter & Attacker for College Volleyball Team",
     ],
     courses: [
       "Computer Science & C++",
@@ -113,9 +113,9 @@ export const EDUCATION_DATA: EducationItem[] = [
     levelTag: "SECONDARY SCHOOL (10TH)",
     degree: "Secondary School Certificate (SSC)",
     field: "General Academics & Foundation Science",
-    institution: "St. Xavier High School",
+    institution: "Shree Kanhoji Baba Vidyalaya, Anjansingi",
     location: "Maharashtra, India",
-    duration: "2018 – 2019",
+    duration: "2013 – 2019",
     score: {
       type: "Percentage",
       value: "94.50%",
@@ -125,10 +125,10 @@ export const EDUCATION_DATA: EducationItem[] = [
     description:
       "Foundational high school education building exceptional strengths in mathematics, general science, logic puzzles, and fundamental computer usage.",
     highlights: [
-      "Scored 94.50% in SSC Board Examinations, ranking among school toppers",
-      "Awarded Excellence Medal in Science & Mathematics competitions",
-      "Captain of School STEM Club & Lead organizer for Annual Science Fair",
-      "Active participant in state-level quiz competitions and sports",
+      "Academic topper for six consecutive years (5th to 10th grade)",
+      "Exam Center Topper in 10th Grade Board Exams",
+      "Captain of Cricket Team & Volleyball Team",
+      "2nd Place in Taluka Level Quiz Competition (Twice) & Winner in Debate/Science Fair",
     ],
     courses: [
       "Mathematics & Geometry",
@@ -148,3 +148,4 @@ export const EDUCATION_DATA: EducationItem[] = [
     },
   },
 ];
+
