@@ -39,7 +39,7 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
           transition={{ duration: 0.6, delay: 1.2 }}
           className="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
         >
-          {/* Primary CTA: Let's Connect with Violet Sparkle Blast Effect */}
+          {/* Primary CTA: Let's Connect */}
           <SparkleBurstButton
             text={siteConfig.hero.primaryCta.text}
             href={siteConfig.hero.primaryCta.href}

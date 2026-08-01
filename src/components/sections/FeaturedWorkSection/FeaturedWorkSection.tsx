@@ -47,9 +47,8 @@ export function FeaturedWorkSection({
         >
           <Link
             href="/projects"
-            className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-neutral-900/90 backdrop-blur-md border border-white/15 text-white font-medium text-base hover:bg-neutral-800 transition-all duration-300 shadow-xl hover:border-purple-400/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.35)] active:scale-95 overflow-hidden"
+            className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-neutral-900/90 backdrop-blur-md border border-white/15 text-white font-medium text-base hover:bg-neutral-800 transition-all duration-300 shadow-xl hover:border-purple-400/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.25)] active:scale-95 overflow-hidden"
           >
-            <span className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500/20 via-fuchsia-500/20 to-sky-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             <span className="relative z-10 font-medium tracking-tight">
               View All Projects
             </span>
