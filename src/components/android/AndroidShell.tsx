@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AndroidStatusBar } from "./AndroidStatusBar";
 import { AndroidTopBar } from "./AndroidTopBar";
@@ -14,6 +14,16 @@ import { AndroidContactScreen } from "./screens/AndroidContactScreen";
 
 export function AndroidShell() {
   const [activeTab, setActiveTab] = useState<AndroidTabType>("home");
+  const mainRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (mainRef.current) {
+      mainRef.current.scrollTop = 0;
+    }
+    if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
+    }
+  }, [activeTab]);
 
   const renderScreen = () => {
     switch (activeTab) {
@@ -41,7 +51,7 @@ export function AndroidShell() {
       </div>
 
       {/* Central Active Android Screen with Material 3 Motion Transition */}
-      <main className="flex-1 w-full overflow-y-auto z-10 pt-2 pb-6">
+      <main ref={mainRef} className="flex-1 w-full overflow-y-auto z-10 pt-2 pb-6">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -63,3 +73,4 @@ export function AndroidShell() {
     </div>
   );
 }
+

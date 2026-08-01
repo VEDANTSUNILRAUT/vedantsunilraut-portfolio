@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { siteConfig } from "@/constants/site";
 import { TypewriterReveal } from "@/components/ui/TypewriterReveal";
 import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
@@ -57,3 +56,5 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
     </section>
   );
 }
+
+

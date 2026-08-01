@@ -280,31 +280,28 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       ctx.stroke();
     };
 
-    // Shooting Star Manager (Single at a time, starting from screen borders, traveling straight across out of screen)
+    // Shooting Star Manager
     let currentShootingStar: ShootingStar | null = null;
     let nextShootingStarTime = 2;
 
     const spawnShootingStar = () => {
-      const edge = Math.floor(Math.random() * 3); // 0: Top, 1: Left, 2: Right
+      const edge = Math.floor(Math.random() * 3);
       let startX = 0;
       let startY = 0;
       let targetX = 0;
       let targetY = 0;
 
       if (edge === 0) {
-        // Top border -> travels downward across screen
         startX = Math.random() * width;
         startY = -30;
         targetX = Math.random() * width;
         targetY = height + 60;
       } else if (edge === 1) {
-        // Left border -> travels rightward across screen
         startX = -30;
         startY = Math.random() * (height * 0.8);
         targetX = width + 60;
         targetY = Math.random() * height;
       } else {
-        // Right border -> travels leftward across screen
         startX = width + 30;
         startY = Math.random() * (height * 0.8);
         targetX = -60;
@@ -335,16 +332,15 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
     const render = () => {
       time += 0.015;
 
-      // Smooth mouse lerping
       mouseX += (targetMouseX - mouseX) * 0.05;
       mouseY += (targetMouseY - mouseY) * 0.05;
       scrollY += (targetScrollY - scrollY) * 0.08;
 
-      // 1. Base Clear (Pitch Black)
+      // Base Clear
       ctx.fillStyle = "#000000";
       ctx.fillRect(0, 0, width, height);
 
-      // 2. Star Particles & Neural Network Connections
+      // Star Particles & Neural Network Connections
       const visibleStars: { x: number; y: number; z: number }[] = [];
 
       stars.forEach((star) => {
@@ -387,7 +383,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
         }
       }
 
-      // 3. Floating Geometric 3D Wireframes & Tesseract
+      // Floating Geometric 3D Wireframes
       shapes.forEach((shape) => {
         shape.x += shape.vx;
         shape.y += shape.vy;
@@ -417,7 +413,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
         }
       });
 
-      // 4. Single Falling / Shooting Star (Triggers randomly ~4s, 1 at a time, any direction)
+      // Falling / Shooting Star
       if (!currentShootingStar || !currentShootingStar.active) {
         if (time >= nextShootingStarTime) {
           spawnShootingStar();
