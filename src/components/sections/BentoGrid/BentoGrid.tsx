@@ -83,10 +83,10 @@ export function BentoGrid({ className = "" }: BentoGridProps) {
               <Activity className="w-4 h-4 text-purple-400" />
             </div>
 
-            {/* Live Availability Badge */}
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Available for Work</span>
+            {/* Live Status Badge */}
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-mono">
+              <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+              <span>Software Engineer @ Logituit</span>
             </div>
           </div>
 

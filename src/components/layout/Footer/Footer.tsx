@@ -20,11 +20,11 @@ export function Footer({ className = "" }: FooterProps) {
           <div className="md:col-span-5 space-y-2.5">
             <Logo />
             <p className="font-source-code-pro text-xs text-neutral-400 max-w-sm leading-relaxed">
-              Vedant Raut — Software Engineer & Android Developer. Building high-performance native apps, full-stack systems, and modern digital realities.
+              Vedant Raut — Software Engineer at Logituit. Building high-performance native mobile applications, Kotlin Multiplatform solutions, and modern digital platforms.
             </p>
             <div className="flex items-center gap-2 pt-1">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-xs font-mono text-neutral-300">Available for new opportunities</span>
+              <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+              <span className="text-xs font-mono text-neutral-300">Software Engineer @ Logituit · Open to Connect</span>
             </div>
           </div>
 
@@ -47,7 +47,7 @@ export function Footer({ className = "" }: FooterProps) {
                 <a href="/projects" className="hover:text-white transition-colors">Projects</a>
               </li>
               <li>
-                <a href="/hire" className="hover:text-white transition-colors">Hire Me</a>
+                <a href="/hire" className="hover:text-white transition-colors">Contact</a>
               </li>
             </ul>
           </div>

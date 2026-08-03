@@ -22,7 +22,7 @@ export function DeveloperLoader({ className = "", forceShow = false }: Developer
       case "/projects":
         return "Projects Showcase";
       case "/hire":
-        return "Hire & Contact";
+        return "Contact & Connect";
       case "/book":
         return "Book a Call";
       default:

@@ -9,7 +9,7 @@ export const VEDANT_KNOWLEDGE_BASE = {
   location: "Amravati / Konkan Divi / Mumbai, Maharashtra, India (IST / UTC +5:30)",
   email: "vedantsunilraut@gmail.com",
   phone: "+91 9022588975",
-  status: "Available for Hire & Contract Opportunities",
+  status: "Software Engineer at Logituit (Full-Time)",
   socials: {
     github: "https://github.com/VEDANTSUNILRAUT",
     linkedin: "https://www.linkedin.com/in/vedantsunilraut",
@@ -24,13 +24,13 @@ export const VEDANT_KNOWLEDGE_BASE = {
     "Node.js, Express.js, Spring Boot, MySQL, MongoDB, PostgreSQL",
     "Postman, Git, GitHub, Docker, Android Studio, Jira",
   ],
-  bio: "Vedant Raut is a passionate Software Engineer and Native Android Developer specializing in building high-performance mobile applications, modern web platforms, and smooth micro-animated user interfaces. Computer Science graduate (2025) with a strong passion for building impactful and scalable applications.",
+  bio: "Vedant Raut is a Software Engineer at Logituit specializing in native Android development with Kotlin, Jetpack Compose, Kotlin Multiplatform (KMP), and clean mobile architecture. He builds high-performance mobile applications and modern digital solutions.",
 };
 
 export const QUICK_QUESTIONS = [
   "What is Vedant's tech stack?",
   "Tell me about Vedant's projects",
-  "Is Vedant available for hire?",
+  "Where is Vedant working?",
   "How can I contact Vedant?",
 ];
 
@@ -41,7 +41,7 @@ export function getBotResponse(userQuery: string): BotResponse {
   if (query.includes("skill") || query.includes("stack") || query.includes("technology") || query.includes("kotlin") || query.includes("android") || query.includes("react") || query.includes("next")) {
     return {
       reply: `🚀 **Vedant's Tech Stack & Capabilities:**\n\n- **Mobile Native:** Android SDK, Kotlin, Jetpack Compose, Kotlin Multiplatform (KMP), Java for Android\n- **Web & Full-Stack:** Next.js 16, React, TypeScript, Tailwind CSS v4, Motion.dev\n- **Backend & DB:** Node.js, Express.js, Spring Boot, MySQL, MongoDB, PostgreSQL\n- **Architecture & Tools:** Clean Architecture, MVVM/MVI, Git, GitHub, Docker, Postman, Jira`,
-      quickReplies: ["Tell me about Vedant's projects", "Is Vedant available for hire?"],
+      quickReplies: ["Tell me about Vedant's projects", "Where is Vedant working?"],
     };
   }
 
@@ -53,10 +53,10 @@ export function getBotResponse(userQuery: string): BotResponse {
     };
   }
 
-  // 3. Hiring & Availability
-  if (query.includes("hire") || query.includes("available") || query.includes("job") || query.includes("freelance") || query.includes("contract") || query.includes("work with")) {
+  // 3. Current Employment & Networking
+  if (query.includes("logituit") || query.includes("hire") || query.includes("available") || query.includes("job") || query.includes("freelance") || query.includes("contract") || query.includes("work with") || query.includes("status")) {
     return {
-      reply: `🟢 **Status: Available for Hire & Contract Opportunities!**\n\nVedant is open for:\n- Full-Time Software Engineering & Native Android Roles\n- Contract & Freelance Projects\n- Technical Consultation\n\nFeel free to click **Book a Call** or send an email to **vedantsunilraut@gmail.com** (Phone: +91 9022588975)!`,
+      reply: `💼 **Current Status:** Software Engineer at **Logituit** (Full-Time)\n\nVedant is currently working full-time at Logituit, building scalable Android applications using Kotlin, Jetpack Compose, Clean Architecture, and Kotlin Multiplatform (KMP).\n\nHe is open for:\n- Professional Networking & Connecting\n- Technical Discussions & Mobile Engineering Insights\n- Open Source Collaboration\n\nFeel free to connect via LinkedIn or send an email to **vedantsunilraut@gmail.com**!`,
       quickReplies: ["How can I contact Vedant?", "What is Vedant's tech stack?"],
     };
   }
@@ -64,15 +64,15 @@ export function getBotResponse(userQuery: string): BotResponse {
   // 4. Contact & Email
   if (query.includes("contact") || query.includes("email") || query.includes("reach") || query.includes("connect") || query.includes("mail") || query.includes("linkedin") || query.includes("github")) {
     return {
-      reply: `📬 **How to Connect with Vedant:**\n\n- 📧 **Email:** vedantsunilraut@gmail.com\n- 📞 **Phone:** +91 9022588975\n- 💼 **LinkedIn:** linkedin.com/in/vedantsunilraut\n- 🐙 **GitHub:** github.com/VEDANTSUNILRAUT\n- 📍 **Location:** Amravati / Mumbai, Maharashtra, India (UTC +5:30) — Available worldwide for Remote work!`,
-      quickReplies: ["Is Vedant available for hire?", "What is Vedant's tech stack?"],
+      reply: `📬 **How to Connect with Vedant:**\n\n- 📧 **Email:** vedantsunilraut@gmail.com\n- 📞 **Phone:** +91 9022588975\n- 💼 **LinkedIn:** linkedin.com/in/vedantsunilraut\n- 🐙 **GitHub:** github.com/VEDANTSUNILRAUT\n- 📍 **Location:** Amravati / Mumbai, Maharashtra, India (UTC +5:30) — Open for global tech connections!`,
+      quickReplies: ["Where is Vedant working?", "What is Vedant's tech stack?"],
     };
   }
 
   // 4b. Work Experience & Career History
-  if (query.includes("experience") || query.includes("company") || query.includes("career") || query.includes("role") || query.includes("internship") || query.includes("job") || query.includes("fulltime") || query.includes("full-time")) {
+  if (query.includes("experience") || query.includes("company") || query.includes("career") || query.includes("role") || query.includes("internship") || query.includes("job") || query.includes("fulltime") || query.includes("full-time") || query.includes("logituit")) {
     return {
-      reply: `💼 **Vedant's Work Experience & History (8 Roles):**\n\n1. 📱 **Software Engineer (Native Android):** Full-time at AppScale Technologies Inc. (~1 Year)\n2. 🚀 **Android Developer Intern:** MobileNext Solutions (7 Months)\n3. 💻 **Software Engineering Intern:** ByteCraft Labs (6 Months)\n4. 🌐 **Software Development Intern:** HashedBit Innovations (JSCMS & LMS)\n5. 🤖 **ML & Data Science Intern:** PHN Technology Pvt Ltd\n6. ☕ **Java Developer Intern:** TechnoHacks EduTech\n7. 🎓 **Virtual Internships:** Google AI/ML & AWS Cloud via EduSkills`,
+      reply: `💼 **Vedant's Work Experience & History (8 Roles):**\n\n1. 📱 **Software Engineer:** Full-time at Logituit (Mar 2026 – Present · 6 mos)\n2. 🚀 **Software Engineer Trainee:** Internship at Logituit (Oct 2025 – Mar 2026 · 6 mos)\n3. 💻 **Software Engineering Intern:** ByteCraft Labs (6 Months)\n4. 🌐 **Software Development Intern:** HashedBit Innovations (JSCMS & LMS)\n5. 🤖 **ML & Data Science Intern:** PHN Technology Pvt Ltd\n6. ☕ **Java Developer Intern:** TechnoHacks EduTech\n7. 🎓 **Virtual Internships:** Google AI/ML & AWS Cloud via EduSkills`,
       quickReplies: ["What is Vedant's tech stack?", "Tell me about Vedant's projects"],
     };
   }

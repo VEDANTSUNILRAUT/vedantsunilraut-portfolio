@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <path fill="url(#kmpGrad)" d="M128 128H0V0h128L63.5 63.5z"/>
+  <defs>
+    <linearGradient id="kmpGrad" x1="128" y1="0" x2="0" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E44857"/>
+      <stop offset="30%" stop-color="#C711E1"/>
+      <stop offset="70%" stop-color="#7F52FF"/>
+      <stop offset="100%" stop-color="#0095D5"/>
+    </linearGradient>
+  </defs>
+</svg>

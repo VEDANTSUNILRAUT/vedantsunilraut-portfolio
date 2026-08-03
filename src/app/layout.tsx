@@ -58,6 +58,12 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${outfit.variable} ${ebGaramond.variable} ${alata.variable} ${shadowsIntoLight.variable} ${hennyPenny.variable} ${sourceCodePro.variable} antialiased`}
     >
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/devicon/devicon@latest/devicon.min.css"
+        />
+      </head>
       <body className="relative min-h-screen bg-black text-white overflow-x-hidden transition-colors duration-300">
         <ThemeProvider
           attribute="class"

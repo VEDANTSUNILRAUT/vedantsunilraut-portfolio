@@ -29,19 +29,19 @@ export function AboutSection({ className = "" }: AboutSectionProps) {
           {/* Main Headline */}
           <h2 className="font-eb-garamond text-3xl sm:text-5xl lg:text-6xl text-white font-normal leading-[1.15] mb-5">
             I&apos;m Vedant, a <br />
-            <span className="italic-gradient-text font-semibold">Innovative Creator</span>
+            <span className="italic-gradient-text font-semibold">Software Engineer @ Logituit</span>
           </h2>
 
           {/* Detailed Paragraph Text */}
           <div className="space-y-3.5 text-xs sm:text-sm font-source-code-pro text-neutral-300 leading-relaxed max-w-xl">
             <p>
-              I&apos;m Vedant Raut, a passionate software engineer and Android developer who loves turning ideas into interactive digital experiences. From designing responsive frontends to building efficient backends & native apps, I thrive on creating solutions that just work.
+              I&apos;m Vedant Raut, a Software Engineer at Logituit specializing in native Android development, Kotlin, Jetpack Compose, and clean mobile architecture. I love crafting high-performance apps and turning complex ideas into seamless digital experiences.
             </p>
             <p>
-              When I&apos;m not coding, I enjoy exploring new technologies, experimenting with creative projects, and challenging myself to grow every day. Curiosity and learning are what keep me moving forward.
+              My engineering journey spans building scalable mobile modules, cross-platform solutions with Kotlin Multiplatform (KMP), and modern web architectures. I thrive on clean code, UI precision, and continuous technical growth.
             </p>
             <p>
-              I believe in making the most of every day and building things that leave a positive impact!
+              Always excited to connect with fellow engineers, explore cutting-edge mobile technologies, and build impactful software that makes a difference!
             </p>
           </div>
 
@@ -99,3 +99,4 @@ export function AboutSection({ className = "" }: AboutSectionProps) {
     </section>
   );
 }
+

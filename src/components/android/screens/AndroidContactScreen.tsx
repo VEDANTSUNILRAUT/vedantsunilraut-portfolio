@@ -20,9 +20,9 @@ export function AndroidContactScreen() {
         </div>
 
         <div>
-          <h3 className="text-xl font-bold text-white tracking-tight">Let&apos;s Build Together</h3>
+          <h3 className="text-xl font-bold text-white tracking-tight">Let&apos;s Connect</h3>
           <p className="text-xs font-mono text-neutral-400 mt-1">
-            Available for Android App Development & Full-Stack Projects
+            Software Engineer at Logituit · Open for Tech Discussions & Networking
           </p>
         </div>
 

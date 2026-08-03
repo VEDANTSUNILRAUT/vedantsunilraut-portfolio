@@ -22,13 +22,16 @@ import { ExperienceSectionProps } from "./ExperienceSection.types";
 
 export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
   const [selectedFilter, setSelectedFilter] = useState<string>("all");
-  const [expandedCardId, setExpandedCardId] = useState<string | null>("fulltime-android");
+  const [expandedCardId, setExpandedCardId] = useState<string | null>("fulltime-logituit");
 
   const filteredExperience = selectedFilter === "all"
     ? WORK_EXPERIENCE_DATA
     : selectedFilter === "full-time"
     ? WORK_EXPERIENCE_DATA.filter((item) => item.type === "Full-Time")
     : WORK_EXPERIENCE_DATA.filter((item) => item.type === "Internship");
+
+  const fullTimeCount = WORK_EXPERIENCE_DATA.filter((item) => item.type === "Full-Time").length;
+  const internshipCount = WORK_EXPERIENCE_DATA.filter((item) => item.type === "Internship").length;
 
   const toggleExpand = (id: string) => {
     setExpandedCardId((prev) => (prev === id ? null : id));
@@ -74,7 +77,7 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
           transition={{ duration: 0.5, delay: 0.15 }}
           className="mt-4 text-xs sm:text-sm font-source-code-pro text-neutral-400 max-w-2xl leading-relaxed"
         >
-          My industry journey as an Android Engineer & Software Developer, spanning full-time engineering roles and mobile dev internships.
+          My industry journey as a Software Engineer & Android Developer at Logituit, spanning full-time engineering roles and mobile dev internships.
         </motion.p>
 
         {/* Filter Pills */}
@@ -93,7 +96,7 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                 : "text-neutral-400 hover:text-white hover:bg-white/5"
             }`}
           >
-            All Roles (3)
+            All Roles ({WORK_EXPERIENCE_DATA.length})
           </button>
           <button
             onClick={() => setSelectedFilter("full-time")}
@@ -103,7 +106,7 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                 : "text-neutral-400 hover:text-white hover:bg-white/5"
             }`}
           >
-            Full-Time Role (~1 Year)
+            Full-Time ({fullTimeCount})
           </button>
           <button
             onClick={() => setSelectedFilter("internship")}
@@ -113,7 +116,7 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                 : "text-neutral-400 hover:text-white hover:bg-white/5"
             }`}
           >
-            Internships (2)
+            Internships ({internshipCount})
           </button>
         </motion.div>
       </div>
@@ -132,9 +135,9 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
               <span className="text-[10px] uppercase font-mono tracking-widest text-purple-400 block mb-1">
                 CURRENT ROLE
               </span>
-              <h4 className="text-xl font-bold text-white tracking-tight">Android Engineer</h4>
+              <h4 className="text-xl font-bold text-white tracking-tight">Software Engineer</h4>
               <p className="text-xs text-neutral-400 mt-1 font-source-code-pro">
-                1st Full-Time Company (~1 Year)
+                Logituit (Mar 2026 – Present)
               </p>
             </div>
             <div className="p-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-300">
@@ -155,9 +158,9 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
               <span className="text-[10px] uppercase font-mono tracking-widest text-cyan-400 block mb-1">
                 TOTAL EXPERIENCE
               </span>
-              <h4 className="text-xl font-bold text-white tracking-tight">~2 Years Total</h4>
+              <h4 className="text-xl font-bold text-white tracking-tight">11 mos at Logituit</h4>
               <p className="text-xs text-neutral-400 mt-1 font-source-code-pro">
-                1 Full-Time + 2 Internships
+                1 Full-Time + 7 Internships
               </p>
             </div>
             <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">

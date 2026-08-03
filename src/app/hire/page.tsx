@@ -17,16 +17,16 @@ export default function HirePage() {
           <Briefcase className="w-7 h-7" />
         </div>
 
-        <span className="text-xs uppercase tracking-widest text-emerald-400 font-mono font-semibold mb-3 block">
-          AVAILABLE FOR CONTRACT & FULL-TIME ROLES
+        <span className="text-xs uppercase tracking-widest text-purple-400 font-mono font-semibold mb-3 block">
+          SOFTWARE ENGINEER AT LOGITUIT
         </span>
 
         <h1 className="font-eb-garamond text-4xl sm:text-6xl text-white font-normal mb-4 tracking-tight">
-          Hire <span className="italic-gradient-text font-semibold">Vedant Raut</span>
+          Get in Touch with <span className="italic-gradient-text font-semibold">Vedant Raut</span>
         </h1>
 
         <p className="font-source-code-pro text-sm sm:text-base text-neutral-300 max-w-lg leading-relaxed mb-8">
-          Looking for a skilled Software Engineer or Native Android Developer to bring your digital vision to life? Let&apos;s build together.
+          Currently working full-time as a Software Engineer at Logituit. Feel free to reach out for professional networking, technical discussions, or collaboration.
         </p>
 
         <a
