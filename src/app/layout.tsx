@@ -8,6 +8,7 @@ import { InfiniteCanvasBackground } from "@/components/ui/InfiniteCanvasBackgrou
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { DeviceLayoutSwitcher } from "@/components/layout/DeviceLayoutSwitcher/DeviceLayoutSwitcher";
+import { PortfolioChatbot } from "@/components/ui/PortfolioChatbot";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -97,6 +98,9 @@ export default function RootLayout({
               </div>
               <Footer />
             </DeviceLayoutSwitcher>
+
+            {/* Vedant Executive AI Chatbot (Temporarily hidden) */}
+            {/* <PortfolioChatbot /> */}
           </LenisScroll>
         </ThemeProvider>
       </body>

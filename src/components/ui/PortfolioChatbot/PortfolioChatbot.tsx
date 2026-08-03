@@ -6,32 +6,107 @@ import { X, Send, Sparkles, User, Shield, ChevronRight } from "lucide-react";
 import { ChatMessage, PortfolioChatbotProps } from "./PortfolioChatbot.types";
 import { getBotResponse, QUICK_QUESTIONS } from "@/constants/botKnowledge";
 
-{/* Fusion Emblem: Embossed Titanium Shield + 3D Geometric Wireframe "V" */}
+{/* Infinite Design Monogram Bot Logo SVG */}
+function ExecutiveBotMonogramLogo({ className = "w-6 h-6" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`${className} filter drop-shadow-[0_2px_8px_rgba(56,189,248,0.5)]`}
+    >
+      <defs>
+        <linearGradient id="bot-head-grad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#e879f9" />
+          <stop offset="0.5" stopColor="#a855f7" />
+          <stop offset="1" stopColor="#38bdf8" />
+        </linearGradient>
+        <linearGradient id="bot-visor-grad" x1="16" y1="26" x2="48" y2="34" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#38bdf8" />
+          <stop offset="1" stopColor="#06b6d4" />
+        </linearGradient>
+        <linearGradient id="bot-infinity-grad" x1="8" y1="16" x2="56" y2="48" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#f59e0b" />
+          <stop offset="0.5" stopColor="#ec4899" />
+          <stop offset="1" stopColor="#3b82f6" />
+        </linearGradient>
+      </defs>
+
+      {/* Infinite Monogram Orbit Loop */}
+      <path
+        d="M20 20C14 20 10 24 10 32C10 40 14 44 20 44C28 44 36 20 44 20C50 20 54 24 54 32C54 40 50 44 44 44C36 44 28 20 20 20Z"
+        stroke="url(#bot-infinity-grad)"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="opacity-60"
+      />
+
+      {/* Cybernetic Bot Head Contour */}
+      <path
+        d="M18 18L32 10L46 18V36L32 50L18 36V18Z"
+        fill="#09090b"
+        stroke="url(#bot-head-grad)"
+        strokeWidth="2.5"
+        strokeLinejoin="round"
+      />
+
+      {/* Bot Antenna Beam */}
+      <circle cx="32" cy="7" r="2.5" fill="#f59e0b" className="animate-pulse" />
+      <line x1="32" y1="7" x2="32" y2="10" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" />
+
+      {/* Neon Cyber Visor */}
+      <rect
+        x="20"
+        y="25"
+        width="24"
+        height="9"
+        rx="4.5"
+        fill="url(#bot-visor-grad)"
+      />
+
+      {/* Dual Eye LED Sensors */}
+      <circle cx="27" cy="29.5" r="1.8" fill="#ffffff" />
+      <circle cx="37" cy="29.5" r="1.8" fill="#ffffff" />
+
+      {/* Monogram V Chin Cutout */}
+      <path
+        d="M26 39L32 45L38 39"
+        stroke="url(#bot-head-grad)"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+{/* Fusion Emblem: Embossed Titanium Shield + 3D Geometric Infinite Monogram Bot Logo */}
 function VedantExecutiveVEmblem({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   const sizeClasses = {
-    sm: "w-7 h-7 text-xs rounded-lg",
-    md: "w-9.5 h-9.5 text-sm rounded-xl",
-    lg: "w-12 h-12 text-lg rounded-2xl",
+    sm: "w-7 h-7 rounded-full",
+    md: "w-10 h-10 rounded-full",
+    lg: "w-12 h-12 rounded-full",
+  };
+
+  const logoSizes = {
+    sm: "w-4.5 h-4.5",
+    md: "w-6 h-6",
+    lg: "w-7.5 h-7.5",
   };
 
   return (
-    <div className={`relative flex items-center justify-center select-none group ${sizeClasses[size]}`}>
+    <div className={`relative flex items-center justify-center select-none group shrink-0 ${sizeClasses[size]}`}>
       {/* Metallic Titanium Halo Glow */}
-      <div className="absolute -inset-0.5 bg-gradient-to-tr from-neutral-600 via-purple-500/30 to-amber-500/30 rounded-xl blur-[3px] opacity-50 group-hover:opacity-100 transition-opacity" />
+      <div className="absolute -inset-0.5 bg-gradient-to-tr from-neutral-600 via-purple-500/30 to-amber-500/30 rounded-full blur-[3px] opacity-50 group-hover:opacity-100 transition-opacity" />
       
       {/* Stealth Dark Executive Container */}
-      <div className="relative w-full h-full bg-neutral-950 border border-white/25 rounded-xl flex items-center justify-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)] overflow-hidden">
+      <div className="relative w-full h-full bg-neutral-950 border border-white/25 rounded-full flex items-center justify-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)] overflow-hidden">
         {/* Subtle Geometric Mesh Texture */}
         <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:6px_6px]" />
 
-        {/* Embossed Metallic 3D Wireframe "V" Monogram */}
-        <div className="relative flex items-center justify-center z-10 font-mono font-black tracking-tighter">
-          <span className="font-eb-garamond italic font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-500 text-lg leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-            V
-          </span>
-          {/* Subtle Golden/Purple Geometric Sparkle Accent */}
-          <Sparkles className="absolute -top-1 -right-1.5 w-2.5 h-2.5 text-amber-300 animate-pulse" />
-        </div>
+        {/* Infinite Monogram Bot Logo */}
+        <ExecutiveBotMonogramLogo className={logoSizes[size]} />
         
         {/* Top Metallic Border Highlight */}
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
@@ -104,13 +179,27 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
     return lines.map((line, idx) => {
       if (!line.trim()) return <div key={idx} className="h-1.5" />;
       
-      const parts = line.split(/(\*\*.*?\*\*)/g);
+      const parts = line.split(/(\*\*.*?\*\*|\[.*?\]\(.*?\))/g);
       const formattedLine = parts.map((part, pIdx) => {
         if (part.startsWith("**") && part.endsWith("**")) {
           return (
             <strong key={pIdx} className="font-semibold text-amber-200">
               {part.slice(2, -2)}
             </strong>
+          );
+        }
+        const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/);
+        if (linkMatch) {
+          return (
+            <a
+              key={pIdx}
+              href={linkMatch[2]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-300 underline hover:text-cyan-100 font-medium transition-colors"
+            >
+              {linkMatch[1]}
+            </a>
           );
         }
         return part;
@@ -125,7 +214,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
   };
 
   return (
-    <div className={`fixed bottom-6 right-6 z-50 flex flex-col items-end ${className}`}>
+    <div className={`fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end ${className}`}>
       
       {/* Stealth Executive Glass Chat Drawer */}
       <AnimatePresence>
@@ -247,27 +336,54 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
         )}
       </AnimatePresence>
 
-      {/* Titanium Wireframe "V" Executive Trigger Pill */}
+      {/* Titanium Circular "V" Executive Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative group flex items-center gap-3 px-4 py-3 rounded-xl bg-neutral-950 border border-white/25 text-white shadow-[0_0_35px_rgba(255,255,255,0.12)] backdrop-blur-2xl hover:border-amber-400/60 transition-all duration-300 active:scale-95 cursor-pointer"
+        aria-label="Toggle Executive AI Assistant"
+        className="relative group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-neutral-950 border border-white/25 text-white shadow-[0_0_35px_rgba(255,255,255,0.15)] backdrop-blur-2xl hover:border-amber-400/70 transition-all duration-300 active:scale-95 cursor-pointer"
       >
-        <VedantExecutiveVEmblem size="md" />
+        {/* Outer Halo Glow */}
+        <div className="absolute -inset-0.5 bg-gradient-to-tr from-neutral-600 via-amber-500/30 to-purple-500/30 rounded-full blur-[3px] opacity-60 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
-        <div className="flex flex-col items-start text-left">
-          <span className="text-xs font-bold text-white tracking-tight flex items-center gap-1.5">
-            ASK VEDANT AI
-            <Sparkles className="w-3 h-3 text-amber-300" />
-          </span>
-          <span className="text-[10px] font-mono text-neutral-400">EXECUTIVE BOT</span>
+        {/* Inner Circle Content */}
+        <div className="relative w-full h-full rounded-full bg-neutral-950 flex items-center justify-center overflow-hidden">
+          <AnimatePresence mode="wait">
+            {isOpen ? (
+              <motion.div
+                key="close"
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.15 }}
+              >
+                <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="open"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ duration: 0.15 }}
+                className="relative flex items-center justify-center"
+              >
+                <ExecutiveBotMonogramLogo className="w-6.5 h-6.5 sm:w-7.5 sm:h-7.5" />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
-        {/* Ambient Pulsing Aura */}
-        <span className="absolute -inset-0.5 rounded-xl bg-white/10 animate-pulse pointer-events-none" />
+        {/* Hover Tooltip Label */}
+        <div className="absolute right-full mr-3 opacity-0 group-hover:opacity-100 pointer-events-none transition-all duration-200 translate-x-2 group-hover:translate-x-0 whitespace-nowrap hidden sm:block">
+          <div className="px-3 py-1.5 rounded-xl bg-neutral-900/95 border border-white/20 text-xs font-mono font-semibold text-white shadow-xl flex items-center gap-1.5 backdrop-blur-md">
+            <span>ASK VEDANT AI</span>
+            <Sparkles className="w-3 h-3 text-amber-300" />
+          </div>
+        </div>
 
-        {/* Status Indicator */}
+        {/* Online Status Dot Indicator */}
         {!isOpen && (
-          <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-black shadow-[0_0_8px_#10b981]" />
+          <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-black shadow-[0_0_8px_#10b981]" />
         )}
       </button>
 
