@@ -5,12 +5,12 @@
   --foreground: #ffffff;
   --noise-opacity: 0.2;
 
-  /* Centralized Primary Brand Colors */
-  --primary-start: #e879f9;
-  --primary-mid: #a855f7;
+  /* Centralized Primary Brand Colors (Professional Tech Palette) */
+  --primary-start: #818cf8;
+  --primary-mid: #6366f1;
   --primary-end: #38bdf8;
-  --primary-start-rgb: 232, 121, 249;
-  --primary-mid-rgb: 168, 85, 247;
+  --primary-start-rgb: 129, 140, 248;
+  --primary-mid-rgb: 99, 102, 241;
   --primary-end-rgb: 56, 189, 248;
 
   /* Centralized Accent Palettes */

@@ -9,14 +9,14 @@
  */
 
 export const themeConfig = {
-  // Core Brand Gradients & Primary Palette
+  // Core Brand Gradients & Primary Palette (Professional Electric Indigo & Royal Blue)
   brand: {
-    primaryStart: "#e879f9", // Pink/Fuchsia accent start
-    primaryMid: "#a855f7",   // Violet/Purple primary mid
-    primaryEnd: "#38bdf8",   // Cyan/Sky accent end
+    primaryStart: "#818cf8", // Electric Indigo start
+    primaryMid: "#6366f1",   // Royal Violet/Indigo primary mid
+    primaryEnd: "#38bdf8",   // Ocean Sky Cyan end
     rgb: {
-      primaryStart: "232, 121, 249",
-      primaryMid: "168, 85, 247",
+      primaryStart: "129, 140, 248",
+      primaryMid: "99, 102, 241",
       primaryEnd: "56, 189, 248",
     },
   },
