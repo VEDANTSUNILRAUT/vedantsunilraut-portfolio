@@ -40,15 +40,15 @@ export function BentoGrid({ className = "" }: BentoGridProps) {
             <svg viewBox="0 0 200 200" className="w-full h-full text-purple-400">
               <defs>
                 <radialGradient id="globeGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#a855f7" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#6b21a8" stopOpacity="0" />
+                  <stop offset="0%" stopColor="var(--primary-mid)" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="var(--primary-mid)" stopOpacity="0" />
                 </radialGradient>
               </defs>
               <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.3" />
               <circle cx="100" cy="100" r="65" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.4" />
               <ellipse cx="100" cy="100" rx="85" ry="32" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.35" />
               <ellipse cx="100" cy="100" rx="32" ry="85" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.35" />
-              <circle cx="145" cy="75" r="4" fill="#c084fc" />
+              <circle cx="145" cy="75" r="4" fill="var(--primary-start)" />
               <circle cx="145" cy="75" r="12" fill="url(#globeGlow)" />
             </svg>
           </div>

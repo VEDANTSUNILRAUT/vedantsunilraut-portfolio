@@ -17,18 +17,18 @@ function ExecutiveBotMonogramLogo({ className = "w-6 h-6" }: { className?: strin
     >
       <defs>
         <linearGradient id="bot-head-grad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#e879f9" />
-          <stop offset="0.5" stopColor="#a855f7" />
-          <stop offset="1" stopColor="#38bdf8" />
+          <stop stopColor="var(--primary-start)" />
+          <stop offset="0.5" stopColor="var(--primary-mid)" />
+          <stop offset="1" stopColor="var(--primary-end)" />
         </linearGradient>
         <linearGradient id="bot-visor-grad" x1="16" y1="26" x2="48" y2="34" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#38bdf8" />
-          <stop offset="1" stopColor="#06b6d4" />
+          <stop stopColor="var(--primary-end)" />
+          <stop offset="1" stopColor="var(--accent-cyan)" />
         </linearGradient>
         <linearGradient id="bot-infinity-grad" x1="8" y1="16" x2="56" y2="48" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#f59e0b" />
-          <stop offset="0.5" stopColor="#ec4899" />
-          <stop offset="1" stopColor="#3b82f6" />
+          <stop stopColor="var(--accent-amber)" />
+          <stop offset="0.5" stopColor="var(--primary-start)" />
+          <stop offset="1" stopColor="var(--primary-end)" />
         </linearGradient>
       </defs>
 
@@ -383,7 +383,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
 
         {/* Online Status Dot Indicator */}
         {!isOpen && (
-          <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-black shadow-[0_0_8px_#10b981]" />
+          <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-black shadow-[0_0_8px_var(--accent-emerald)]" />
         )}
       </button>
 

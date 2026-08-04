@@ -1,4 +1,5 @@
 import { FeaturedProject } from "@/types/projects";
+import { themeConfig } from "./theme";
 
 export const projects: FeaturedProject[] = [
   {
@@ -14,7 +15,7 @@ export const projects: FeaturedProject[] = [
     previewTitle: "VedantRaut.dev",
     previewSubtitle: "Software Engineer & Android Developer",
     bgGradient: "from-purple-900/30 via-neutral-900 to-black",
-    glowColor: "rgba(168, 85, 247, 0.25)",
+    glowColor: themeConfig.accents.purple.main,
   },
   {
     id: "project-2",
@@ -28,7 +29,7 @@ export const projects: FeaturedProject[] = [
     previewTitle: "Talent-Bridge",
     previewSubtitle: "AI Placement Portal",
     bgGradient: "from-cyan-900/30 via-neutral-900 to-black",
-    glowColor: "rgba(6, 182, 212, 0.25)",
+    glowColor: themeConfig.accents.cyan.main,
   },
   {
     id: "project-3",
@@ -42,7 +43,7 @@ export const projects: FeaturedProject[] = [
     previewTitle: "Invoice Generator",
     previewSubtitle: "Web Application & PDF Exporter",
     bgGradient: "from-emerald-900/30 via-neutral-900 to-black",
-    glowColor: "rgba(16, 185, 129, 0.25)",
+    glowColor: themeConfig.accents.emerald.main,
   },
   {
     id: "project-4",
@@ -56,7 +57,7 @@ export const projects: FeaturedProject[] = [
     previewTitle: "Cattle Hub",
     previewSubtitle: "Java Full Stack Management System",
     bgGradient: "from-amber-900/30 via-neutral-900 to-black",
-    glowColor: "rgba(245, 158, 11, 0.25)",
+    glowColor: themeConfig.accents.amber.main,
   },
   {
     id: "project-5",
@@ -69,7 +70,7 @@ export const projects: FeaturedProject[] = [
     previewTitle: "Gym Hub",
     previewSubtitle: "Full Stack Web Application",
     bgGradient: "from-rose-900/30 via-neutral-900 to-black",
-    glowColor: "rgba(244, 63, 94, 0.25)",
+    glowColor: themeConfig.accents.rose.main,
   },
   {
     id: "project-6",
@@ -82,6 +83,6 @@ export const projects: FeaturedProject[] = [
     previewTitle: "RoyalHotel",
     previewSubtitle: "Hotel Management Platform",
     bgGradient: "from-indigo-900/30 via-neutral-900 to-black",
-    glowColor: "rgba(99, 102, 241, 0.25)",
+    glowColor: themeConfig.accents.blue.main,
   },
 ];

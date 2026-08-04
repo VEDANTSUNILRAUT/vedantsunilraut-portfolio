@@ -1,20 +1,21 @@
 import React from "react";
 import { SkillItem, TechBadgeItem } from "@/types/skills";
 import { DevTechIcon } from "@/components/ui/DevTechIcon/DevTechIcon";
+import { themeConfig } from "./theme";
 
 export const techBadges: TechBadgeItem[] = [
-  { name: "Kotlin", color: "text-purple-400 border-purple-500/20 bg-purple-500/10" },
-  { name: "Android Native", color: "text-emerald-400 border-emerald-500/20 bg-emerald-500/10" },
-  { name: "Jetpack Compose", color: "text-blue-400 border-blue-500/20 bg-blue-500/10" },
-  { name: "KMP (Multiplatform)", color: "text-purple-300 border-purple-400/20 bg-purple-400/10" },
+  { name: "Kotlin", color: `text-purple-300 ${themeConfig.accents.purple.pillClass}` },
+  { name: "Android Native", color: `text-emerald-300 ${themeConfig.accents.emerald.pillClass}` },
+  { name: "Jetpack Compose", color: `text-blue-300 ${themeConfig.accents.blue.pillClass}` },
+  { name: "KMP (Multiplatform)", color: `text-purple-300 ${themeConfig.accents.purple.pillClass}` },
   { name: "Next.js", color: "text-white border-white/20 bg-white/10" },
-  { name: "React", color: "text-cyan-400 border-cyan-500/20 bg-cyan-500/10" },
-  { name: "TypeScript", color: "text-blue-300 border-blue-400/20 bg-blue-400/10" },
-  { name: "Node.js", color: "text-green-400 border-green-500/20 bg-green-500/10" },
+  { name: "React", color: `text-cyan-300 ${themeConfig.accents.cyan.pillClass}` },
+  { name: "TypeScript", color: `text-blue-300 ${themeConfig.accents.blue.pillClass}` },
+  { name: "Node.js", color: `text-emerald-300 ${themeConfig.accents.emerald.pillClass}` },
   { name: "Express.js", color: "text-neutral-300 border-neutral-500/20 bg-neutral-500/10" },
-  { name: "Spring Boot", color: "text-emerald-400 border-emerald-500/20 bg-emerald-500/10" },
-  { name: "Git & GitHub", color: "text-orange-400 border-orange-500/20 bg-orange-500/10" },
-  { name: "Docker", color: "text-sky-400 border-sky-500/20 bg-sky-500/10" },
+  { name: "Spring Boot", color: `text-emerald-300 ${themeConfig.accents.emerald.pillClass}` },
+  { name: "Git & GitHub", color: `text-amber-300 ${themeConfig.accents.amber.pillClass}` },
+  { name: "Docker", color: `text-sky-300 ${themeConfig.accents.sky.pillClass}` },
 ];
 
 export const projectTags: string[] = [
@@ -55,9 +56,9 @@ export const row2Skills: SkillItem[] = [
   { name: "GitHub", symbol: <DevTechIcon name="GitHub" slug="github" invertOnDark /> },
   { name: "VS Code", symbol: <DevTechIcon name="VS Code" slug="vscode" /> },
   { name: "Android Studio", symbol: <DevTechIcon name="Android Studio" slug="androidstudio" /> },
-  { name: "IntelliJ IDEA", symbol: <DevTechIcon name="IntelliJ IDEA" slug="intellij" /> },
   { name: "Postman", symbol: <DevTechIcon name="Postman" slug="postman" /> },
   { name: "Docker", symbol: <DevTechIcon name="Docker" slug="docker" /> },
+  { name: "Gemini AI", symbol: <DevTechIcon name="Gemini AI" slug="gemini" /> },
   { name: "Vercel", symbol: <DevTechIcon name="Vercel" slug="vercel" invertOnDark /> },
   { name: "Figma", symbol: <DevTechIcon name="Figma" slug="figma" /> },
 ];

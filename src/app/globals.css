@@ -4,6 +4,24 @@
   --background: #000000;
   --foreground: #ffffff;
   --noise-opacity: 0.2;
+
+  /* Centralized Primary Brand Colors */
+  --primary-start: #e879f9;
+  --primary-mid: #a855f7;
+  --primary-end: #38bdf8;
+  --primary-start-rgb: 232, 121, 249;
+  --primary-mid-rgb: 168, 85, 247;
+  --primary-end-rgb: 56, 189, 248;
+
+  /* Centralized Accent Palettes */
+  --accent-purple: #a855f7;
+  --accent-cyan: #06b6d4;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  --accent-blue: #3b82f6;
+  --accent-teal: #14b8a6;
+  --accent-sky: #0ea5e9;
 }
 
 .light {
@@ -15,6 +33,19 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  
+  --color-primary-start: var(--primary-start);
+  --color-primary-mid: var(--primary-mid);
+  --color-primary-end: var(--primary-end);
+
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-emerald: var(--accent-emerald);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-rose: var(--accent-rose);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-teal: var(--accent-teal);
+  --color-accent-sky: var(--accent-sky);
   
   /* Custom fonts */
   --font-outfit: var(--font-outfit), sans-serif;
@@ -62,8 +93,8 @@ html {
 
 html,
 body {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--background);
+  color: var(--foreground);
   font-family: var(--font-outfit);
   overflow-x: hidden;
   transition: background-color 0.5s ease, color 0.3s ease;
@@ -102,7 +133,7 @@ body {
 .italic-gradient-text {
   font-style: italic;
   font-family: var(--font-eb-garamond), serif;
-  background: linear-gradient(135deg, #e879f9 0%, #a855f7 40%, #38bdf8 100%);
+  background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-mid) 40%, var(--primary-end) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

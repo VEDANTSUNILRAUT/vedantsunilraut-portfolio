@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { 
   Code2, Smartphone, Layers, Server, Database, GitBranch, Github, 
-  Terminal, Flame, Globe, Send, Box, Coffee, Cpu, Wrench, Wind, Atom, FileCode2
+  Terminal, Flame, Globe, Send, Box, Coffee, Cpu, Wrench, Wind, Atom, FileCode2, Sparkles
 } from "lucide-react";
 
 interface DevTechIconProps {
@@ -46,25 +46,30 @@ const fallbackLucideMap: Record<string, React.ReactNode> = {
   "Vercel": <Globe className="w-7 h-7 text-white" />,
   "Figma": <Layers className="w-7 h-7 text-pink-400" />,
   "Java": <Coffee className="w-7 h-7 text-amber-500" />,
+  "Gemini": <Sparkles className="w-7 h-7 text-purple-400" />,
+  "Gemini AI": <Sparkles className="w-7 h-7 text-purple-400" />,
   "Postman": <Send className="w-7 h-7 text-orange-400" />,
   "Docker": <Box className="w-7 h-7 text-blue-400" />,
 };
 
 const localIconMap: Record<string, string> = {
   "android": "/tech-icons/android.svg",
-  "kotlin": "/tech-icons/kotlin.svg",
-  "androidstudio": "/tech-icons/androidstudio.svg",
+  "kotlin": "/assets/kotlin.png",
+  "androidstudio": "/assets/android_studio.png",
+  "android_studio": "/assets/android_studio.png",
   "jetpackcompose": "/tech-icons/jetpackcompose.svg",
   "kmp": "/tech-icons/kmp.svg",
-  "react": "/tech-icons/react.svg",
+  "react": "/assets/react.png",
   "nextjs": "/tech-icons/nextjs.svg",
   "typescript": "/tech-icons/typescript.svg",
   "javascript": "/tech-icons/javascript.svg",
   "c": "/tech-icons/c.svg",
-  "html5": "/tech-icons/html5.svg",
-  "css3": "/tech-icons/css3.svg",
+  "html5": "/assets/html.png",
+  "html": "/assets/html.png",
+  "css3": "/assets/css.png",
+  "css": "/assets/css.png",
   "tailwindcss": "/tech-icons/tailwindcss.svg",
-  "nodejs": "/tech-icons/nodejs.svg",
+  "nodejs": "/assets/nodejs.png",
   "express": "/tech-icons/express.svg",
   "spring": "/tech-icons/spring.svg",
   "api": "/tech-icons/api.svg",
@@ -74,12 +79,13 @@ const localIconMap: Record<string, string> = {
   "postgresql": "/tech-icons/postgresql.svg",
   "firebase": "/tech-icons/firebase.svg",
   "git": "/tech-icons/git.svg",
-  "github": "/tech-icons/github.svg",
-  "vscode": "/tech-icons/vscode.svg",
+  "github": "/assets/github.png",
+  "vscode": "/assets/vscode.png",
   "intellij": "/tech-icons/intellij.svg",
   "vercel": "/tech-icons/vercel.svg",
   "figma": "/tech-icons/figma.svg",
-  "java": "/tech-icons/java.svg",
+  "java": "/assets/java.png",
+  "gemini": "/assets/gemini.png",
   "postman": "/tech-icons/postman.svg",
   "docker": "/tech-icons/docker.svg",
 };

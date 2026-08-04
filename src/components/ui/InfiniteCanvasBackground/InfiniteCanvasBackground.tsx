@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { InfiniteCanvasBackgroundProps } from "./InfiniteCanvasBackground.types";
+import { themeConfig } from "@/constants/theme";
 
 interface StarParticle {
   x: number;
@@ -161,7 +162,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
         return [cx + x1 * size * scale, cy + y2 * size * scale];
       });
 
-      ctx.strokeStyle = `rgba(168, 85, 247, ${alpha})`;
+      ctx.strokeStyle = `rgba(${primaryMidRgb}, ${alpha})`;
       ctx.lineWidth = 1;
       ctx.beginPath();
       edges.forEach(([i, j]) => {
@@ -194,7 +195,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
         return [cx + x1 * size * scale, cy + y2 * size * scale];
       });
 
-      ctx.strokeStyle = `rgba(192, 132, 252, ${alpha})`;
+      ctx.strokeStyle = `rgba(${primaryMidRgb}, ${alpha})`;
       ctx.lineWidth = 1;
       ctx.beginPath();
       edges.forEach(([i, j]) => {
@@ -209,7 +210,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       ctx.save();
       ctx.translate(cx, cy);
       ctx.rotate(ax);
-      ctx.strokeStyle = `rgba(114, 9, 183, ${alpha * 0.8})`;
+      ctx.strokeStyle = `rgba(${primaryMidRgb}, ${alpha * 0.8})`;
       ctx.lineWidth = 1;
       ctx.setLineDash([4, 4]);
       ctx.beginPath();
@@ -218,7 +219,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       ctx.setLineDash([]);
       ctx.beginPath();
       ctx.arc(0, 0, size * 0.7, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(168, 85, 247, ${alpha * 0.5})`;
+      ctx.strokeStyle = `rgba(${primaryMidRgb}, ${alpha * 0.5})`;
       ctx.stroke();
       ctx.restore();
     };
@@ -270,7 +271,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
         return [cx + x1 * size * 0.45 * scale3D, cy + y2 * size * 0.45 * scale3D];
       });
 
-      ctx.strokeStyle = `rgba(192, 132, 252, ${alpha * 1.2})`;
+      ctx.strokeStyle = `rgba(${primaryMidRgb}, ${alpha * 1.2})`;
       ctx.lineWidth = 1;
       ctx.beginPath();
       edges.forEach(([i, j]) => {
@@ -327,10 +328,18 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       };
     };
 
+    const getPrimaryMidRgb = () => {
+      if (typeof window === "undefined") return themeConfig.brand.rgb.primaryMid;
+      const val = getComputedStyle(document.documentElement).getPropertyValue("--primary-mid-rgb").trim();
+      return val || themeConfig.brand.rgb.primaryMid;
+    };
+    let primaryMidRgb = getPrimaryMidRgb();
+
     // Main Render Loop
     let time = 0;
     const render = () => {
       time += 0.015;
+      primaryMidRgb = getPrimaryMidRgb();
 
       mouseX += (targetMouseX - mouseX) * 0.05;
       mouseY += (targetMouseY - mouseY) * 0.05;
@@ -374,7 +383,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
 
           if (distSq < 10000) {
             const alpha = (1 - distSq / 10000) * 0.12 * Math.min(s1.z, s2.z);
-            ctx.strokeStyle = `rgba(168, 85, 247, ${alpha})`;
+            ctx.strokeStyle = `rgba(${primaryMidRgb}, ${alpha})`;
             ctx.beginPath();
             ctx.moveTo(s1.x, s1.y);
             ctx.lineTo(s2.x, s2.y);
@@ -436,7 +445,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
 
           const streakGrad = ctx.createLinearGradient(tailX, tailY, star.x, star.y);
           streakGrad.addColorStop(0, "rgba(255, 255, 255, 0)");
-          streakGrad.addColorStop(0.6, `rgba(192, 132, 252, ${alpha * 0.6})`);
+          streakGrad.addColorStop(0.6, `rgba(${primaryMidRgb}, ${alpha * 0.6})`);
           streakGrad.addColorStop(1, `rgba(255, 255, 255, ${alpha * 0.95})`);
 
           ctx.strokeStyle = streakGrad;

@@ -12,7 +12,7 @@ export function Logo({ className = "" }: LogoProps) {
     >
       <div className="relative flex items-center justify-center">
         {/* Subtle glow behind logo */}
-        <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-violet-600/30 to-pink-600/30 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-primary-mid/30 to-primary-start/30 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         
         {/* Monogram VR SVG Logo */}
         <svg
@@ -47,8 +47,8 @@ export function Logo({ className = "" }: LogoProps) {
           </text>
           <defs>
             <linearGradient id="logo-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#e879f9" />
-              <stop offset="1" stopColor="#38bdf8" />
+              <stop stopColor="var(--primary-start)" />
+              <stop offset="1" stopColor="var(--primary-end)" />
             </linearGradient>
           </defs>
         </svg>
