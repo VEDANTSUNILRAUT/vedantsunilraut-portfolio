@@ -14,7 +14,7 @@ export const projects: FeaturedProject[] = [
     techStack: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "Motion.dev", "Cloudflare", "Vercel"],
     previewTitle: "VedantRaut.dev",
     previewSubtitle: "Software Engineer & Android Developer",
-    bgGradient: "from-purple-900/30 via-neutral-900 to-black",
+    bgGradient: "from-purple-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.purple.main,
   },
   {
@@ -28,7 +28,7 @@ export const projects: FeaturedProject[] = [
     techStack: ["React.js", "Node.js", "Express.js", "MySQL", "AI Integration"],
     previewTitle: "Talent-Bridge",
     previewSubtitle: "AI Placement Portal",
-    bgGradient: "from-cyan-900/30 via-neutral-900 to-black",
+    bgGradient: "from-violet-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.cyan.main,
   },
   {
@@ -42,7 +42,7 @@ export const projects: FeaturedProject[] = [
     techStack: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL", "html2pdf.js"],
     previewTitle: "Invoice Generator",
     previewSubtitle: "Web Application & PDF Exporter",
-    bgGradient: "from-emerald-900/30 via-neutral-900 to-black",
+    bgGradient: "from-indigo-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.emerald.main,
   },
   {
@@ -56,7 +56,7 @@ export const projects: FeaturedProject[] = [
     techStack: ["HTML", "CSS", "JavaScript", "JSP & Servlet", "JDBC", "MySQL"],
     previewTitle: "Cattle Hub",
     previewSubtitle: "Java Full Stack Management System",
-    bgGradient: "from-amber-900/30 via-neutral-900 to-black",
+    bgGradient: "from-fuchsia-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.amber.main,
   },
   {
@@ -69,7 +69,7 @@ export const projects: FeaturedProject[] = [
     techStack: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
     previewTitle: "Gym Hub",
     previewSubtitle: "Full Stack Web Application",
-    bgGradient: "from-rose-900/30 via-neutral-900 to-black",
+    bgGradient: "from-purple-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.rose.main,
   },
   {
@@ -82,7 +82,7 @@ export const projects: FeaturedProject[] = [
     techStack: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
     previewTitle: "RoyalHotel",
     previewSubtitle: "Hotel Management Platform",
-    bgGradient: "from-indigo-900/30 via-neutral-900 to-black",
+    bgGradient: "from-violet-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.blue.main,
   },
 ];

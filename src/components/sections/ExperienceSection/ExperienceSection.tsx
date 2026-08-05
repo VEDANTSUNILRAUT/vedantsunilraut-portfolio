@@ -44,7 +44,7 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
     >
       {/* Ambient Background Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[320px] bg-purple-600/10 blur-[130px] rounded-full pointer-events-none -z-10" />
-      <div className="absolute bottom-12 left-10 w-[380px] h-[260px] bg-cyan-600/10 blur-[110px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute bottom-12 left-10 w-[380px] h-[260px] bg-violet-600/10 blur-[110px] rounded-full pointer-events-none -z-10" />
 
       {/* Section Header */}
       <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
@@ -112,7 +112,7 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
             onClick={() => setSelectedFilter("internship")}
             className={`px-4 py-2 rounded-xl text-xs font-mono transition-all ${
               selectedFilter === "internship"
-                ? "bg-cyan-600 text-white shadow-lg shadow-cyan-500/25 font-semibold"
+                ? "bg-violet-600 text-white shadow-lg shadow-violet-500/25 font-semibold"
                 : "text-neutral-400 hover:text-white hover:bg-white/5"
             }`}
           >

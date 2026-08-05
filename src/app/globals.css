@@ -1,31 +1,34 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
+  --background: #050508;
   --foreground: #ffffff;
   --noise-opacity: 0.2;
 
-  /* Centralized Primary Brand Colors (Professional Tech Palette) */
-  --primary-start: #818cf8;
-  --primary-mid: #6366f1;
-  --primary-end: #38bdf8;
-  --primary-start-rgb: 129, 140, 248;
-  --primary-mid-rgb: 99, 102, 241;
-  --primary-end-rgb: 56, 189, 248;
+  /* Centralized Primary Brand Colors (Violet, White, Black, Charcoal Palette) */
+  --primary-start: #c084fc;
+  --primary-mid: #a855f7;
+  --primary-end: #7c3aed;
+  --primary-start-rgb: 192, 132, 252;
+  --primary-mid-rgb: 168, 85, 247;
+  --primary-end-rgb: 124, 58, 237;
 
-  /* Centralized Accent Palettes */
-  --accent-purple: #a855f7;
-  --accent-cyan: #06b6d4;
-  --accent-emerald: #10b981;
-  --accent-amber: #f59e0b;
-  --accent-rose: #f43f5e;
-  --accent-blue: #3b82f6;
-  --accent-teal: #14b8a6;
-  --accent-sky: #0ea5e9;
+  /* Charcoal Surface Tokens */
+  --charcoal-bg: #121216;
+  --charcoal-card: #18181c;
+  --charcoal-border: #272730;
+
+  /* Violet Accent Palette */
+  --accent-violet: #a855f7;
+  --accent-purple: #8b5cf6;
+  --accent-light-violet: #d8b4fe;
+  --accent-dark-violet: #6d28d9;
+  --accent-fuchsia: #e879f9;
+  --accent-indigo: #6366f1;
 }
 
 .light {
-  --background: #000000;
+  --background: #050508;
   --foreground: #ffffff;
   --noise-opacity: 0.15;
 }
@@ -38,14 +41,12 @@
   --color-primary-mid: var(--primary-mid);
   --color-primary-end: var(--primary-end);
 
+  --color-accent-violet: var(--accent-violet);
   --color-accent-purple: var(--accent-purple);
-  --color-accent-cyan: var(--accent-cyan);
-  --color-accent-emerald: var(--accent-emerald);
-  --color-accent-amber: var(--accent-amber);
-  --color-accent-rose: var(--accent-rose);
-  --color-accent-blue: var(--accent-blue);
-  --color-accent-teal: var(--accent-teal);
-  --color-accent-sky: var(--accent-sky);
+  --color-accent-light-violet: var(--accent-light-violet);
+  --color-accent-dark-violet: var(--accent-dark-violet);
+  --color-accent-fuchsia: var(--accent-fuchsia);
+  --color-accent-indigo: var(--accent-indigo);
   
   /* Custom fonts */
   --font-outfit: var(--font-outfit), sans-serif;
@@ -100,40 +101,41 @@ body {
   transition: background-color 0.5s ease, color 0.3s ease;
 }
 
-/* Glassmorphism helpers */
+/* Glassmorphism helpers - Charcoal & Violet Dark Theme */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(20, 20, 26, 0.65);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .glass-nav {
-  background: rgba(10, 10, 10, 0.75);
+  background: rgba(14, 14, 18, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .light .glass-panel {
-  background: rgba(0, 0, 0, 0.03);
+  background: rgba(20, 20, 26, 0.65);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .light .glass-nav {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(14, 14, 18, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-color: rgba(0, 0, 0, 0.08);
-  color: #18181b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
-/* Hero Italic Gradient text */
+/* Hero Italic Gradient text - Radiant Violet Spectrum */
 .italic-gradient-text {
   font-style: italic;
   font-family: var(--font-eb-garamond), serif;
-  background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-mid) 40%, var(--primary-end) 100%);
+  background: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-mid) 45%, var(--primary-end) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -143,17 +145,21 @@ body {
   margin-bottom: -0.18em;
 }
 
-/* Hide scrollbars */
+/* Hide scrollbars - Charcoal & Violet scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #050508;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(168, 85, 247, 0.25);
   border-radius: 4px;
 }
-.light ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.1);
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.45);
 }
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.25);
+}
+

@@ -38,9 +38,9 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
       case "graduation":
         return <GraduationCap className="w-6 h-6 text-purple-400" />;
       case "12th-hsc":
-        return <BookOpen className="w-6 h-6 text-cyan-400" />;
+        return <BookOpen className="w-6 h-6 text-violet-400" />;
       case "10th-ssc":
-        return <Award className="w-6 h-6 text-emerald-400" />;
+        return <Award className="w-6 h-6 text-fuchsia-400" />;
       default:
         return <School className="w-6 h-6 text-purple-400" />;
     }
@@ -53,7 +53,7 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
     >
       {/* Background Ambient Glows */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none -z-10" />
-      <div className="absolute bottom-10 right-10 w-[350px] h-[250px] bg-cyan-600/10 blur-[100px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute bottom-10 right-10 w-[350px] h-[250px] bg-violet-600/10 blur-[100px] rounded-full pointer-events-none -z-10" />
 
       {/* Section Header */}
       <div className="flex flex-col items-center text-center mb-12 sm:mb-16">

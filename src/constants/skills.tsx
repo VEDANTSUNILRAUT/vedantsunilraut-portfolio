@@ -5,17 +5,17 @@ import { themeConfig } from "./theme";
 
 export const techBadges: TechBadgeItem[] = [
   { name: "Kotlin", color: `text-purple-300 ${themeConfig.accents.purple.pillClass}` },
-  { name: "Android Native", color: `text-emerald-300 ${themeConfig.accents.emerald.pillClass}` },
-  { name: "Jetpack Compose", color: `text-blue-300 ${themeConfig.accents.blue.pillClass}` },
-  { name: "KMP (Multiplatform)", color: `text-purple-300 ${themeConfig.accents.purple.pillClass}` },
+  { name: "Android Native", color: `text-violet-300 ${themeConfig.accents.emerald.pillClass}` },
+  { name: "Jetpack Compose", color: `text-purple-300 ${themeConfig.accents.cyan.pillClass}` },
+  { name: "KMP (Multiplatform)", color: `text-fuchsia-300 ${themeConfig.accents.amber.pillClass}` },
   { name: "Next.js", color: "text-white border-white/20 bg-white/10" },
-  { name: "React", color: `text-cyan-300 ${themeConfig.accents.cyan.pillClass}` },
-  { name: "TypeScript", color: `text-blue-300 ${themeConfig.accents.blue.pillClass}` },
-  { name: "Node.js", color: `text-emerald-300 ${themeConfig.accents.emerald.pillClass}` },
+  { name: "React", color: `text-violet-300 ${themeConfig.accents.teal.pillClass}` },
+  { name: "TypeScript", color: `text-indigo-300 ${themeConfig.accents.blue.pillClass}` },
+  { name: "Node.js", color: `text-purple-300 ${themeConfig.accents.purple.pillClass}` },
   { name: "Express.js", color: "text-neutral-300 border-neutral-500/20 bg-neutral-500/10" },
-  { name: "Spring Boot", color: `text-emerald-300 ${themeConfig.accents.emerald.pillClass}` },
-  { name: "Git & GitHub", color: `text-amber-300 ${themeConfig.accents.amber.pillClass}` },
-  { name: "Docker", color: `text-sky-300 ${themeConfig.accents.sky.pillClass}` },
+  { name: "Spring Boot", color: `text-violet-300 ${themeConfig.accents.emerald.pillClass}` },
+  { name: "Git & GitHub", color: `text-fuchsia-300 ${themeConfig.accents.rose.pillClass}` },
+  { name: "Docker", color: `text-purple-300 ${themeConfig.accents.sky.pillClass}` },
 ];
 
 export const projectTags: string[] = [

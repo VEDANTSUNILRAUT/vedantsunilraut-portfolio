@@ -109,7 +109,7 @@ export function BentoGrid({ className = "" }: BentoGridProps) {
 
             {/* Widget 2: Currently Building */}
             <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md group-hover:border-purple-500/20 transition-colors">
-              <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 mb-1">
+              <div className="flex items-center gap-2 text-xs font-mono text-purple-300 mb-1">
                 <Zap className="w-3.5 h-3.5" />
                 <span>CURRENTLY BUILDING</span>
               </div>
@@ -120,10 +120,10 @@ export function BentoGrid({ className = "" }: BentoGridProps) {
                 <span className="px-2 py-0.5 rounded-md bg-purple-500/10 border border-purple-500/20 text-[10px] font-mono text-purple-300">
                   Jetpack Compose
                 </span>
-                <span className="px-2 py-0.5 rounded-md bg-blue-500/10 border border-blue-500/20 text-[10px] font-mono text-blue-300">
+                <span className="px-2 py-0.5 rounded-md bg-violet-500/10 border border-violet-500/20 text-[10px] font-mono text-violet-300">
                   Next.js 16
                 </span>
-                <span className="px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-mono text-emerald-300">
+                <span className="px-2 py-0.5 rounded-md bg-fuchsia-500/10 border border-fuchsia-500/20 text-[10px] font-mono text-fuchsia-300">
                   Clean Arch
                 </span>
               </div>
@@ -131,7 +131,7 @@ export function BentoGrid({ className = "" }: BentoGridProps) {
 
             {/* Widget 3: Active Focus & Exploration */}
             <div className="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md group-hover:border-purple-500/20 transition-colors">
-              <div className="flex items-center gap-2 text-xs font-mono text-amber-400 mb-1">
+              <div className="flex items-center gap-2 text-xs font-mono text-violet-300 mb-1">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>ACTIVE EXPLORATION</span>
               </div>
@@ -166,7 +166,7 @@ export function BentoGrid({ className = "" }: BentoGridProps) {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="lg:col-span-7 bg-neutral-950/80 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-7 relative overflow-hidden group hover:border-purple-500/30 transition-all duration-500 hover:-translate-y-1 shadow-2xl flex flex-col justify-between items-center text-center min-h-[240px]"
         >
-          {/* Top Edge Neon Purple/Pink Accent Light Rim Line */}
+          {/* Top Edge Neon Purple Accent Light Rim Line */}
           <div className="absolute top-0 inset-x-0 mx-auto w-3/4 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent shadow-[0_0_15px_rgba(192,132,252,0.9)]" />
 
           <div className="mt-4">
@@ -183,8 +183,8 @@ export function BentoGrid({ className = "" }: BentoGridProps) {
             >
               {copied ? (
                 <>
-                  <Check className="w-4 h-4 text-emerald-400" />
-                  <span className="text-emerald-300 font-medium">Copied to clipboard!</span>
+                  <Check className="w-4 h-4 text-purple-300" />
+                  <span className="text-purple-300 font-medium">Copied to clipboard!</span>
                 </>
               ) : (
                 <>
@@ -219,8 +219,8 @@ export function BentoGrid({ className = "" }: BentoGridProps) {
             </div>
           </div>
 
-          {/* Bottom Teal/Cyan Colored App Window UI Mockup */}
-          <div className="mt-6 w-full rounded-2xl border border-teal-500/30 bg-gradient-to-b from-teal-950/40 via-neutral-900 to-neutral-950 p-4 shadow-[0_-10px_25px_rgba(20,184,166,0.15)] z-10">
+          {/* Bottom Violet / Charcoal App Window UI Mockup */}
+          <div className="mt-6 w-full rounded-2xl border border-purple-500/30 bg-gradient-to-b from-purple-950/40 via-neutral-900 to-neutral-950 p-4 shadow-[0_-10px_25px_rgba(168,85,247,0.15)] z-10">
             <div className="flex items-center gap-1.5 mb-3">
               <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
               <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
@@ -228,12 +228,12 @@ export function BentoGrid({ className = "" }: BentoGridProps) {
             </div>
 
             <div className="space-y-2">
-              <div className="h-3 w-3/4 bg-teal-400/30 rounded-md" />
+              <div className="h-3 w-3/4 bg-purple-400/30 rounded-md" />
               <div className="h-2.5 w-1/2 bg-white/15 rounded-md" />
               <div className="grid grid-cols-3 gap-2 pt-2">
-                <div className="h-12 rounded-lg bg-teal-900/30 border border-teal-500/20" />
-                <div className="h-12 rounded-lg bg-teal-900/30 border border-teal-500/20" />
-                <div className="h-12 rounded-lg bg-teal-900/30 border border-teal-500/20" />
+                <div className="h-12 rounded-lg bg-purple-900/30 border border-purple-500/20" />
+                <div className="h-12 rounded-lg bg-purple-900/30 border border-purple-500/20" />
+                <div className="h-12 rounded-lg bg-purple-900/30 border border-purple-500/20" />
               </div>
             </div>
           </div>
