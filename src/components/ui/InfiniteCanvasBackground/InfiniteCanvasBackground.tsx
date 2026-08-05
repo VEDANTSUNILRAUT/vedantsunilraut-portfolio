@@ -26,7 +26,7 @@ interface GeometricWireframe {
   angleY: number;
   rotSpeedX: number;
   rotSpeedY: number;
-  type: "cube" | "ring" | "diagram";
+  type: "cube" | "diagram";
 }
 
 interface ShootingStar {
@@ -105,29 +105,41 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
         color: "#ffffff",
       }));
 
-      // Populate Geometric 3D Wireframes (Cube, Ring, Diagram)
-      const shapeTypes: ("cube" | "ring" | "diagram")[] = [
-        "cube",
-        "ring",
-        "diagram",
-      ];
-      shapes = Array.from({ length: 14 }, () => {
-        const type: "cube" | "ring" | "diagram" =
-          shapeTypes[Math.floor(Math.random() * shapeTypes.length)];
-        return {
-          x: Math.random() * width,
-          y: Math.random() * height * 2.5,
-          z: Math.random() * 0.6 + 0.4,
-          size: Math.random() * 25 + 20,
-          vx: (Math.random() - 0.5) * 0.2,
-          vy: (Math.random() - 0.5) * 0.2,
-          angleX: Math.random() * Math.PI * 2,
-          angleY: Math.random() * Math.PI * 2,
-          rotSpeedX: (Math.random() - 0.5) * 0.008,
-          rotSpeedY: (Math.random() - 0.5) * 0.008,
-          type,
-        };
-      });
+      // Populate Spaced-Out Small & Medium 3D Cubes (3 to 5 on screen)
+      const shapeTypes: ("cube" | "diagram")[] = ["cube", "diagram"];
+      const maxShapes = 5;
+      const minDistance = Math.min(width, height) * 0.32; // Social distancing spacing between shapes
+
+      shapes = [];
+      let attempts = 0;
+      while (shapes.length < maxShapes && attempts < 100) {
+        attempts++;
+        const candidateX = Math.random() * (width - 200) + 100;
+        const candidateY = Math.random() * height * 2.2;
+
+        const isTooClose = shapes.some((s) => {
+          const dx = s.x - candidateX;
+          const dy = s.y - candidateY;
+          return Math.sqrt(dx * dx + dy * dy) < minDistance;
+        });
+
+        if (!isTooClose || attempts > 80) {
+          const type = shapeTypes[shapes.length % shapeTypes.length];
+          shapes.push({
+            x: candidateX,
+            y: candidateY,
+            z: Math.random() * 0.5 + 0.4,
+            size: Math.random() * 8 + 12, // Small to Medium size range (12px - 20px)
+            vx: (Math.random() - 0.5) * 0.15,
+            vy: (Math.random() - 0.5) * 0.15,
+            angleX: Math.random() * Math.PI * 2,
+            angleY: Math.random() * Math.PI * 2,
+            rotSpeedX: (Math.random() - 0.5) * 0.006,
+            rotSpeedY: (Math.random() - 0.5) * 0.006,
+            type,
+          });
+        }
+      }
     };
 
     initCanvasSize();
@@ -408,8 +420,6 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
 
         if (shape.type === "cube") {
           drawCube(renderX, renderY, shape.size * shape.z, shape.angleX, shape.angleY, alpha);
-        } else if (shape.type === "ring") {
-          drawRing(renderX, renderY, shape.size * shape.z, shape.angleX, alpha);
         } else if (shape.type === "diagram") {
           drawCube(renderX, renderY, shape.size * 0.85 * shape.z, shape.angleY, shape.angleX, alpha * 0.85);
         }
