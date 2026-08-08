@@ -141,10 +141,6 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
                 <AiAvatar size="md" />
                 <div>
                   <h3 className="text-sm font-semibold text-white tracking-tight">Vedant Assistant</h3>
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-[11px] text-neutral-400 font-sans">AI Knowledge Agent</span>
-                  </div>
                 </div>
               </div>
 
@@ -279,17 +275,38 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
           )}
         </AnimatePresence>
 
-        {/* Minimalist Tooltip */}
-        <div className="absolute right-full mr-3 opacity-0 group-hover:opacity-100 pointer-events-none transition-all duration-200 translate-x-1 group-hover:translate-x-0 whitespace-nowrap hidden sm:block">
-          <div className="px-2.5 py-1 rounded-lg bg-neutral-900/90 border border-white/15 text-[11px] font-sans text-neutral-200 shadow-md">
-            Ask AI
-          </div>
-        </div>
+        {/* Attention-grabbing Animated "Ask me" Tooltip (Top Positioned) */}
+        <AnimatePresence>
+          {!isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: 5, scale: 0.9 }}
+              animate={{
+                opacity: [0, 1, 1, 1, 1, 0],
+                y: [5, 0, -3, 2, -2, 1, 0, 0],
+                scale: [0.92, 1.05, 1, 1.03, 1, 0.95],
+              }}
+              transition={{
+                duration: 3.8,
+                repeat: Infinity,
+                repeatDelay: 2.2,
+                ease: "easeInOut",
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsOpen(true);
+              }}
+              className="absolute bottom-full mb-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap cursor-pointer z-50 pointer-events-auto"
+            >
+              <div className="relative px-2.5 py-1 rounded-lg bg-neutral-900/95 border border-purple-500/40 text-[10px] sm:text-[11px] font-sans font-medium text-purple-200 shadow-[0_0_20px_rgba(168,85,247,0.3)] backdrop-blur-md flex items-center hover:border-purple-400 hover:scale-105 transition-all">
+                <span>Ask me</span>
+                {/* Pointer arrow pointing down to button */}
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-neutral-900 border-r border-b border-purple-500/40 rotate-45" />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-        {/* Subtle Online Indicator */}
-        {!isOpen && (
-          <span className="absolute top-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-black" />
-        )}
+
       </button>
 
     </div>
