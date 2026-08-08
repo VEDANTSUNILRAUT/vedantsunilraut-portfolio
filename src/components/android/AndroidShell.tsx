@@ -51,7 +51,7 @@ export function AndroidShell() {
       </div>
 
       {/* Central Active Android Screen with Material 3 Motion Transition */}
-      <main ref={mainRef} className="flex-1 w-full overflow-y-auto z-10 pt-2 pb-6">
+      <main ref={mainRef} data-lenis-prevent className="flex-1 w-full overflow-y-auto z-10 pt-2 pb-6 custom-scrollbar">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}

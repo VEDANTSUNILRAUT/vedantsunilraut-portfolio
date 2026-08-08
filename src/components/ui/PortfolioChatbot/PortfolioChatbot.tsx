@@ -258,7 +258,10 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
             </div>
 
             {/* Chat Feed */}
-            <div className="flex-1 p-4 overflow-y-auto space-y-4 font-sans scrollbar-thin scrollbar-thumb-white/10">
+            <div 
+              data-lenis-prevent
+              className="flex-1 p-4 overflow-y-auto space-y-4 font-sans custom-scrollbar"
+            >
               {messages.map((msg) => (
                 <div key={msg.id} className="flex flex-col space-y-2">
                   <div
