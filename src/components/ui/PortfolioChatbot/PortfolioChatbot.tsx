@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Send, Sparkles, User, ChevronRight } from "lucide-react";
+import { X, Send, Sparkles, User, ArrowUpRight } from "lucide-react";
 import { ChatMessage, PortfolioChatbotProps } from "./PortfolioChatbot.types";
 import { getBotResponse, QUICK_QUESTIONS } from "@/constants/botKnowledge";
 
@@ -12,112 +12,14 @@ function generateUniqueId(prefix: string): string {
   return `${prefix}-${messageCounter}`;
 }
 
-
-{/* Infinite Design Monogram Bot Logo SVG */}
-function ExecutiveBotMonogramLogo({ className = "w-6 h-6" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 64 64"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={`${className} filter drop-shadow-[0_2px_8px_rgba(56,189,248,0.5)]`}
-    >
-      <defs>
-        <linearGradient id="bot-head-grad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-          <stop stopColor="var(--primary-start)" />
-          <stop offset="0.5" stopColor="var(--primary-mid)" />
-          <stop offset="1" stopColor="var(--primary-end)" />
-        </linearGradient>
-        <linearGradient id="bot-visor-grad" x1="16" y1="26" x2="48" y2="34" gradientUnits="userSpaceOnUse">
-          <stop stopColor="var(--primary-end)" />
-          <stop offset="1" stopColor="var(--accent-cyan)" />
-        </linearGradient>
-        <linearGradient id="bot-infinity-grad" x1="8" y1="16" x2="56" y2="48" gradientUnits="userSpaceOnUse">
-          <stop stopColor="var(--accent-amber)" />
-          <stop offset="0.5" stopColor="var(--primary-start)" />
-          <stop offset="1" stopColor="var(--primary-end)" />
-        </linearGradient>
-      </defs>
-
-      {/* Infinite Monogram Orbit Loop */}
-      <path
-        d="M20 20C14 20 10 24 10 32C10 40 14 44 20 44C28 44 36 20 44 20C50 20 54 24 54 32C54 40 50 44 44 44C36 44 28 20 20 20Z"
-        stroke="url(#bot-infinity-grad)"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="opacity-60"
-      />
-
-      {/* Cybernetic Bot Head Contour */}
-      <path
-        d="M18 18L32 10L46 18V36L32 50L18 36V18Z"
-        fill="#09090b"
-        stroke="url(#bot-head-grad)"
-        strokeWidth="2.5"
-        strokeLinejoin="round"
-      />
-
-      {/* Bot Antenna Beam */}
-      <circle cx="32" cy="7" r="2.5" fill="#f59e0b" className="animate-pulse" />
-      <line x1="32" y1="7" x2="32" y2="10" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" />
-
-      {/* Neon Cyber Visor */}
-      <rect
-        x="20"
-        y="25"
-        width="24"
-        height="9"
-        rx="4.5"
-        fill="url(#bot-visor-grad)"
-      />
-
-      {/* Dual Eye LED Sensors */}
-      <circle cx="27" cy="29.5" r="1.8" fill="#ffffff" />
-      <circle cx="37" cy="29.5" r="1.8" fill="#ffffff" />
-
-      {/* Monogram V Chin Cutout */}
-      <path
-        d="M26 39L32 45L38 39"
-        stroke="url(#bot-head-grad)"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-{/* Fusion Emblem: Embossed Titanium Shield + 3D Geometric Infinite Monogram Bot Logo */}
-function VedantExecutiveVEmblem({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
-  const sizeClasses = {
-    sm: "w-7 h-7 rounded-full",
-    md: "w-10 h-10 rounded-full",
-    lg: "w-12 h-12 rounded-full",
-  };
-
-  const logoSizes = {
-    sm: "w-4.5 h-4.5",
-    md: "w-6 h-6",
-    lg: "w-7.5 h-7.5",
-  };
+{/* Minimalist Professional AI Avatar */}
+function AiAvatar({ size = "md" }: { size?: "sm" | "md" }) {
+  const containerClasses = size === "sm" ? "w-6 h-6 rounded-lg" : "w-8 h-8 rounded-xl";
+  const iconClasses = size === "sm" ? "w-3.5 h-3.5" : "w-4 h-4";
 
   return (
-    <div className={`relative flex items-center justify-center select-none group shrink-0 ${sizeClasses[size]}`}>
-      {/* Metallic Titanium Halo Glow */}
-      <div className="absolute -inset-0.5 bg-gradient-to-tr from-neutral-600 via-purple-500/30 to-amber-500/30 rounded-full blur-[3px] opacity-50 group-hover:opacity-100 transition-opacity" />
-      
-      {/* Stealth Dark Executive Container */}
-      <div className="relative w-full h-full bg-neutral-950 border border-white/25 rounded-full flex items-center justify-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)] overflow-hidden">
-        {/* Subtle Geometric Mesh Texture */}
-        <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:6px_6px]" />
-
-        {/* Infinite Monogram Bot Logo */}
-        <ExecutiveBotMonogramLogo className={logoSizes[size]} />
-        
-        {/* Top Metallic Border Highlight */}
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-      </div>
+    <div className={`relative flex items-center justify-center shrink-0 bg-gradient-to-br from-purple-500/20 via-neutral-900 to-neutral-950 border border-purple-500/30 text-purple-300 shadow-sm ${containerClasses}`}>
+      <Sparkles className={iconClasses} />
     </div>
   );
 }
@@ -130,7 +32,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
     {
       id: "welcome-1",
       sender: "bot",
-      text: "💼 **VEDANT EXECUTIVE AI ASSISTANT**\n\nWelcome! How may I assist you with Vedant's **Android Engineering**, **Architecture Stack**, **Featured Projects**, or **Hiring Availability**?",
+      text: "Hello! I am Vedant's AI Assistant. Ask me anything about his **Android Engineering**, **Tech Stack**, **Featured Projects**, or **Hiring Availability**.",
       timestamp: "Just now",
       quickReplies: QUICK_QUESTIONS,
     },
@@ -171,7 +73,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
 
       setMessages((prev) => [...prev, botMessage]);
       setIsTyping(false);
-    }, 550);
+    }, 450);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -190,7 +92,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
       const formattedLine = parts.map((part, pIdx) => {
         if (part.startsWith("**") && part.endsWith("**")) {
           return (
-            <strong key={pIdx} className="font-semibold text-amber-200">
+            <strong key={pIdx} className="font-semibold text-purple-200">
               {part.slice(2, -2)}
             </strong>
           );
@@ -203,7 +105,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
               href={linkMatch[2]}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-cyan-300 underline hover:text-cyan-100 font-medium transition-colors"
+              className="text-purple-300 hover:text-purple-100 underline font-medium transition-colors"
             >
               {linkMatch[1]}
             </a>
@@ -223,41 +125,40 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
   return (
     <div className={`fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end ${className}`}>
       
-      {/* Stealth Executive Glass Chat Drawer */}
+      {/* Sleek Minimalist Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.92, y: 20 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="w-[92vw] sm:w-96 h-[520px] mb-4 bg-neutral-950/95 border border-white/20 backdrop-blur-2xl rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.9)] flex flex-col overflow-hidden"
+            exit={{ opacity: 0, scale: 0.95, y: 15 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="w-[92vw] sm:w-[380px] h-[500px] mb-4 bg-neutral-950/95 border border-white/15 backdrop-blur-2xl rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="px-5 py-3.5 bg-neutral-900/90 border-b border-white/10 flex items-center justify-between z-10">
-              <div className="flex items-center gap-3">
-                <VedantExecutiveVEmblem size="md" />
+            <div className="px-4 py-3 bg-neutral-900/80 border-b border-white/10 flex items-center justify-between z-10">
+              <div className="flex items-center gap-2.5">
+                <AiAvatar size="md" />
                 <div>
+                  <h3 className="text-sm font-semibold text-white tracking-tight">Vedant Assistant</h3>
                   <div className="flex items-center gap-1.5">
-                    <h3 className="text-sm font-bold text-white tracking-tight">VEDANT AI</h3>
-                    <span className="px-1.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-[9px] font-mono text-amber-300 font-semibold">
-                      EXECUTIVE AGENT
-                    </span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[11px] text-neutral-400 font-sans">AI Knowledge Agent</span>
                   </div>
-                  <p className="text-[10px] font-mono text-neutral-400">🟢 ONLINE • PORTFOLIO AGENT</p>
                 </div>
               </div>
 
               {/* Close Button */}
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-neutral-400 hover:text-white hover:bg-white/10 transition-colors"
+                aria-label="Close chat"
+                className="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-neutral-400 hover:text-white transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Chat Feed */}
+            {/* Chat Messages Feed */}
             <div 
               data-lenis-prevent
               className="flex-1 p-4 overflow-y-auto space-y-4 font-sans custom-scrollbar"
@@ -270,22 +171,22 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
                     }`}
                   >
                     {msg.sender === "user" ? (
-                      <div className="w-7.5 h-7.5 rounded-lg bg-white text-black font-bold flex items-center justify-center text-xs shrink-0 mt-0.5 shadow-md">
-                        <User className="w-4 h-4" />
+                      <div className="w-6 h-6 rounded-lg bg-white/10 border border-white/15 text-white flex items-center justify-center text-xs shrink-0 mt-0.5">
+                        <User className="w-3.5 h-3.5" />
                       </div>
                     ) : (
-                      <VedantExecutiveVEmblem size="sm" />
+                      <AiAvatar size="sm" />
                     )}
 
                     <div
-                      className={`max-w-[82%] px-4 py-3 rounded-xl text-xs sm:text-sm shadow-md ${
+                      className={`max-w-[85%] px-3.5 py-2.5 rounded-2xl text-xs sm:text-sm shadow-sm ${
                         msg.sender === "user"
-                          ? "bg-white text-black font-semibold rounded-tr-none"
-                          : "bg-neutral-900/90 border border-white/10 text-neutral-200 rounded-tl-none font-sans"
+                          ? "bg-purple-600 text-white rounded-tr-xs font-medium"
+                          : "bg-neutral-900/90 border border-white/10 text-neutral-200 rounded-tl-xs"
                       }`}
                     >
                       {renderFormattedText(msg.text)}
-                      <span className="text-[9px] font-mono text-neutral-400 mt-1 block text-right opacity-70">
+                      <span className="text-[9px] text-neutral-400 mt-1 block text-right opacity-60">
                         {msg.timestamp}
                       </span>
                     </div>
@@ -293,15 +194,15 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
 
                   {/* Quick Suggestion Pills */}
                   {msg.quickReplies && msg.quickReplies.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 pl-9 mt-1">
+                    <div className="flex flex-wrap gap-1.5 pl-8.5 mt-1">
                       {msg.quickReplies.map((reply, qIdx) => (
                         <button
                           key={qIdx}
                           onClick={() => handleSend(reply)}
-                          className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-amber-400/50 text-[11px] font-mono text-neutral-300 hover:text-white transition-all active:scale-95 text-left flex items-center gap-1 group"
+                          className="px-3 py-1 rounded-full bg-white/5 hover:bg-purple-500/15 border border-white/10 hover:border-purple-500/40 text-[11px] text-neutral-300 hover:text-white transition-all active:scale-95 text-left flex items-center gap-1 group"
                         >
                           <span>{reply}</span>
-                          <ChevronRight className="w-3 h-3 text-neutral-500 group-hover:translate-x-0.5 transition-transform" />
+                          <ArrowUpRight className="w-3 h-3 text-neutral-500 group-hover:text-purple-300 transition-colors" />
                         </button>
                       ))}
                     </div>
@@ -312,11 +213,11 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
               {/* Typing Indicator */}
               {isTyping && (
                 <div className="flex items-center gap-2.5">
-                  <VedantExecutiveVEmblem size="sm" />
-                  <div className="px-4 py-2.5 rounded-xl bg-neutral-900/90 border border-white/10 rounded-tl-none flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-300 animate-bounce" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-300 animate-bounce [animation-delay:0.2s]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-300 animate-bounce [animation-delay:0.4s]" />
+                  <AiAvatar size="sm" />
+                  <div className="px-3.5 py-2.5 rounded-2xl bg-neutral-900/90 border border-white/10 rounded-tl-xs flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce [animation-delay:0.15s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce [animation-delay:0.3s]" />
                   </div>
                 </div>
               )}
@@ -325,75 +226,69 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
             </div>
 
             {/* Input Bar */}
-            <div className="p-3 bg-neutral-900/90 border-t border-white/10 flex items-center gap-2">
+            <div className="p-3 bg-neutral-900/80 border-t border-white/10 flex items-center gap-2">
               <input
                 type="text"
                 value={inputMsg}
                 onChange={(e) => setInputMsg(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask Executive AI..."
-                className="flex-1 px-4 py-2.5 rounded-xl bg-black border border-white/15 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-amber-400/60 font-sans"
+                placeholder="Ask a question..."
+                className="flex-1 px-3.5 py-2 rounded-full bg-black/60 border border-white/15 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-purple-500/60 font-sans transition-colors"
               />
               <button
                 onClick={() => handleSend()}
                 disabled={!inputMsg.trim()}
-                className="w-9 h-9 rounded-xl bg-white hover:bg-neutral-200 disabled:opacity-40 text-black font-bold flex items-center justify-center transition-colors active:scale-95 shadow-md shrink-0"
+                aria-label="Send message"
+                className="w-8 h-8 rounded-full bg-purple-600 hover:bg-purple-500 disabled:opacity-30 disabled:hover:bg-purple-600 text-white flex items-center justify-center transition-colors active:scale-95 shadow-md shrink-0"
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-3.5 h-3.5" />
               </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Titanium Circular "V" Executive Trigger Button */}
+      {/* Minimalist Floating Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle Executive AI Assistant"
-        className="relative group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-neutral-950 border border-white/25 text-white shadow-[0_0_35px_rgba(255,255,255,0.15)] backdrop-blur-2xl hover:border-amber-400/70 transition-all duration-300 active:scale-95 cursor-pointer"
+        aria-label="Toggle Assistant"
+        className="relative group flex items-center justify-center w-12 h-12 rounded-full bg-neutral-950 border border-white/20 text-white shadow-xl backdrop-blur-xl hover:border-purple-500/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] transition-all duration-300 active:scale-95 cursor-pointer"
       >
-        {/* Outer Halo Glow */}
-        <div className="absolute -inset-0.5 bg-gradient-to-tr from-neutral-600 via-amber-500/30 to-purple-500/30 rounded-full blur-[3px] opacity-60 group-hover:opacity-100 transition-opacity pointer-events-none" />
+        <AnimatePresence mode="wait">
+          {isOpen ? (
+            <motion.div
+              key="close"
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 90, opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <X className="w-5 h-5 text-neutral-300" />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="open"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.15 }}
+              className="relative flex items-center justify-center"
+            >
+              <Sparkles className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors" />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-        {/* Inner Circle Content */}
-        <div className="relative w-full h-full rounded-full bg-neutral-950 flex items-center justify-center overflow-hidden">
-          <AnimatePresence mode="wait">
-            {isOpen ? (
-              <motion.div
-                key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.15 }}
-              >
-                <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="open"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                transition={{ duration: 0.15 }}
-                className="relative flex items-center justify-center"
-              >
-                <ExecutiveBotMonogramLogo className="w-6.5 h-6.5 sm:w-7.5 sm:h-7.5" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* Hover Tooltip Label */}
-        <div className="absolute right-full mr-3 opacity-0 group-hover:opacity-100 pointer-events-none transition-all duration-200 translate-x-2 group-hover:translate-x-0 whitespace-nowrap hidden sm:block">
-          <div className="px-3 py-1.5 rounded-xl bg-neutral-900/95 border border-white/20 text-xs font-mono font-semibold text-white shadow-xl flex items-center gap-1.5 backdrop-blur-md">
-            <span>ASK VEDANT AI</span>
-            <Sparkles className="w-3 h-3 text-amber-300" />
+        {/* Minimalist Tooltip */}
+        <div className="absolute right-full mr-3 opacity-0 group-hover:opacity-100 pointer-events-none transition-all duration-200 translate-x-1 group-hover:translate-x-0 whitespace-nowrap hidden sm:block">
+          <div className="px-2.5 py-1 rounded-lg bg-neutral-900/90 border border-white/15 text-[11px] font-sans text-neutral-200 shadow-md">
+            Ask AI
           </div>
         </div>
 
-        {/* Online Status Dot Indicator */}
+        {/* Subtle Online Indicator */}
         {!isOpen && (
-          <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-black shadow-[0_0_8px_var(--accent-emerald)]" />
+          <span className="absolute top-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-black" />
         )}
       </button>
 
