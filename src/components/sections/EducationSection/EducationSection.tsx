@@ -14,11 +14,9 @@ import {
   ChevronDown,
   ChevronUp,
   School,
-  Star,
   Building2,
-  TrendingUp,
 } from "lucide-react";
-import { EDUCATION_DATA, EducationItem } from "@/constants/education";
+import { EDUCATION_DATA } from "@/constants/education";
 import { EducationSectionProps } from "./EducationSection.types";
 
 export function EducationSection({ className = "" }: EducationSectionProps) {

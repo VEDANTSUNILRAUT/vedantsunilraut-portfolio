@@ -162,10 +162,10 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       const cosY = Math.cos(ay), sinY = Math.sin(ay);
 
       const projected = vertices.map(([x, y, z]) => {
-        let x1 = x * cosY - z * sinY;
-        let z1 = x * sinY + z * cosY;
-        let y2 = y * cosX - z1 * sinX;
-        let z2 = y * sinX + z1 * cosX;
+        const x1 = x * cosY - z * sinY;
+        const z1 = x * sinY + z * cosY;
+        const y2 = y * cosX - z1 * sinX;
+        const z2 = y * sinX + z1 * cosX;
 
         const scale = 180 / (180 + z2);
         return [cx + x1 * size * scale, cy + y2 * size * scale];
@@ -182,7 +182,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
     };
 
     // Draw 3D Diamond / Octahedron Wireframe
-    const drawDiamond = (cx: number, cy: number, size: number, ax: number, ay: number, alpha: number) => {
+    const _drawDiamond = (cx: number, cy: number, size: number, ax: number, ay: number, alpha: number) => {
       const vertices = [
         [0, -1.4, 0], [1, 0, 0], [0, 0, 1], [-1, 0, 0], [0, 0, -1], [0, 1.4, 0]
       ];
@@ -196,10 +196,10 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       const cosY = Math.cos(ay), sinY = Math.sin(ay);
 
       const projected = vertices.map(([x, y, z]) => {
-        let x1 = x * cosY - z * sinY;
-        let z1 = x * sinY + z * cosY;
-        let y2 = y * cosX - z1 * sinX;
-        let z2 = y * sinX + z1 * cosX;
+        const x1 = x * cosY - z * sinY;
+        const z1 = x * sinY + z * cosY;
+        const y2 = y * cosX - z1 * sinX;
+        const z2 = y * sinX + z1 * cosX;
         const scale = 180 / (180 + z2);
         return [cx + x1 * size * scale, cy + y2 * size * scale];
       });
@@ -215,7 +215,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
     };
 
     // Draw Energy Ring Wireframe
-    const drawRing = (cx: number, cy: number, size: number, ax: number, alpha: number) => {
+    const _drawRing = (cx: number, cy: number, size: number, ax: number, alpha: number) => {
       ctx.save();
       ctx.translate(cx, cy);
       ctx.rotate(ax);
@@ -234,12 +234,12 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
     };
 
     // Draw 4D Wireframe Tesseract (Hypercube - Compact Noticeable Size)
-    const drawTesseract = (cx: number, cy: number, size: number, ax: number, ay: number, alpha: number) => {
+    const _drawTesseract = (cx: number, cy: number, size: number, ax: number, ay: number, alpha: number) => {
       const vertices4D: [number, number, number, number][] = [];
-      for (let x of [-1, 1]) {
-        for (let y of [-1, 1]) {
-          for (let z of [-1, 1]) {
-            for (let w of [-1, 1]) {
+      for (const x of [-1, 1]) {
+        for (const y of [-1, 1]) {
+          for (const z of [-1, 1]) {
+            for (const w of [-1, 1]) {
               vertices4D.push([x, y, z, w]);
             }
           }
@@ -262,19 +262,19 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       const cosW = Math.cos(ax * 1.5), sinW = Math.sin(ax * 1.5);
 
       const projected = vertices4D.map(([x, y, z, w]) => {
-        let x4 = x * cosW - w * sinW;
-        let w4 = x * sinW + w * cosW;
+        const x4 = x * cosW - w * sinW;
+        const w4 = x * sinW + w * cosW;
 
         const distance4D = 2.5;
         const scale4D = distance4D / (distance4D - w4);
-        let x3 = x4 * scale4D;
-        let y3 = y * scale4D;
-        let z3 = z * scale4D;
+        const x3 = x4 * scale4D;
+        const y3 = y * scale4D;
+        const z3 = z * scale4D;
 
-        let x1 = x3 * cosY - z3 * sinY;
-        let z1 = x3 * sinY + z3 * cosY;
-        let y2 = y3 * cosX - z1 * sinX;
-        let z2 = y3 * sinX + z1 * cosX;
+        const x1 = x3 * cosY - z3 * sinY;
+        const z1 = x3 * sinY + z3 * cosY;
+        const y2 = y3 * cosX - z1 * sinX;
+        const z2 = y3 * sinX + z1 * cosX;
 
         const scale3D = 180 / (180 + z2);
         return [cx + x1 * size * 0.45 * scale3D, cy + y2 * size * 0.45 * scale3D];
@@ -420,7 +420,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
 
         if (shape.type === "cube") {
           drawCube(renderX, renderY, shape.size * shape.z, shape.angleX, shape.angleY, alpha);
-        } else if (shape.type === "diagram") {
+        } else {
           drawCube(renderX, renderY, shape.size * 0.85 * shape.z, shape.angleY, shape.angleX, alpha * 0.85);
         }
       });
@@ -438,7 +438,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
         star.y += star.dy;
 
         const progress = star.life / star.maxLife;
-        let alpha = Math.sin(progress * Math.PI);
+        const alpha = Math.sin(progress * Math.PI);
 
         if (progress >= 1 || star.x < -150 || star.x > width + 150 || star.y < -150 || star.y > height + 150) {
           star.active = false;

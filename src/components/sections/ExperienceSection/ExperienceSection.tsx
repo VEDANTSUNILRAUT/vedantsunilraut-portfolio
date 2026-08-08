@@ -15,9 +15,8 @@ import {
   Smartphone,
   Zap,
   Award,
-  Layers,
 } from "lucide-react";
-import { WORK_EXPERIENCE_DATA, WorkExperienceItem } from "@/constants/experience";
+import { WORK_EXPERIENCE_DATA } from "@/constants/experience";
 import { ExperienceSectionProps } from "./ExperienceSection.types";
 
 export function ExperienceSection({ className = "" }: ExperienceSectionProps) {

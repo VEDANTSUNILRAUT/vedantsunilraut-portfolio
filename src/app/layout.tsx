@@ -44,8 +44,62 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "Premium Developer Portfolio | Vedant Raut",
-  description: "Modern Full Stack & Native Android Engineer Portfolio built with Next.js, Tailwind, and Framer Motion",
+  metadataBase: new URL("https://vedantsunilraut.vercel.app"),
+  title: {
+    default: "Vedant Sunil Raut | Software Engineer & Native Android Specialist",
+    template: "%s | Vedant Sunil Raut",
+  },
+  description:
+    "Portfolio of Vedant Sunil Raut — Software Engineer at Logituit. Expert in Native Android, Kotlin, Jetpack Compose, KMP, Next.js, and Full-Stack Engineering.",
+  keywords: [
+    "Vedant Raut",
+    "Vedant Sunil Raut",
+    "Software Engineer Logituit",
+    "Android Developer",
+    "Kotlin Specialist",
+    "Jetpack Compose",
+    "Kotlin Multiplatform",
+    "KMP Developer",
+    "Next.js Developer",
+    "Full Stack Engineer",
+    "Amravati",
+    "India",
+  ],
+  authors: [{ name: "Vedant Sunil Raut", url: "https://github.com/VEDANTSUNILRAUT" }],
+  creator: "Vedant Sunil Raut",
+  publisher: "Vedant Sunil Raut",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    title: "Vedant Sunil Raut | Software Engineer & Native Android Specialist",
+    description:
+      "Software Engineer at Logituit specializing in Native Android Development, Kotlin, Jetpack Compose, KMP, and Modern Web Systems.",
+    url: "https://vedantsunilraut.vercel.app",
+    siteName: "Vedant Raut Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vedant Sunil Raut | Software Engineer & Native Android Specialist",
+    description:
+      "Software Engineer at Logituit specializing in Native Android, Kotlin, Jetpack Compose & Full-Stack Web Development.",
+    creator: "@vedantsunilraut",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -74,14 +128,14 @@ export default function RootLayout({
         >
           {/* Global Lenis Smooth Momentum Scroll Wrapper */}
           <LenisScroll>
-            {/* Global Developer Loader (Temporarily hidden) */}
-            {/* <DeveloperLoader /> */}
+            {/* Global Developer Loader */}
+            <DeveloperLoader />
 
-            {/* Noise overlay */}
+            {/* Standalone Noise overlay */}
             <div 
               className="pointer-events-none fixed inset-0 z-50 mix-blend-overlay"
               style={{ 
-                backgroundImage: 'url("https://dhirajbhawsar.in/noise.webp")', 
+                backgroundImage: 'url("/noise.svg")', 
                 backgroundSize: '256px 256px',
                 opacity: 'var(--noise-opacity)'
               }} 
@@ -99,11 +153,12 @@ export default function RootLayout({
               <Footer />
             </DeviceLayoutSwitcher>
 
-            {/* Vedant Executive AI Chatbot (Temporarily hidden) */}
-            {/* <PortfolioChatbot /> */}
+            {/* Vedant Executive AI Chatbot */}
+            <PortfolioChatbot />
           </LenisScroll>
         </ThemeProvider>
       </body>
     </html>
   );
 }
+

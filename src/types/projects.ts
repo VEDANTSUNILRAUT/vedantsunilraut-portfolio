@@ -8,4 +8,7 @@ export interface FeaturedProject {
   previewSubtitle: string;
   bgGradient: string;
   glowColor: string;
+  githubUrl?: string;
+  liveUrl?: string;
 }
+

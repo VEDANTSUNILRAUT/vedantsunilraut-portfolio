@@ -145,21 +145,20 @@ body {
   margin-bottom: -0.18em;
 }
 
-/* Hide scrollbars - Charcoal & Violet scrollbar */
+/* Hide scrollbars globally */
+html,
+body,
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+*::-webkit-scrollbar,
 ::-webkit-scrollbar {
-  width: 8px;
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
 }
-::-webkit-scrollbar-track {
-  background: #050508;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(168, 85, 247, 0.25);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(168, 85, 247, 0.45);
-}
-.light ::-webkit-scrollbar-thumb {
-  background: rgba(168, 85, 247, 0.25);
-}
+
 

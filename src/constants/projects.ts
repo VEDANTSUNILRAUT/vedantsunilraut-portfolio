@@ -16,6 +16,8 @@ export const projects: FeaturedProject[] = [
     previewSubtitle: "Software Engineer & Android Developer",
     bgGradient: "from-purple-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.purple.main,
+    githubUrl: "https://github.com/VEDANTSUNILRAUT/vedantsunilraut-portfolio",
+    liveUrl: "https://vedantsunilraut.vercel.app",
   },
   {
     id: "project-2",
@@ -30,6 +32,7 @@ export const projects: FeaturedProject[] = [
     previewSubtitle: "AI Placement Portal",
     bgGradient: "from-violet-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.cyan.main,
+    githubUrl: "https://github.com/VEDANTSUNILRAUT/Talent-Bridge",
   },
   {
     id: "project-3",
@@ -44,6 +47,7 @@ export const projects: FeaturedProject[] = [
     previewSubtitle: "Web Application & PDF Exporter",
     bgGradient: "from-indigo-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.emerald.main,
+    githubUrl: "https://github.com/VEDANTSUNILRAUT/Invoice-Generator",
   },
   {
     id: "project-4",
@@ -58,6 +62,7 @@ export const projects: FeaturedProject[] = [
     previewSubtitle: "Java Full Stack Management System",
     bgGradient: "from-fuchsia-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.amber.main,
+    githubUrl: "https://github.com/VEDANTSUNILRAUT/Cattle-Hub",
   },
   {
     id: "project-5",
@@ -71,6 +76,7 @@ export const projects: FeaturedProject[] = [
     previewSubtitle: "Full Stack Web Application",
     bgGradient: "from-purple-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.rose.main,
+    githubUrl: "https://github.com/VEDANTSUNILRAUT/Gym-Management-System",
   },
   {
     id: "project-6",
@@ -84,5 +90,7 @@ export const projects: FeaturedProject[] = [
     previewSubtitle: "Hotel Management Platform",
     bgGradient: "from-violet-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.blue.main,
+    githubUrl: "https://github.com/VEDANTSUNILRAUT/RoyalHotel-Management",
   },
 ];
+

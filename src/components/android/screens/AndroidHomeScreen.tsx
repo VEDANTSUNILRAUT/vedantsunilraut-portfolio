@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { Smartphone, Code2, Layers, ArrowRight } from "lucide-react";
+import { Smartphone, Layers, ArrowRight } from "lucide-react";
 import { AndroidTabType } from "../AndroidBottomNav";
 
 interface AndroidHomeScreenProps {

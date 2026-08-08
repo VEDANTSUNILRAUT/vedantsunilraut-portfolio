@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useScroll, useSpring, motion } from "framer-motion";
 
 export function SpringScroll({ children }: { children: React.ReactNode }) {

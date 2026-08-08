@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, User, Copy, Check, Smartphone, Layers, PenTool, Activity, Compass, Sparkles, Zap } from "lucide-react";
+import { MapPin, Copy, Check, Smartphone, Layers, PenTool, Activity, Compass, Sparkles, Zap } from "lucide-react";
 import { siteConfig } from "@/constants/site";
 import { techBadges, projectTags } from "@/constants/skills";
 import { useClipboard } from "@/hooks/useClipboard";
@@ -11,7 +10,6 @@ import { BentoGridProps } from "./BentoGrid.types";
 
 export function BentoGrid({ className = "" }: BentoGridProps) {
   const { copied, copy } = useClipboard();
-  const [imageError, setImageError] = useState(false);
 
   return (
     <section id="about" className={`w-full max-w-6xl mx-auto px-4 sm:px-6 pt-36 sm:pt-44 pb-28 relative z-10 scroll-mt-36 sm:scroll-mt-44 snap-start ${className}`}>

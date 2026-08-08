@@ -43,7 +43,7 @@ export const siteConfig: SiteConfig = {
   socials: {
     github: "https://github.com/VEDANTSUNILRAUT",
     linkedin: "https://www.linkedin.com/in/vedantsunilraut",
-    twitter: "https://x.com",
+    twitter: "https://x.com/vedantsunilraut",
     instagram: "https://www.instagram.com/vedantsunilraut",
   },
 };

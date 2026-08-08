@@ -2,9 +2,16 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Send, Sparkles, User, Shield, ChevronRight } from "lucide-react";
+import { X, Send, Sparkles, User, ChevronRight } from "lucide-react";
 import { ChatMessage, PortfolioChatbotProps } from "./PortfolioChatbot.types";
 import { getBotResponse, QUICK_QUESTIONS } from "@/constants/botKnowledge";
+
+let messageCounter = 0;
+function generateUniqueId(prefix: string): string {
+  messageCounter += 1;
+  return `${prefix}-${messageCounter}`;
+}
+
 
 {/* Infinite Design Monogram Bot Logo SVG */}
 function ExecutiveBotMonogramLogo({ className = "w-6 h-6" }: { className?: string }) {
@@ -142,7 +149,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
     if (!text.trim()) return;
 
     const userMessage: ChatMessage = {
-      id: `user-${Date.now()}`,
+      id: generateUniqueId("user"),
       sender: "user",
       text: text.trim(),
       timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
@@ -155,7 +162,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
     setTimeout(() => {
       const responseData = getBotResponse(text);
       const botMessage: ChatMessage = {
-        id: `bot-${Date.now()}`,
+        id: generateUniqueId("bot"),
         sender: "bot",
         text: responseData.reply,
         timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),

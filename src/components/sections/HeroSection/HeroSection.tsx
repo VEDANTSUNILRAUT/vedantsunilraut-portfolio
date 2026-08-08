@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
 import { siteConfig } from "@/constants/site";
 import { TypewriterReveal } from "@/components/ui/TypewriterReveal";
@@ -9,21 +9,23 @@ import { SparkleBurstButton } from "@/components/ui/SparkleBurstButton";
 import { HorizonGlow } from "@/components/ui/HorizonGlow";
 import { HeroSectionProps } from "./HeroSection.types";
 
-export function HeroSection({ className = "" }: HeroSectionProps) {
-  const [greeting, setGreeting] = useState<string>("Good Morning");
+const emptySubscribe = () => () => {};
 
-  useEffect(() => {
-    const hour = new Date().getHours();
-    if (hour >= 5 && hour < 12) {
-      setGreeting("Good Morning");
-    } else if (hour >= 12 && hour < 17) {
-      setGreeting("Good Afternoon");
-    } else if (hour >= 17 && hour < 22) {
-      setGreeting("Good Evening");
-    } else {
-      setGreeting("Good Evening");
-    }
-  }, []);
+function getGreetingSnapshot(): string {
+  if (typeof window === "undefined") return "Good Morning";
+  const hour = new Date().getHours();
+  if (hour >= 5 && hour < 12) return "Good Morning";
+  if (hour >= 12 && hour < 17) return "Good Afternoon";
+  return "Good Evening";
+}
+
+export function HeroSection({ className = "" }: HeroSectionProps) {
+  const greeting = useSyncExternalStore(
+    emptySubscribe,
+    getGreetingSnapshot,
+    () => "Good Morning"
+  );
+
 
   return (
     <section id="home" className={`relative w-full min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-36 sm:pb-44 overflow-hidden scroll-mt-36 snap-start ${className}`}>

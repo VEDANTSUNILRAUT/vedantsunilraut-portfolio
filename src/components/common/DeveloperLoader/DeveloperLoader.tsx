@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Code2, Cpu } from "lucide-react";
+import { useIsMounted } from "@/hooks/useIsMounted";
 import { DeveloperLoaderProps } from "./DeveloperLoader.types";
 
 export function DeveloperLoader({ className = "", forceShow = false }: DeveloperLoaderProps) {
   const pathname = usePathname();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const isMounted = useIsMounted();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(0);
 
   const getRouteDetails = (path: string) => {
@@ -31,11 +33,17 @@ export function DeveloperLoader({ className = "", forceShow = false }: Developer
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    setProgress(0);
+    const alreadyLoaded = typeof window !== "undefined" && Boolean(sessionStorage.getItem("hasLoaded"));
+    if (!forceShow && alreadyLoaded) {
+      return;
+    }
+
+    const showTimer = setTimeout(() => {
+      setIsLoading(true);
+    }, 0);
 
     const startTime = Date.now();
-    const DURATION = 1350; // Completes over 1.35 seconds
+    const DURATION = 1000;
 
     const interval = setInterval(() => {
       const elapsed = Date.now() - startTime;
@@ -44,12 +52,20 @@ export function DeveloperLoader({ className = "", forceShow = false }: Developer
 
       if (calculatedProgress >= 100) {
         clearInterval(interval);
-        setTimeout(() => setIsLoading(false), 150); // Total display time = 1.5 seconds
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("hasLoaded", "true");
+        }
+        setTimeout(() => setIsLoading(false), 120);
       }
-    }, 25);
+    }, 20);
 
-    return () => clearInterval(interval);
-  }, [pathname]);
+    return () => {
+      clearTimeout(showTimer);
+      clearInterval(interval);
+    };
+  }, [forceShow]);
+
+  if (!isMounted) return null;
 
   const shouldShow = isLoading || forceShow;
 

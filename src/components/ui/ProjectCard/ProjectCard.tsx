@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Smartphone } from "lucide-react";
+import { Smartphone, Github, ExternalLink } from "lucide-react";
 import { ProjectCardProps } from "./ProjectCard.types";
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
@@ -72,18 +72,49 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           ))}
         </ul>
 
-        {/* Tech Stack Badges Cloud */}
-        <div className="pt-2 flex flex-wrap gap-2">
-          {project.techStack.map((tech, tIdx) => (
-            <span
-              key={tIdx}
-              className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono font-medium text-neutral-200 hover:border-purple-400/40 hover:bg-purple-500/10 transition-colors"
-            >
-              {tech}
-            </span>
-          ))}
+        {/* Tech Stack Badges Cloud & Action Buttons */}
+        <div className="pt-2 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap gap-2">
+            {project.techStack.map((tech, tIdx) => (
+              <span
+                key={tIdx}
+                className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono font-medium text-neutral-200 hover:border-purple-400/40 hover:bg-purple-500/10 transition-colors"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          {/* Action Links */}
+          {(project.githubUrl || project.liveUrl) && (
+            <div className="flex items-center gap-2 pt-1 sm:pt-0">
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-xl bg-white/5 border border-white/10 text-neutral-300 hover:text-white hover:border-purple-400/40 transition-colors"
+                  title="Source Code on GitHub"
+                >
+                  <Github className="w-4 h-4" />
+                </a>
+              )}
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-600 text-white font-mono text-xs font-semibold hover:bg-purple-500 transition-colors shadow-md"
+                >
+                  <span>Live Demo</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </motion.div>
   );
 }
+

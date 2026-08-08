@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Github, Linkedin, Twitter, Instagram } from "lucide-react";
 import { siteConfig } from "@/constants/site";
 import { Logo } from "@/components/common/Logo";
@@ -35,19 +36,19 @@ export function Footer({ className = "" }: FooterProps) {
             </h4>
             <ul className="space-y-1.5 text-xs font-mono text-neutral-400">
               <li>
-                <a href="/" className="hover:text-white transition-colors">Home</a>
+                <Link href="/" className="hover:text-white transition-colors">Home</Link>
               </li>
               <li>
-                <a href="/about" className="hover:text-white transition-colors">About</a>
+                <Link href="/about" className="hover:text-white transition-colors">About</Link>
               </li>
               <li>
-                <a href="/work" className="hover:text-white transition-colors">Work Experience</a>
+                <Link href="/work" className="hover:text-white transition-colors">Work Experience</Link>
               </li>
               <li>
-                <a href="/projects" className="hover:text-white transition-colors">Projects</a>
+                <Link href="/projects" className="hover:text-white transition-colors">Projects</Link>
               </li>
               <li>
-                <a href="/hire" className="hover:text-white transition-colors">Contact</a>
+                <Link href="/hire" className="hover:text-white transition-colors">Contact</Link>
               </li>
             </ul>
           </div>
