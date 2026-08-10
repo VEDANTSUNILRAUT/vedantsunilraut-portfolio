@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, User, FolderGit2, Cpu, Mail } from "lucide-react";
+import { Home, User, Briefcase, Cpu, Mail } from "lucide-react";
 
 export type AndroidTabType = "home" | "about" | "work" | "skills" | "contact";
 
@@ -13,7 +13,7 @@ export function AndroidBottomNav({ activeTab, setActiveTab }: AndroidBottomNavPr
   const tabs = [
     { id: "home", label: "Home", icon: Home },
     { id: "about", label: "About", icon: User },
-    { id: "work", label: "Work", icon: FolderGit2 },
+    { id: "work", label: "Experience", icon: Briefcase },
     { id: "skills", label: "Skills", icon: Cpu },
     { id: "contact", label: "Contact", icon: Mail },
   ];

@@ -12,7 +12,7 @@ export const siteConfig: SiteConfig = {
   navigation: [
     { label: "Home", href: "/", active: true },
     { label: "About", href: "/about" },
-    { label: "Work", href: "/work" },
+    { label: "Experience", href: "/work" },
     { label: "Projects", href: "/projects" },
     { label: "Contact", href: "/hire" },
     { label: "Let's Connect", href: "mailto:vedantsunilraut@gmail.com", isButton: true },
