@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Briefcase,
@@ -15,25 +15,28 @@ import {
   Smartphone,
   Zap,
   Award,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
-import { WORK_EXPERIENCE_DATA } from "@/constants/experience";
+import { WORK_EXPERIENCE_DATA, WorkExperienceItem } from "@/constants/experience";
 import { ExperienceSectionProps } from "./ExperienceSection.types";
 
 export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
-  const [selectedFilter, setSelectedFilter] = useState<string>("all");
   const [expandedCardId, setExpandedCardId] = useState<string | null>("fulltime-logituit");
+  const carouselRef = useRef<HTMLDivElement>(null);
 
-  const filteredExperience = selectedFilter === "all"
-    ? WORK_EXPERIENCE_DATA
-    : selectedFilter === "full-time"
-    ? WORK_EXPERIENCE_DATA.filter((item) => item.type === "Full-Time")
-    : WORK_EXPERIENCE_DATA.filter((item) => item.type === "Internship");
-
-  const fullTimeCount = WORK_EXPERIENCE_DATA.filter((item) => item.type === "Full-Time").length;
-  const internshipCount = WORK_EXPERIENCE_DATA.filter((item) => item.type === "Internship").length;
+  const fullTimeExperience = WORK_EXPERIENCE_DATA.filter((item) => item.type === "Full-Time");
+  const internshipExperience = WORK_EXPERIENCE_DATA.filter((item) => item.type === "Internship");
 
   const toggleExpand = (id: string) => {
     setExpandedCardId((prev) => (prev === id ? null : id));
+  };
+
+  const scrollCarousel = (direction: "left" | "right") => {
+    if (carouselRef.current) {
+      const scrollAmount = direction === "left" ? -360 : 360;
+      carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
   };
 
   return (
@@ -76,48 +79,8 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
           transition={{ duration: 0.5, delay: 0.15 }}
           className="mt-4 text-xs sm:text-sm font-source-code-pro text-neutral-400 max-w-2xl leading-relaxed"
         >
-          My industry journey as a Software Engineer & Android Developer at Logituit, spanning full-time engineering roles and mobile dev internships.
+          My engineering journey as a Software Engineer & Android Developer at Logituit, including full-time industry impact and mobile internships.
         </motion.p>
-
-        {/* Filter Pills */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-2xl bg-neutral-950/80 border border-white/10 backdrop-blur-md shadow-xl"
-        >
-          <button
-            onClick={() => setSelectedFilter("all")}
-            className={`px-4 py-2 rounded-xl text-xs font-mono transition-all ${
-              selectedFilter === "all"
-                ? "bg-purple-600 text-white shadow-lg shadow-purple-500/25 font-semibold"
-                : "text-neutral-400 hover:text-white hover:bg-white/5"
-            }`}
-          >
-            All Roles ({WORK_EXPERIENCE_DATA.length})
-          </button>
-          <button
-            onClick={() => setSelectedFilter("full-time")}
-            className={`px-4 py-2 rounded-xl text-xs font-mono transition-all ${
-              selectedFilter === "full-time"
-                ? "bg-purple-600 text-white shadow-lg shadow-purple-500/25 font-semibold"
-                : "text-neutral-400 hover:text-white hover:bg-white/5"
-            }`}
-          >
-            Full-Time ({fullTimeCount})
-          </button>
-          <button
-            onClick={() => setSelectedFilter("internship")}
-            className={`px-4 py-2 rounded-xl text-xs font-mono transition-all ${
-              selectedFilter === "internship"
-                ? "bg-violet-600 text-white shadow-lg shadow-violet-500/25 font-semibold"
-                : "text-neutral-400 hover:text-white hover:bg-white/5"
-            }`}
-          >
-            Internships ({internshipCount})
-          </button>
-        </motion.div>
       </div>
 
       {/* Career Overview Banner */}
@@ -192,17 +155,25 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
         </motion.div>
       </div>
 
-      {/* Main Connected Timeline */}
-      <div className="relative border-l-2 border-white/10 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-10">
-        <AnimatePresence mode="popLayout">
-          {filteredExperience.map((item, index) => {
+      {/* SECTION 1: Full-Time Experience Card(s) */}
+      <div className="mb-16">
+        <div className="flex items-center gap-2 mb-6">
+          <Briefcase className="w-4 h-4 text-purple-400" />
+          <h3 className="text-sm font-mono uppercase tracking-widest text-purple-300 font-semibold">
+            Full-Time Software Engineering
+          </h3>
+          <div className="h-px bg-purple-500/20 flex-1 ml-2" />
+        </div>
+
+        <div className="relative border-l-2 border-white/10 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-10">
+          {fullTimeExperience.map((item, index) => {
             const isExpanded = expandedCardId === item.id;
             return (
               <motion.div
                 key={item.id}
                 initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
                 className="relative group"
               >
@@ -211,11 +182,10 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                   <Briefcase className={`w-5 h-5 ${item.colorScheme.text}`} />
                 </div>
 
-                {/* Card Container */}
+                {/* Main Full-Time Card Container */}
                 <div
                   className={`bg-neutral-950/80 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-2xl transition-all duration-500 ${item.colorScheme.border}`}
                 >
-                  {/* Card Background Ambient Radial Mesh */}
                   <div
                     className={`absolute top-0 right-0 w-96 h-96 bg-gradient-to-br ${item.colorScheme.glow} blur-3xl pointer-events-none group-hover:opacity-100 transition-opacity opacity-60`}
                   />
@@ -223,7 +193,6 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                   {/* Top Header Row */}
                   <div className="flex flex-wrap items-start justify-between gap-4 relative z-10">
                     <div className="space-y-1.5 max-w-xl">
-                      {/* Status Badges */}
                       <div className="flex flex-wrap items-center gap-2 mb-2">
                         {item.isCurrent && (
                           <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono font-semibold">
@@ -243,17 +212,14 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                         </span>
                       </div>
 
-                      {/* Role Title */}
                       <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                         {item.role}
                       </h3>
 
-                      {/* Company Name & Tagline */}
                       <p className={`text-sm sm:text-base font-semibold ${item.colorScheme.text}`}>
                         {item.company}
                       </p>
 
-                      {/* Location & Period Info */}
                       <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs font-mono text-neutral-400 pt-1">
                         <div className="flex items-center gap-1.5">
                           <Building2 className="w-3.5 h-3.5 text-neutral-500" />
@@ -270,7 +236,6 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                       </div>
                     </div>
 
-                    {/* Right side tagline badge */}
                     <div className="self-start">
                       <span className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-neutral-300 backdrop-blur-md hidden sm:inline-block">
                         {item.tagline}
@@ -278,14 +243,12 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                     </div>
                   </div>
 
-                  {/* Role Description */}
                   <div className="mt-5 pt-5 border-t border-white/10 relative z-10">
                     <p className="text-xs sm:text-sm font-source-code-pro text-neutral-300 leading-relaxed">
                       {item.description}
                     </p>
                   </div>
 
-                  {/* Skills / Tech Stack Pills */}
                   <div className="mt-5 relative z-10">
                     <div className="flex flex-wrap gap-2">
                       {item.skills.map((skill, sIdx) => (
@@ -299,7 +262,6 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                     </div>
                   </div>
 
-                  {/* Expand / Collapse Button */}
                   <div className="mt-6 pt-4 flex items-center justify-between relative z-10 border-t border-white/10">
                     <button
                       onClick={() => toggleExpand(item.id)}
@@ -317,7 +279,6 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                     </button>
                   </div>
 
-                  {/* Collapsible Key Accomplishments */}
                   <AnimatePresence>
                     {isExpanded && (
                       <motion.div
@@ -350,8 +311,137 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
               </motion.div>
             );
           })}
-        </AnimatePresence>
+        </div>
+      </div>
+
+      {/* SECTION 2: Horizontal Spinning / Sliding Internships Carousel */}
+      <div className="mt-12">
+        {/* Carousel Header Row */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <Award className="w-4 h-4 text-cyan-400" />
+            <h3 className="text-sm font-mono uppercase tracking-widest text-cyan-300 font-semibold">
+              Internships & Traineeships ({internshipExperience.length})
+            </h3>
+          </div>
+
+          {/* Navigation Scroll Buttons */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => scrollCarousel("left")}
+              className="p-2 rounded-xl bg-neutral-900 border border-white/10 text-neutral-400 hover:text-white hover:border-purple-500/50 hover:bg-neutral-800 transition-all shadow-md active:scale-95"
+              aria-label="Scroll left"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => scrollCarousel("right")}
+              className="p-2 rounded-xl bg-neutral-900 border border-white/10 text-neutral-400 hover:text-white hover:border-purple-500/50 hover:bg-neutral-800 transition-all shadow-md active:scale-95"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Horizontal Carousel Scroll Track */}
+        <div
+          ref={carouselRef}
+          className="flex gap-5 overflow-x-auto pb-6 scrollbar-none snap-x snap-mandatory scroll-smooth"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {internshipExperience.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className={`w-[320px] sm:w-[400px] shrink-0 snap-start bg-neutral-950/80 border border-white/10 backdrop-blur-xl rounded-3xl p-6 relative overflow-hidden shadow-xl transition-all duration-300 flex flex-col justify-between group ${item.colorScheme.border}`}
+            >
+              {/* Background Glow */}
+              <div
+                className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${item.colorScheme.glow} blur-3xl pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity`}
+              />
+
+              <div className="relative z-10 space-y-4">
+                {/* Header Badge & Duration */}
+                <div className="flex items-center justify-between gap-2">
+                  <span
+                    className={`px-3 py-1 rounded-full text-[10px] font-mono font-semibold uppercase border ${item.colorScheme.badgeBg}`}
+                  >
+                    {item.type}
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono text-neutral-400 bg-white/5 border border-white/10">
+                    {item.duration}
+                  </span>
+                </div>
+
+                {/* Role & Company */}
+                <div>
+                  <h4 className="text-lg font-bold text-white tracking-tight group-hover:text-purple-200 transition-colors">
+                    {item.role}
+                  </h4>
+                  <p className={`text-xs font-semibold mt-0.5 ${item.colorScheme.text}`}>
+                    {item.company}
+                  </p>
+                </div>
+
+                {/* Period & Location */}
+                <div className="flex flex-col gap-1 text-[11px] font-mono text-neutral-400 pt-1">
+                  <div className="flex items-center gap-1.5">
+                    <Calendar className="w-3 h-3 text-neutral-500 shrink-0" />
+                    <span>{item.period}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <MapPin className="w-3 h-3 text-neutral-500 shrink-0" />
+                    <span className="truncate">{item.location}</span>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <p className="text-xs font-source-code-pro text-neutral-300 line-clamp-3 leading-relaxed pt-1">
+                  {item.description}
+                </p>
+
+                {/* Key Achievements Bullets */}
+                {item.achievements.length > 0 && (
+                  <div className="space-y-1.5 pt-2 border-t border-white/10">
+                    {item.achievements.slice(0, 2).map((achievement, aIdx) => (
+                      <div key={aIdx} className="flex items-start gap-2">
+                        <CheckCircle2 className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${item.colorScheme.text}`} />
+                        <span className="text-[11px] font-source-code-pro text-neutral-300 line-clamp-2 leading-tight">
+                          {achievement}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Footer Tech Pills */}
+              <div className="mt-5 pt-3 border-t border-white/10 relative z-10">
+                <div className="flex flex-wrap gap-1.5">
+                  {item.skills.slice(0, 4).map((skill, sIdx) => (
+                    <span
+                      key={sIdx}
+                      className={`px-2.5 py-0.5 rounded-lg text-[10px] font-mono border backdrop-blur-md ${item.colorScheme.pillBg}`}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                  {item.skills.length > 4 && (
+                    <span className="px-2 py-0.5 rounded-lg text-[10px] font-mono text-neutral-400 bg-white/5 border border-white/10">
+                      +{item.skills.length - 4}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
+
