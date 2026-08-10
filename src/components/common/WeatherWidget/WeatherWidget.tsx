@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Users, Clock } from "lucide-react";
+import { Users, Clock, Calendar } from "lucide-react";
 import { useLiveDateTime } from "@/hooks/useLiveDateTime";
 import { useVisitorCount } from "@/hooks/useVisitorCount";
 import { WeatherWidgetProps } from "./WeatherWidget.types";
@@ -34,10 +34,15 @@ export function WeatherWidget({ className = "", showVisitors = true }: WeatherWi
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center gap-2 text-neutral-300 font-medium whitespace-nowrap"
           >
-            <Clock className="w-3.5 h-3.5 text-purple-400 shrink-0" />
-            <span className="text-neutral-300">{dateStr || "Aug 10"}</span>
+            <span className="flex items-center gap-1.5 text-neutral-300">
+              <Calendar className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+              <span>{dateStr || "Aug 10"}</span>
+            </span>
             <span className="text-neutral-600">•</span>
-            <span className="text-white font-semibold">{timeStr || "10:27 PM"}</span>
+            <span className="flex items-center gap-1.5 text-white font-semibold">
+              <Clock className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+              <span>{timeStr || "10:27 PM"}</span>
+            </span>
           </motion.div>
         ) : (
           <motion.div
