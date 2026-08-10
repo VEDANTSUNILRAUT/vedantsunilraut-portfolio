@@ -17,7 +17,7 @@ export function WeatherWidget({ className = "", showVisitors = true }: WeatherWi
 
     const interval = setInterval(() => {
       setActiveStep((prev) => (prev === 0 ? 1 : 0));
-    }, 3000);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, [showVisitors]);
@@ -31,7 +31,7 @@ export function WeatherWidget({ className = "", showVisitors = true }: WeatherWi
             initial={{ y: 14, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -14, opacity: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center gap-2 text-neutral-300 font-medium whitespace-nowrap"
           >
             <span className="flex items-center gap-1.5 text-neutral-300">
@@ -50,7 +50,7 @@ export function WeatherWidget({ className = "", showVisitors = true }: WeatherWi
             initial={{ y: 14, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -14, opacity: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center gap-2 text-neutral-300 font-medium whitespace-nowrap"
             title="Total Website Visitors"
           >
