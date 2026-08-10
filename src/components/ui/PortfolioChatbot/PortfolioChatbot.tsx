@@ -265,9 +265,18 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
             <motion.div
               key="open"
               initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
+              animate={{
+                scale: [1, 1.2, 1.05, 1.18, 1],
+                rotate: [0, -16, 16, -12, 12, -6, 6, 0],
+                x: [0, -2, 2, -2, 2, 0],
+              }}
               exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.15 }}
+              transition={{
+                duration: 0.9,
+                repeat: Infinity,
+                repeatDelay: 3.1,
+                ease: "easeInOut",
+              }}
               className="relative flex items-center justify-center"
             >
               <Sparkles className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors" />
