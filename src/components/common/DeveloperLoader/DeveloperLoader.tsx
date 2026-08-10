@@ -1,36 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Code2, Cpu } from "lucide-react";
 import { useIsMounted } from "@/hooks/useIsMounted";
 import { DeveloperLoaderProps } from "./DeveloperLoader.types";
 
 export function DeveloperLoader({ className = "", forceShow = false }: DeveloperLoaderProps) {
-  const pathname = usePathname();
   const isMounted = useIsMounted();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [progress, setProgress] = useState<number>(0);
 
-  const getRouteDetails = (path: string) => {
-    switch (path) {
-      case "/":
-        return "Home Dashboard";
-      case "/about":
-        return "About & Academic Journey";
-      case "/work":
-        return "Work Experience";
-      case "/projects":
-        return "Projects Showcase";
-      case "/hire":
-        return "Contact & Connect";
-      case "/book":
-        return "Book a Call";
-      default:
-        return "Loading Page";
-    }
-  };
+  const DURATION = 1400; // Time in ms to complete 1 full infinity cycle
 
   useEffect(() => {
     const alreadyLoaded = typeof window !== "undefined" && Boolean(sessionStorage.getItem("hasLoaded"));
@@ -38,31 +17,16 @@ export function DeveloperLoader({ className = "", forceShow = false }: Developer
       return;
     }
 
-    const showTimer = setTimeout(() => {
-      setIsLoading(true);
-    }, 0);
+    setIsLoading(true);
 
-    const startTime = Date.now();
-    const DURATION = 1000;
-
-    const interval = setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      const calculatedProgress = Math.min(Math.floor((elapsed / DURATION) * 100), 100);
-      setProgress(calculatedProgress);
-
-      if (calculatedProgress >= 100) {
-        clearInterval(interval);
-        if (typeof window !== "undefined") {
-          sessionStorage.setItem("hasLoaded", "true");
-        }
-        setTimeout(() => setIsLoading(false), 120);
+    const timer = setTimeout(() => {
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("hasLoaded", "true");
       }
-    }, 20);
+      setIsLoading(false);
+    }, DURATION);
 
-    return () => {
-      clearTimeout(showTimer);
-      clearInterval(interval);
-    };
+    return () => clearTimeout(timer);
   }, [forceShow]);
 
   if (!isMounted) return null;
@@ -77,54 +41,58 @@ export function DeveloperLoader({ className = "", forceShow = false }: Developer
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className={`fixed inset-0 z-[9999] bg-black/90 backdrop-blur-2xl flex flex-col items-center justify-center p-6 font-mono select-none overflow-hidden ${className}`}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
+          className={`fixed inset-0 z-[9999] bg-black/60 backdrop-blur-xl flex flex-col items-center justify-center p-6 select-none overflow-hidden ${className}`}
         >
-          {/* Ambient Glowing Radial Orbs */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-purple-600/15 blur-[140px] rounded-full pointer-events-none" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-cyan-600/15 blur-[100px] rounded-full pointer-events-none" />
-
-          {/* Pure Centered Loader Group */}
-          <div className="relative z-10 flex flex-col items-center max-w-sm w-full space-y-6">
+          {/* Minimalist Central Container */}
+          <div className="relative flex flex-col items-center">
             
-            {/* Elegant Spinning Dual Ring */}
-            <div className="relative flex items-center justify-center w-20 h-20">
-              {/* Outer Glowing Gradient Spinner */}
-              <div className="w-20 h-20 rounded-full border-3 border-transparent border-t-purple-500 border-r-cyan-400 border-b-purple-600/30 border-l-transparent animate-spin shadow-[0_0_25px_rgba(168,85,247,0.5)]" />
+            {/* Theme-Matched Infinity Line Loader */}
+            <div className="relative flex items-center justify-center w-24 h-14">
+              <svg viewBox="0 0 100 60" className="w-full h-full overflow-visible">
+                <defs>
+                  <linearGradient id="infinity-theme-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="var(--primary-start, #c084fc)" />
+                    <stop offset="50%" stopColor="var(--primary-mid, #a855f7)" />
+                    <stop offset="100%" stopColor="var(--accent-indigo, #6366f1)" />
+                  </linearGradient>
+                  
+                  {/* Soft Ambient Glow Filter */}
+                  <filter id="infinity-glow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="3.5" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
 
-              {/* Counter-Rotating Outer Dashed Ring */}
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                className="absolute w-14 h-14 rounded-full border border-dashed border-purple-400/40"
-              />
+                {/* Subtle Static Track Path */}
+                <path
+                  d="M 50,30 C 65,12 90,12 90,30 C 90,48 65,48 50,30 C 35,12 10,12 10,30 C 10,48 35,48 50,30 Z"
+                  fill="none"
+                  stroke="rgba(255, 255, 255, 0.08)"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                />
 
-              {/* Central Glowing Icon */}
-              <div className="absolute inset-0 m-auto w-9 h-9 rounded-full bg-neutral-950 border border-purple-500/30 flex items-center justify-center text-purple-300 shadow-lg">
-                <Code2 className="w-4 h-4 text-purple-400 animate-pulse" />
-              </div>
-            </div>
-
-            {/* Centered Route Status Text */}
-            <div className="flex flex-col items-center text-center space-y-1.5">
-              <span className="text-xs font-mono font-semibold tracking-wider text-white flex items-center gap-2">
-                <Cpu className="w-3.5 h-3.5 text-purple-400 animate-spin" />
-                <span>{getRouteDetails(pathname)}</span>
-              </span>
-
-              <span className="text-[11px] font-mono text-neutral-400">
-                Loading modules... <span className="text-purple-400 font-bold">{Math.min(progress, 100)}%</span>
-              </span>
-            </div>
-
-            {/* Minimal Slim Progress Line */}
-            <div className="w-48 h-1 rounded-full bg-neutral-900 border border-white/10 overflow-hidden relative">
-              <motion.div
-                initial={{ width: "0%" }}
-                animate={{ width: `${Math.min(progress, 100)}%` }}
-                transition={{ duration: 0.1 }}
-                className="h-full rounded-full bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-400 shadow-[0_0_10px_rgba(168,85,247,0.8)]"
-              />
+                {/* Active Infinity Glowing Line completing 1 cycle across loading time */}
+                <motion.path
+                  d="M 50,30 C 65,12 90,12 90,30 C 90,48 65,48 50,30 C 35,12 10,12 10,30 C 10,48 35,48 50,30 Z"
+                  fill="none"
+                  stroke="url(#infinity-theme-gradient)"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  filter="url(#infinity-glow)"
+                  initial={{ pathLength: 0.25, pathOffset: 0 }}
+                  animate={{ pathOffset: 1 }}
+                  transition={{
+                    duration: DURATION / 1000,
+                    ease: "easeInOut",
+                    repeat: forceShow ? Infinity : 0,
+                  }}
+                />
+              </svg>
             </div>
 
           </div>
@@ -133,3 +101,5 @@ export function DeveloperLoader({ className = "", forceShow = false }: Developer
     </AnimatePresence>
   );
 }
+
+

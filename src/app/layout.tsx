@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, EB_Garamond, Alata, Shadows_Into_Light, Henny_Penny, Source_Code_Pro } from "next/font/google";
+import { Outfit, EB_Garamond, Alata, Shadows_Into_Light, Henny_Penny, Source_Code_Pro, Geist } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { DeveloperLoader } from "@/components/common/DeveloperLoader";
@@ -9,6 +9,9 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { DeviceLayoutSwitcher } from "@/components/layout/DeviceLayoutSwitcher/DeviceLayoutSwitcher";
 import { PortfolioChatbot } from "@/components/ui/PortfolioChatbot";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -111,7 +114,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${outfit.variable} ${ebGaramond.variable} ${alata.variable} ${shadowsIntoLight.variable} ${hennyPenny.variable} ${sourceCodePro.variable} antialiased`}
+      className={cn("antialiased", outfit.variable, ebGaramond.variable, alata.variable, shadowsIntoLight.variable, hennyPenny.variable, sourceCodePro.variable, "font-sans", geist.variable)}
     >
       <head>
         <link
