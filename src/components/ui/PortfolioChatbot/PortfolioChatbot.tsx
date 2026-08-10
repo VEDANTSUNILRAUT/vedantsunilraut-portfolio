@@ -258,6 +258,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.15 }}
+              className="flex items-center justify-center"
             >
               <X className="w-5 h-5 text-neutral-300" />
             </motion.div>
@@ -266,19 +267,20 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
               key="open"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{
-                scale: [1, 1.15, 1.05, 1.15, 1],
-                rotate: [0, -14, 14, -10, 10, -5, 5, 0],
+                scale: [1, 1.2, 1.05, 1.18, 1],
+                rotate: [0, -16, 16, -12, 12, -6, 6, 0],
                 x: [0, -2, 2, -2, 2, 0],
               }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{
-                duration: 1.5,
+                duration: 1.1,
                 repeat: Infinity,
+                repeatDelay: 1.8,
                 ease: "easeInOut",
               }}
-              className="relative flex items-center justify-center"
+              className="flex items-center justify-center"
             >
-              <Sparkles className="w-5.5 h-5.5 text-purple-400 group-hover:text-purple-300 transition-colors" />
+              <Sparkles className="w-6 h-6 text-purple-400 group-hover:text-purple-300 transition-colors" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -291,13 +293,12 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
               animate={{
                 opacity: [0, 1, 1, 1, 1, 0],
                 y: [5, 0, -3, 2, -2, 1, 0, 0],
-                rotate: [0, -5, 5, -3, 3, 0],
                 scale: [0.92, 1.05, 1, 1.03, 1, 0.95],
               }}
               transition={{
                 duration: 3.8,
                 repeat: Infinity,
-                repeatDelay: 1.2,
+                repeatDelay: 2.2,
                 ease: "easeInOut",
               }}
               onClick={(e) => {
@@ -306,8 +307,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
               }}
               className="absolute bottom-full mb-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap cursor-pointer z-50 pointer-events-auto"
             >
-              <div className="relative px-2.5 py-1 rounded-lg bg-neutral-900/95 border border-purple-500/40 text-[10px] sm:text-[11px] font-sans font-medium text-purple-200 shadow-[0_0_20px_rgba(168,85,247,0.3)] backdrop-blur-md flex items-center gap-1.5 hover:border-purple-400 hover:scale-105 transition-all">
-                <Sparkles className="w-3.5 h-3.5 text-purple-400 animate-pulse shrink-0" />
+              <div className="relative px-2.5 py-1 rounded-lg bg-neutral-900/95 border border-purple-500/40 text-[10px] sm:text-[11px] font-sans font-medium text-purple-200 shadow-[0_0_20px_rgba(168,85,247,0.3)] backdrop-blur-md flex items-center hover:border-purple-400 hover:scale-105 transition-all">
                 <span>Ask me</span>
                 {/* Pointer arrow pointing down to button */}
                 <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-neutral-900 border-r border-b border-purple-500/40 rotate-45" />
