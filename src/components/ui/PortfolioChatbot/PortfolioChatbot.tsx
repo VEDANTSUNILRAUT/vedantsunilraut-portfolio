@@ -258,7 +258,6 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.15 }}
-              className="flex items-center justify-center"
             >
               <X className="w-5 h-5 text-neutral-300" />
             </motion.div>
@@ -266,21 +265,12 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
             <motion.div
               key="open"
               initial={{ scale: 0.8, opacity: 0 }}
-              animate={{
-                scale: [1, 1.2, 1.05, 1.18, 1],
-                rotate: [0, -16, 16, -12, 12, -6, 6, 0],
-                x: [0, -2, 2, -2, 2, 0],
-              }}
+              animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              transition={{
-                duration: 1.1,
-                repeat: Infinity,
-                repeatDelay: 1.8,
-                ease: "easeInOut",
-              }}
-              className="flex items-center justify-center"
+              transition={{ duration: 0.15 }}
+              className="relative flex items-center justify-center"
             >
-              <Sparkles className="w-6 h-6 text-purple-400 group-hover:text-purple-300 transition-colors" />
+              <Sparkles className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -315,6 +305,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
             </motion.div>
           )}
         </AnimatePresence>
+
 
       </button>
 
