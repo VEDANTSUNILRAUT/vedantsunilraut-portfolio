@@ -9,7 +9,7 @@ import { WeatherWidgetProps } from "./WeatherWidget.types";
 
 export function WeatherWidget({ className = "", showVisitors = true }: WeatherWidgetProps) {
   const { timeStr, dateStr } = useLiveDateTime();
-  const { formattedCount, isLoading } = useVisitorCount();
+  const { count, formattedCount, isLoading } = useVisitorCount();
   const [activeStep, setActiveStep] = useState<number>(0);
 
   useEffect(() => {
@@ -23,7 +23,11 @@ export function WeatherWidget({ className = "", showVisitors = true }: WeatherWi
   }, [showVisitors]);
 
   return (
-    <div className={`hidden sm:flex items-center justify-center px-3.5 py-1.5 rounded-full glass-nav border border-white/10 bg-black/40 backdrop-blur-xl h-8 overflow-hidden text-[11px] font-mono select-none cursor-default shadow-sm ${className}`}>
+    <motion.div
+      layout
+      transition={{ layout: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }}
+      className={`hidden sm:flex items-center justify-center px-4 py-1.5 rounded-full glass-nav border border-white/10 bg-black/40 backdrop-blur-xl h-8 overflow-hidden text-[11px] font-mono select-none cursor-default shadow-sm min-w-[200px] ${className}`}
+    >
       <AnimatePresence mode="wait">
         {activeStep === 0 || !showVisitors ? (
           <motion.div
@@ -32,7 +36,7 @@ export function WeatherWidget({ className = "", showVisitors = true }: WeatherWi
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -14, opacity: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center gap-2 text-neutral-300 font-medium whitespace-nowrap"
+            className="flex items-center gap-2 text-neutral-300 font-medium whitespace-nowrap justify-center"
           >
             <span className="flex items-center gap-1.5 text-neutral-300">
               <Calendar className="w-3.5 h-3.5 text-purple-400 shrink-0" />
@@ -51,10 +55,10 @@ export function WeatherWidget({ className = "", showVisitors = true }: WeatherWi
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -14, opacity: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center gap-2 text-neutral-300 font-medium whitespace-nowrap"
-            title="Total Website Visitors"
+            className="flex items-center gap-2 text-neutral-300 font-medium whitespace-nowrap justify-center"
+            title={`Total Website Visitors: ${count.toLocaleString()}`}
           >
-            <span className="relative flex h-2 w-2">
+            <span className="relative flex h-2 w-2 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
@@ -66,9 +70,10 @@ export function WeatherWidget({ className = "", showVisitors = true }: WeatherWi
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }
+
 
 
 
