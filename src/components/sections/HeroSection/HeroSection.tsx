@@ -7,6 +7,7 @@ import { TypewriterReveal } from "@/components/ui/TypewriterReveal";
 import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
 import { SparkleBurstButton } from "@/components/ui/SparkleBurstButton";
 import { HorizonGlow } from "@/components/ui/HorizonGlow";
+import ShinyText from "@/components/ShinyText";
 import { HeroSectionProps } from "./HeroSection.types";
 
 const emptySubscribe = () => () => {};
@@ -37,7 +38,7 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-1 inline-flex items-center gap-1.5 text-neutral-400 text-sm sm:text-base font-source-code-pro font-medium tracking-wide"
+          className="mb-1.5 inline-flex items-center gap-1.5 text-sm sm:text-base md:text-lg font-source-code-pro font-medium tracking-wide text-neutral-300"
         >
           <span>Hello</span>
           <motion.span
@@ -60,9 +61,17 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-6 text-lg sm:text-xl font-source-code-pro text-neutral-300 font-normal tracking-wide"
+          className="mb-5 text-xl sm:text-2xl md:text-3xl font-source-code-pro font-normal tracking-wide"
         >
-          I am <span className="text-white font-semibold">Vedant</span>
+          <ShinyText
+            text="I am Vedant"
+            disabled={false}
+            speed={3}
+            className="font-semibold text-white cursor-default"
+            color="#ffffff"
+            shineColor="#c084fc"
+            spread={120}
+          />
         </motion.p>
 
         {/* Hero Title */}

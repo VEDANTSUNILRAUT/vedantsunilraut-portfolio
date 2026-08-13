@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Download, User } from "lucide-react";
 import { SocialLinks } from "@/components/ui/SocialLinks";
+import ShinyText from "@/components/ShinyText";
 import { AboutSectionProps } from "./AboutSection.types";
 
 export function AboutSection({ className = "" }: AboutSectionProps) {
@@ -27,9 +28,20 @@ export function AboutSection({ className = "" }: AboutSectionProps) {
           </span>
 
           {/* Main Headline */}
-          <h2 className="font-eb-garamond text-3xl sm:text-5xl lg:text-6xl text-white font-normal leading-[1.15] mb-5">
-            I&apos;m Vedant, a <br />
-            <span className="italic-gradient-text font-semibold">Software Engineer @ Logituit</span>
+          <h2 className="font-eb-garamond text-2xl sm:text-4xl lg:text-5xl text-white font-normal leading-[1.2] mb-5">
+            I&apos;m{" "}
+            <ShinyText
+              text="Vedant"
+              speed={3}
+              color="#ffffff"
+              shineColor="#c084fc"
+              spread={120}
+              className="cursor-default"
+            />
+            , a{" "}
+            <span className="italic-gradient-text font-semibold whitespace-normal sm:whitespace-nowrap">
+              Software Engineer @ Logituit
+            </span>
           </h2>
 
           {/* Detailed Paragraph Text */}

@@ -12,7 +12,6 @@ export const techBadges: TechBadgeItem[] = [
   { name: "React", color: `text-violet-300 ${themeConfig.accents.teal.pillClass}` },
   { name: "TypeScript", color: `text-indigo-300 ${themeConfig.accents.blue.pillClass}` },
   { name: "Node.js", color: `text-purple-300 ${themeConfig.accents.purple.pillClass}` },
-  { name: "Express.js", color: "text-neutral-300 border-neutral-500/20 bg-neutral-500/10" },
   { name: "Spring Boot", color: `text-violet-300 ${themeConfig.accents.emerald.pillClass}` },
   { name: "Git & GitHub", color: `text-fuchsia-300 ${themeConfig.accents.rose.pillClass}` },
   { name: "Docker", color: `text-purple-300 ${themeConfig.accents.sky.pillClass}` },
