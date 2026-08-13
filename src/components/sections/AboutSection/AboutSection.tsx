@@ -74,7 +74,7 @@ export function AboutSection({ className = "" }: AboutSectionProps) {
           </div>
         </motion.div>
 
-        {/* Right Column: Developer Photo Card (5 Cols) */}
+        {/* Right Column: Floating Portrait Image with Black Gradient Fade-out */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -82,29 +82,28 @@ export function AboutSection({ className = "" }: AboutSectionProps) {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="lg:col-span-5 flex justify-center lg:justify-end"
         >
-          <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-3xl overflow-hidden border border-white/15 bg-neutral-900/90 shadow-2xl group hover:border-purple-500/30 transition-all duration-500">
-            {/* Ambient Inner Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-b from-purple-950/20 via-neutral-900 to-black" />
-
-            {!imageError ? (
+          {!imageError ? (
+            <div className="relative w-full max-w-[380px] rounded-3xl overflow-hidden">
               <img
                 src="/vedant-hero.png"
                 alt="Vedant Raut"
                 onError={() => setImageError(true)}
-                className="w-full h-full object-cover object-top relative z-10"
+                className="w-full h-auto object-cover rounded-3xl"
               />
-            ) : (
-              <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-6">
-                <div className="w-28 h-28 rounded-full border border-purple-500/20 bg-purple-950/20 flex items-center justify-center mb-4 shadow-xl">
-                  <User className="w-16 h-16 text-neutral-500" />
-                </div>
-                <span className="text-xs font-mono text-neutral-400">Vedant Raut</span>
+              {/* Bottom Side Black Gradient Fade */}
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none z-10" />
+              {/* Right Edge Black Gradient Fade - Shifted outward to edge */}
+              <div className="absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-black via-black/30 to-transparent pointer-events-none z-10" />
+              <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-black via-black/50 to-transparent pointer-events-none z-10" />
+            </div>
+          ) : (
+            <div className="w-full max-w-[380px] aspect-square flex flex-col items-center justify-center p-6 border border-white/10 rounded-3xl bg-neutral-900/50">
+              <div className="w-24 h-24 rounded-full border border-purple-500/30 bg-purple-950/30 flex items-center justify-center mb-3">
+                <User className="w-14 h-14 text-purple-300" />
               </div>
-            )}
-
-            {/* Bottom Dark Vignette Fade */}
-            <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-black via-black/60 to-transparent z-20" />
-          </div>
+              <span className="text-xs font-mono text-neutral-300">Vedant Raut</span>
+            </div>
+          )}
         </motion.div>
 
       </div>
