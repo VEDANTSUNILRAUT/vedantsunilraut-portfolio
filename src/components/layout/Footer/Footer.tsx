@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Github, Linkedin, Instagram } from "lucide-react";
 import { siteConfig } from "@/constants/site";
 import { Logo } from "@/components/common/Logo";
 import { FooterProps } from "./Footer.types";
@@ -76,15 +76,6 @@ export function Footer({ className = "" }: FooterProps) {
               >
                 <Linkedin className="w-3.5 h-3.5 text-blue-400" />
                 <span>LinkedIn</span>
-              </a>
-              <a
-                href={siteConfig.socials.twitter}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-neutral-300 hover:text-white hover:border-purple-400/40 transition-colors"
-              >
-                <Twitter className="w-3.5 h-3.5 text-sky-400" />
-                <span>Twitter / X</span>
               </a>
               <a
                 href={siteConfig.socials.instagram}

@@ -50,7 +50,7 @@ export interface WeatherWidgetConfig {
 export interface SocialsConfig {
   github: string;
   linkedin: string;
-  twitter: string;
+  twitter?: string;
   instagram: string;
 }
 

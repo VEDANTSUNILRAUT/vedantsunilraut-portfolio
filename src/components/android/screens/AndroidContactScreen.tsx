@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { siteConfig } from "@/constants/site";
-import { Mail, Github, Linkedin, Twitter, ArrowUpRight } from "lucide-react";
+import { Mail, Github, Linkedin, ArrowUpRight } from "lucide-react";
 
 export function AndroidContactScreen() {
   return (
@@ -37,7 +37,7 @@ export function AndroidContactScreen() {
       </motion.div>
 
       {/* Quick Action Grid */}
-      <div className="w-full grid grid-cols-3 gap-3">
+      <div className="w-full grid grid-cols-2 gap-3">
         <a
           href={siteConfig.socials.github}
           target="_blank"
@@ -56,16 +56,6 @@ export function AndroidContactScreen() {
         >
           <Linkedin className="w-6 h-6 mb-1.5 text-blue-400" />
           <span className="text-[10px] font-mono">LinkedIn</span>
-        </a>
-
-        <a
-          href={siteConfig.socials.twitter}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center text-neutral-300 hover:text-white hover:border-purple-500/30 transition-all active:scale-95"
-        >
-          <Twitter className="w-6 h-6 mb-1.5 text-sky-400" />
-          <span className="text-[10px] font-mono">Twitter / X</span>
         </a>
       </div>
 

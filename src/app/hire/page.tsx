@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Send, CheckCircle2, Copy, Check, MessageSquare, Briefcase, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, Send, CheckCircle2, Copy, Check, MessageSquare, Briefcase, Github, Linkedin } from "lucide-react";
 import { siteConfig } from "@/constants/site";
 import { useClipboard } from "@/hooks/useClipboard";
 
@@ -106,7 +106,7 @@ export default function HirePage() {
               ENGINEERING SOCIALS
             </span>
 
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 gap-3">
               <a
                 href={siteConfig.socials.github}
                 target="_blank"
@@ -125,16 +125,6 @@ export default function HirePage() {
               >
                 <Linkedin className="w-5 h-5 mb-1.5 text-blue-400" />
                 <span className="text-[10px] font-mono">LinkedIn</span>
-              </a>
-
-              <a
-                href={siteConfig.socials.twitter}
-                target="_blank"
-                rel="noreferrer"
-                className="p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center text-neutral-300 hover:text-white hover:border-purple-400/40 transition-all active:scale-95 text-center"
-              >
-                <Twitter className="w-5 h-5 mb-1.5 text-sky-400" />
-                <span className="text-[10px] font-mono">Twitter/X</span>
               </a>
             </div>
           </div>
