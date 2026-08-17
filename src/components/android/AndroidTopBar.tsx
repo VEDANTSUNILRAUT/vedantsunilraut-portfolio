@@ -9,7 +9,7 @@ interface AndroidTopBarProps {
 
 export function AndroidTopBar({ activeScreen }: AndroidTopBarProps) {
   return (
-    <div className="w-full px-4 py-3 bg-neutral-950/90 border-b border-white/10 backdrop-blur-xl flex items-center justify-between z-40">
+    <div className="w-full px-4 py-3 bg-black/60 border-b border-white/10 backdrop-blur-xl flex items-center justify-between z-40">
       {/* App Branding & Avatar */}
       <div className="flex items-center gap-3">
         <div className="relative w-9 h-9 rounded-full bg-purple-950/60 border border-purple-500/30 flex items-center justify-center overflow-hidden shadow-lg">

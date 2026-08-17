@@ -19,7 +19,7 @@ export function AndroidBottomNav({ activeTab, setActiveTab }: AndroidBottomNavPr
   ];
 
   return (
-    <nav className="w-full h-16 bg-neutral-950/95 border-t border-white/10 backdrop-blur-2xl px-2 flex items-center justify-around z-50 select-none pb-1">
+    <nav className="w-full sm:max-w-md md:max-w-lg sm:mx-auto h-16 sm:mb-4 sm:rounded-2xl bg-black/75 border-t sm:border border-white/10 backdrop-blur-2xl px-2 sm:px-4 flex items-center justify-around z-50 select-none pb-1 sm:pb-1 shadow-2xl sm:shadow-[0_12px_36px_rgba(0,0,0,0.8)]">
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = activeTab === tab.id;
@@ -28,11 +28,11 @@ export function AndroidBottomNav({ activeTab, setActiveTab }: AndroidBottomNavPr
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as AndroidTabType)}
-            className="flex flex-col items-center justify-center flex-1 py-1 group transition-all"
+            className="flex flex-col items-center justify-center flex-1 py-1 group transition-all cursor-pointer"
           >
             {/* Active Pill Indicator */}
             <div
-              className={`px-4 py-1 rounded-full flex items-center justify-center transition-all duration-300 ${
+              className={`px-3.5 sm:px-5 py-1 rounded-full flex items-center justify-center transition-all duration-300 ${
                 isActive
                   ? "bg-purple-600/30 text-fuchsia-300 border border-purple-500/40 scale-105 shadow-[0_0_12px_rgba(168,85,247,0.3)]"
                   : "text-neutral-400 group-hover:text-neutral-200"
@@ -43,7 +43,7 @@ export function AndroidBottomNav({ activeTab, setActiveTab }: AndroidBottomNavPr
 
             {/* Label */}
             <span
-              className={`text-[10px] font-mono mt-0.5 transition-colors ${
+              className={`text-[10px] sm:text-xs font-mono mt-0.5 transition-colors ${
                 isActive ? "text-fuchsia-300 font-semibold" : "text-neutral-400"
               }`}
             >

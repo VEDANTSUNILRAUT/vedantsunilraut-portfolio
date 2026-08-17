@@ -26,7 +26,7 @@ interface GeometricWireframe {
   angleY: number;
   rotSpeedX: number;
   rotSpeedY: number;
-  type: "cube" | "diagram";
+  type: "cube" | "diamond" | "ring" | "tesseract";
 }
 
 interface ShootingStar {
@@ -57,7 +57,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
     let height = 0;
     let dpr = 1;
 
-    // Mouse & Scroll Tracking
+    // Mouse & Touch & Scroll Tracking
     let mouseX = 0;
     let mouseY = 0;
     let targetMouseX = 0;
@@ -70,12 +70,29 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       targetMouseY = e.clientY - height / 2;
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        targetMouseX = (e.touches[0].clientX - width / 2) * 1.2;
+        targetMouseY = (e.touches[0].clientY - height / 2) * 1.2;
+      }
+    };
+
     const handleScroll = () => {
       targetScrollY = window.scrollY || window.pageYOffset;
     };
 
+    const handleMobileScroll = (e: Event) => {
+      const customEvent = e as CustomEvent<{ scrollY: number }>;
+      if (customEvent.detail && typeof customEvent.detail.scrollY === "number") {
+        targetScrollY = customEvent.detail.scrollY;
+      }
+    };
+
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("touchstart", handleTouchMove, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("mobilescroll", handleMobileScroll, { passive: true });
 
     // Initialize Particles & Geometry
     let stars: StarParticle[] = [];
@@ -92,30 +109,34 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       canvas.style.height = `${height}px`;
       ctx.scale(dpr, dpr);
 
-      // Populate White Star Dots
-      const starCount = Math.floor((width * height) / 12000);
-      stars = Array.from({ length: Math.max(starCount, 80) }, () => ({
+      const isMobile = width < 768;
+
+      // Populate Star Dots
+      const starDensityDivisor = isMobile ? 7500 : 11000;
+      const starCount = Math.floor((width * height) / starDensityDivisor);
+      stars = Array.from({ length: Math.max(starCount, isMobile ? 90 : 120) }, () => ({
         x: Math.random() * width,
-        y: Math.random() * height * 3, // Spans down infinitely
+        y: Math.random() * height * 3.5, // Spans down smoothly across scrolls
         z: Math.random() * 0.8 + 0.2,
-        baseRadius: Math.random() * 1.5 + 0.5,
-        alpha: Math.random() * 0.7 + 0.3,
+        baseRadius: Math.random() * 1.4 + 0.4,
+        alpha: Math.random() * 0.75 + 0.25,
         pulseSpeed: Math.random() * 0.02 + 0.005,
         pulseOffset: Math.random() * Math.PI * 2,
         color: "#ffffff",
       }));
 
-      // Populate Spaced-Out Small & Medium 3D Cubes (3 to 5 on screen)
-      const shapeTypes: ("cube" | "diagram")[] = ["cube", "diagram"];
-      const maxShapes = 5;
-      const minDistance = Math.min(width, height) * 0.32; // Social distancing spacing between shapes
+      // Populate Spaced-Out 3D Wireframe Shapes
+      const shapeTypes: ("cube" | "diamond" | "ring" | "tesseract")[] = ["cube", "diamond", "ring", "tesseract"];
+      const maxShapes = isMobile ? 4 : 6;
+      const minDistance = Math.min(width, height) * (isMobile ? 0.35 : 0.28);
+      const padding = isMobile ? 30 : 80;
 
       shapes = [];
       let attempts = 0;
-      while (shapes.length < maxShapes && attempts < 100) {
+      while (shapes.length < maxShapes && attempts < 120) {
         attempts++;
-        const candidateX = Math.random() * (width - 200) + 100;
-        const candidateY = Math.random() * height * 2.2;
+        const candidateX = Math.random() * Math.max(width - padding * 2, 50) + padding;
+        const candidateY = Math.random() * height * 2.5;
 
         const isTooClose = shapes.some((s) => {
           const dx = s.x - candidateX;
@@ -123,19 +144,20 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
           return Math.sqrt(dx * dx + dy * dy) < minDistance;
         });
 
-        if (!isTooClose || attempts > 80) {
+        if (!isTooClose || attempts > 90) {
           const type = shapeTypes[shapes.length % shapeTypes.length];
+          const baseSize = isMobile ? (Math.random() * 6 + 11) : (Math.random() * 8 + 14);
           shapes.push({
             x: candidateX,
             y: candidateY,
-            z: Math.random() * 0.5 + 0.4,
-            size: Math.random() * 8 + 12, // Small to Medium size range (12px - 20px)
-            vx: (Math.random() - 0.5) * 0.15,
-            vy: (Math.random() - 0.5) * 0.15,
+            z: Math.random() * 0.45 + 0.45,
+            size: baseSize,
+            vx: (Math.random() - 0.5) * 0.12,
+            vy: (Math.random() - 0.5) * 0.12,
             angleX: Math.random() * Math.PI * 2,
             angleY: Math.random() * Math.PI * 2,
-            rotSpeedX: (Math.random() - 0.5) * 0.006,
-            rotSpeedY: (Math.random() - 0.5) * 0.006,
+            rotSpeedX: (Math.random() - 0.5) * 0.008,
+            rotSpeedY: (Math.random() - 0.5) * 0.008,
             type,
           });
         }
@@ -144,6 +166,13 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
 
     initCanvasSize();
     window.addEventListener("resize", initCanvasSize, { passive: true });
+
+    const getPrimaryMidRgb = () => {
+      if (typeof window === "undefined") return themeConfig.brand.rgb.primaryMid;
+      const val = getComputedStyle(document.documentElement).getPropertyValue("--primary-mid-rgb").trim();
+      return val || themeConfig.brand.rgb.primaryMid;
+    };
+    let primaryMidRgb = getPrimaryMidRgb();
 
     // Draw 3D Wireframe Cube
     const drawCube = (cx: number, cy: number, size: number, ax: number, ay: number, alpha: number) => {
@@ -182,7 +211,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
     };
 
     // Draw 3D Diamond / Octahedron Wireframe
-    const _drawDiamond = (cx: number, cy: number, size: number, ax: number, ay: number, alpha: number) => {
+    const drawDiamond = (cx: number, cy: number, size: number, ax: number, ay: number, alpha: number) => {
       const vertices = [
         [0, -1.4, 0], [1, 0, 0], [0, 0, 1], [-1, 0, 0], [0, 0, -1], [0, 1.4, 0]
       ];
@@ -215,11 +244,11 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
     };
 
     // Draw Energy Ring Wireframe
-    const _drawRing = (cx: number, cy: number, size: number, ax: number, alpha: number) => {
+    const drawRing = (cx: number, cy: number, size: number, ax: number, alpha: number) => {
       ctx.save();
       ctx.translate(cx, cy);
       ctx.rotate(ax);
-      ctx.strokeStyle = `rgba(${primaryMidRgb}, ${alpha * 0.8})`;
+      ctx.strokeStyle = `rgba(${primaryMidRgb}, ${alpha * 0.85})`;
       ctx.lineWidth = 1;
       ctx.setLineDash([4, 4]);
       ctx.beginPath();
@@ -227,14 +256,14 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       ctx.stroke();
       ctx.setLineDash([]);
       ctx.beginPath();
-      ctx.arc(0, 0, size * 0.7, 0, Math.PI * 2);
+      ctx.arc(0, 0, size * 0.65, 0, Math.PI * 2);
       ctx.strokeStyle = `rgba(${primaryMidRgb}, ${alpha * 0.5})`;
       ctx.stroke();
       ctx.restore();
     };
 
-    // Draw 4D Wireframe Tesseract (Hypercube - Compact Noticeable Size)
-    const _drawTesseract = (cx: number, cy: number, size: number, ax: number, ay: number, alpha: number) => {
+    // Draw 4D Wireframe Tesseract
+    const drawTesseract = (cx: number, cy: number, size: number, ax: number, ay: number, alpha: number) => {
       const vertices4D: [number, number, number, number][] = [];
       for (const x of [-1, 1]) {
         for (const y of [-1, 1]) {
@@ -280,7 +309,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
         return [cx + x1 * size * 0.45 * scale3D, cy + y2 * size * 0.45 * scale3D];
       });
 
-      ctx.strokeStyle = `rgba(${primaryMidRgb}, ${alpha * 1.2})`;
+      ctx.strokeStyle = `rgba(${primaryMidRgb}, ${alpha * 1.15})`;
       ctx.lineWidth = 1;
       ctx.beginPath();
       edges.forEach(([i, j]) => {
@@ -292,7 +321,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
 
     // Shooting Star Manager
     let currentShootingStar: ShootingStar | null = null;
-    let nextShootingStarTime = 2;
+    let nextShootingStarTime = 1.5;
 
     const spawnShootingStar = () => {
       const edge = Math.floor(Math.random() * 3);
@@ -308,12 +337,12 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
         targetY = height + 60;
       } else if (edge === 1) {
         startX = -30;
-        startY = Math.random() * (height * 0.8);
+        startY = Math.random() * (height * 0.7);
         targetX = width + 60;
         targetY = Math.random() * height;
       } else {
         startX = width + 30;
-        startY = Math.random() * (height * 0.8);
+        startY = Math.random() * (height * 0.7);
         targetX = -60;
         targetY = Math.random() * height;
       }
@@ -321,7 +350,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       const angle = Math.atan2(targetY - startY, targetX - startX);
       const speed = Math.random() * 8 + 14;
       const length = Math.random() * 90 + 110;
-      const maxLife = Math.floor(Math.random() * 40 + 70);
+      const maxLife = Math.floor(Math.random() * 40 + 65);
 
       currentShootingStar = {
         x: startX,
@@ -337,13 +366,6 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       };
     };
 
-    const getPrimaryMidRgb = () => {
-      if (typeof window === "undefined") return themeConfig.brand.rgb.primaryMid;
-      const val = getComputedStyle(document.documentElement).getPropertyValue("--primary-mid-rgb").trim();
-      return val || themeConfig.brand.rgb.primaryMid;
-    };
-    let primaryMidRgb = getPrimaryMidRgb();
-
     // Main Render Loop
     let time = 0;
     const render = () => {
@@ -358,15 +380,15 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       ctx.fillStyle = "#000000";
       ctx.fillRect(0, 0, width, height);
 
-      // Star Particles & Neural Network Connections
+      // Star Particles & Neural Connections
       const visibleStars: { x: number; y: number; z: number }[] = [];
 
       stars.forEach((star) => {
-        let renderY = (star.y - scrollY * star.z) % (height * 3);
-        if (renderY < -50) renderY += height * 3;
+        let renderY = (star.y - scrollY * star.z) % (height * 3.5);
+        if (renderY < -50) renderY += height * 3.5;
         if (renderY > height + 50) return;
 
-        const renderX = star.x + mouseX * 0.02 * star.z;
+        const renderX = star.x + mouseX * 0.025 * star.z;
         const currentAlpha = star.alpha * (0.6 + 0.4 * Math.sin(time * 2 + star.pulseOffset));
         const radius = star.baseRadius * star.z;
 
@@ -380,8 +402,9 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       });
       ctx.globalAlpha = 1.0;
 
-      // Draw Neural Connections
+      // Draw Neural Connections between nearby stars
       ctx.lineWidth = 0.5;
+      const maxConnectionDistSq = width < 768 ? 7000 : 9000;
       for (let i = 0; i < visibleStars.length; i++) {
         for (let j = i + 1; j < visibleStars.length; j++) {
           const s1 = visibleStars[i];
@@ -390,8 +413,8 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
           const dy = s1.y - s2.y;
           const distSq = dx * dx + dy * dy;
 
-          if (distSq < 10000) {
-            const alpha = (1 - distSq / 10000) * 0.12 * Math.min(s1.z, s2.z);
+          if (distSq < maxConnectionDistSq) {
+            const alpha = (1 - distSq / maxConnectionDistSq) * 0.12 * Math.min(s1.z, s2.z);
             ctx.strokeStyle = `rgba(${primaryMidRgb}, ${alpha})`;
             ctx.beginPath();
             ctx.moveTo(s1.x, s1.y);
@@ -411,17 +434,26 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
         if (shape.x < -100) shape.x = width + 100;
         if (shape.x > width + 100) shape.x = -100;
 
-        let renderY = (shape.y - scrollY * shape.z * 0.4) % (height * 2.5);
-        if (renderY < -100) renderY += height * 2.5;
+        let renderY = (shape.y - scrollY * shape.z * 0.4) % (height * 2.8);
+        if (renderY < -100) renderY += height * 2.8;
         if (renderY > height + 100) return;
 
         const renderX = shape.x + mouseX * 0.04 * shape.z;
-        const alpha = 0.25 * shape.z;
+        const alpha = 0.28 * shape.z;
 
-        if (shape.type === "cube") {
-          drawCube(renderX, renderY, shape.size * shape.z, shape.angleX, shape.angleY, alpha);
-        } else {
-          drawCube(renderX, renderY, shape.size * 0.85 * shape.z, shape.angleY, shape.angleX, alpha * 0.85);
+        switch (shape.type) {
+          case "cube":
+            drawCube(renderX, renderY, shape.size * shape.z, shape.angleX, shape.angleY, alpha);
+            break;
+          case "diamond":
+            drawDiamond(renderX, renderY, shape.size * shape.z, shape.angleX, shape.angleY, alpha);
+            break;
+          case "ring":
+            drawRing(renderX, renderY, shape.size * shape.z, shape.angleX, alpha);
+            break;
+          case "tesseract":
+            drawTesseract(renderX, renderY, shape.size * 1.4 * shape.z, shape.angleX, shape.angleY, alpha);
+            break;
         }
       });
 
@@ -429,7 +461,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       if (!currentShootingStar || !currentShootingStar.active) {
         if (time >= nextShootingStarTime) {
           spawnShootingStar();
-          nextShootingStarTime = time + (3.5 + Math.random() * 1.5);
+          nextShootingStarTime = time + (2.5 + Math.random() * 2.0);
         }
       } else {
         const star = currentShootingStar;
@@ -482,7 +514,10 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchstart", handleTouchMove);
+      window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("mobilescroll", handleMobileScroll);
       window.removeEventListener("resize", initCanvasSize);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };

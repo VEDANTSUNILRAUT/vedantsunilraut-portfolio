@@ -2,18 +2,19 @@
 
 import { motion } from "framer-motion";
 import { siteConfig } from "@/constants/site";
+import { AndroidFooter } from "../AndroidFooter";
 import { Mail, Github, Linkedin, ArrowUpRight } from "lucide-react";
 
 export function AndroidContactScreen() {
   return (
-    <div className="w-full max-w-md mx-auto px-5 pt-12 pb-16 flex flex-col items-center justify-center space-y-6">
+    <div className="w-full max-w-md sm:max-w-lg md:max-w-xl mx-auto px-2 sm:px-4 pt-10 pb-6 flex flex-col items-center justify-center space-y-6">
       
       {/* Android Contact Card */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="w-full p-6 rounded-3xl bg-neutral-900/90 border border-white/10 backdrop-blur-xl shadow-2xl flex flex-col items-center text-center space-y-5"
+        className="w-full p-6 sm:p-8 rounded-3xl bg-neutral-950/70 border border-white/10 backdrop-blur-xl shadow-2xl flex flex-col items-center text-center space-y-5"
       >
         <div className="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
           <Mail className="w-7 h-7" />
@@ -58,6 +59,9 @@ export function AndroidContactScreen() {
           <span className="text-[10px] font-mono">LinkedIn</span>
         </a>
       </div>
+
+      {/* Reusable Mobile Footer */}
+      <AndroidFooter />
 
     </div>
   );
