@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import {
   Briefcase,
   Building2,
@@ -19,11 +19,19 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { WORK_EXPERIENCE_DATA, WorkExperienceItem } from "@/constants/experience";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { ExperienceSectionProps } from "./ExperienceSection.types";
 
 export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
   const [expandedCardId, setExpandedCardId] = useState<string | null>("fulltime-logituit");
   const carouselRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 80%", "end 60%"],
+  });
+  const scaleY = useSpring(scrollYProgress, { stiffness: 300, damping: 30 });
 
   const fullTimeExperience = WORK_EXPERIENCE_DATA.filter((item) => item.type === "Full-Time");
   const internshipExperience = WORK_EXPERIENCE_DATA.filter((item) => item.type === "Internship");
@@ -165,7 +173,13 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
           <div className="h-px bg-purple-500/20 flex-1 ml-2" />
         </div>
 
-        <div className="relative border-l-2 border-white/10 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-10">
+        <div ref={timelineRef} className="relative border-l-2 border-white/10 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-10">
+          {/* Scroll-Linked Glowing Laser Spine */}
+          <motion.div
+            style={{ scaleY, transformOrigin: "top" }}
+            className="absolute -left-[2px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-purple-500 via-violet-400 to-emerald-400 shadow-[0_0_12px_rgba(168,85,247,0.9)] z-10 pointer-events-none"
+          />
+
           {fullTimeExperience.map((item, index) => {
             const isExpanded = expandedCardId === item.id;
             return (
@@ -182,9 +196,11 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                   <Briefcase className={`w-5 h-5 ${item.colorScheme.text}`} />
                 </div>
 
-                {/* Main Full-Time Card Container */}
-                <div
-                  className={`bg-neutral-950/80 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-2xl transition-all duration-500 ${item.colorScheme.border}`}
+                {/* Main Full-Time Card Container with Spotlight */}
+                <SpotlightCard
+                  spotlightColor="rgba(168, 85, 247, 0.18)"
+                  borderColor="rgba(168, 85, 247, 0.5)"
+                  className={`bg-neutral-950/80 border border-white/10 backdrop-blur-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl transition-all duration-500 ${item.colorScheme.border}`}
                 >
                   <div
                     className={`absolute top-0 right-0 w-96 h-96 bg-gradient-to-br ${item.colorScheme.glow} blur-3xl pointer-events-none group-hover:opacity-100 transition-opacity opacity-60`}
@@ -307,7 +323,7 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </div>
+                </SpotlightCard>
               </motion.div>
             );
           })}
@@ -319,9 +335,9 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
         {/* Carousel Header Row */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
-            <Award className="w-4 h-4 text-cyan-400" />
-            <h3 className="text-sm font-mono uppercase tracking-widest text-cyan-300 font-semibold">
-              Internships & Traineeships ({internshipExperience.length})
+            <Sparkles className="w-4 h-4 text-purple-400" />
+            <h3 className="text-sm font-mono uppercase tracking-widest text-purple-300 font-semibold">
+              Internship Engagements & Roles
             </h3>
           </div>
 
@@ -329,15 +345,15 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
           <div className="flex items-center gap-2">
             <button
               onClick={() => scrollCarousel("left")}
-              className="p-2 rounded-xl bg-neutral-900 border border-white/10 text-neutral-400 hover:text-white hover:border-purple-500/50 hover:bg-neutral-800 transition-all shadow-md active:scale-95"
-              aria-label="Scroll left"
+              className="p-2 rounded-xl bg-neutral-900 border border-white/10 text-neutral-300 hover:text-white hover:border-purple-400/50 hover:bg-neutral-800 transition-all active:scale-95 shadow-md"
+              aria-label="Previous internships"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={() => scrollCarousel("right")}
-              className="p-2 rounded-xl bg-neutral-900 border border-white/10 text-neutral-400 hover:text-white hover:border-purple-500/50 hover:bg-neutral-800 transition-all shadow-md active:scale-95"
-              aria-label="Scroll right"
+              className="p-2 rounded-xl bg-neutral-900 border border-white/10 text-neutral-300 hover:text-white hover:border-purple-400/50 hover:bg-neutral-800 transition-all active:scale-95 shadow-md"
+              aria-label="Next internships"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -357,86 +373,92 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className={`w-[320px] sm:w-[400px] shrink-0 snap-start bg-neutral-950/80 border border-white/10 backdrop-blur-xl rounded-3xl p-6 relative overflow-hidden shadow-xl transition-all duration-300 flex flex-col justify-between group ${item.colorScheme.border}`}
+              className="w-[320px] sm:w-[400px] shrink-0 snap-start h-full"
             >
-              {/* Background Glow */}
-              <div
-                className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${item.colorScheme.glow} blur-3xl pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity`}
-              />
+              <SpotlightCard
+                spotlightColor="rgba(168, 85, 247, 0.15)"
+                borderColor="rgba(168, 85, 247, 0.4)"
+                className={`bg-neutral-950/80 border border-white/10 backdrop-blur-xl p-6 relative overflow-hidden shadow-xl transition-all duration-300 flex flex-col justify-between group h-full ${item.colorScheme.border}`}
+              >
+                {/* Background Glow */}
+                <div
+                  className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${item.colorScheme.glow} blur-3xl pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity`}
+                />
 
-              <div className="relative z-10 space-y-4">
-                {/* Header Badge & Duration */}
-                <div className="flex items-center justify-between gap-2">
-                  <span
-                    className={`px-3 py-1 rounded-full text-[10px] font-mono font-semibold uppercase border ${item.colorScheme.badgeBg}`}
-                  >
-                    {item.type}
-                  </span>
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono text-neutral-400 bg-white/5 border border-white/10">
-                    {item.duration}
-                  </span>
-                </div>
-
-                {/* Role & Company */}
-                <div>
-                  <h4 className="text-lg font-bold text-white tracking-tight group-hover:text-purple-200 transition-colors">
-                    {item.role}
-                  </h4>
-                  <p className={`text-xs font-semibold mt-0.5 ${item.colorScheme.text}`}>
-                    {item.company}
-                  </p>
-                </div>
-
-                {/* Period & Location */}
-                <div className="flex flex-col gap-1 text-[11px] font-mono text-neutral-400 pt-1">
-                  <div className="flex items-center gap-1.5">
-                    <Calendar className="w-3 h-3 text-neutral-500 shrink-0" />
-                    <span>{item.period}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <MapPin className="w-3 h-3 text-neutral-500 shrink-0" />
-                    <span className="truncate">{item.location}</span>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="text-xs font-source-code-pro text-neutral-300 line-clamp-3 leading-relaxed pt-1">
-                  {item.description}
-                </p>
-
-                {/* Key Achievements Bullets */}
-                {item.achievements.length > 0 && (
-                  <div className="space-y-1.5 pt-2 border-t border-white/10">
-                    {item.achievements.slice(0, 2).map((achievement, aIdx) => (
-                      <div key={aIdx} className="flex items-start gap-2">
-                        <CheckCircle2 className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${item.colorScheme.text}`} />
-                        <span className="text-[11px] font-source-code-pro text-neutral-300 line-clamp-2 leading-tight">
-                          {achievement}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Footer Tech Pills */}
-              <div className="mt-5 pt-3 border-t border-white/10 relative z-10">
-                <div className="flex flex-wrap gap-1.5">
-                  {item.skills.slice(0, 4).map((skill, sIdx) => (
+                <div className="relative z-10 space-y-4">
+                  {/* Header Badge & Duration */}
+                  <div className="flex items-center justify-between gap-2">
                     <span
-                      key={sIdx}
-                      className={`px-2.5 py-0.5 rounded-lg text-[10px] font-mono border backdrop-blur-md ${item.colorScheme.pillBg}`}
+                      className={`px-3 py-1 rounded-full text-[10px] font-mono font-semibold uppercase border ${item.colorScheme.badgeBg}`}
                     >
-                      {skill}
+                      {item.type}
                     </span>
-                  ))}
-                  {item.skills.length > 4 && (
-                    <span className="px-2 py-0.5 rounded-lg text-[10px] font-mono text-neutral-400 bg-white/5 border border-white/10">
-                      +{item.skills.length - 4}
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono text-neutral-400 bg-white/5 border border-white/10">
+                      {item.duration}
                     </span>
+                  </div>
+
+                  {/* Role & Company */}
+                  <div>
+                    <h4 className="text-lg font-bold text-white tracking-tight group-hover:text-purple-200 transition-colors">
+                      {item.role}
+                    </h4>
+                    <p className={`text-xs font-semibold mt-0.5 ${item.colorScheme.text}`}>
+                      {item.company}
+                    </p>
+                  </div>
+
+                  {/* Period & Location */}
+                  <div className="flex flex-col gap-1 text-[11px] font-mono text-neutral-400 pt-1">
+                    <div className="flex items-center gap-1.5">
+                      <Calendar className="w-3 h-3 text-neutral-500 shrink-0" />
+                      <span>{item.period}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <MapPin className="w-3 h-3 text-neutral-500 shrink-0" />
+                      <span className="truncate">{item.location}</span>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-xs font-source-code-pro text-neutral-300 line-clamp-3 leading-relaxed pt-1">
+                    {item.description}
+                  </p>
+
+                  {/* Key Achievements Bullets */}
+                  {item.achievements.length > 0 && (
+                    <div className="space-y-1.5 pt-2 border-t border-white/10">
+                      {item.achievements.slice(0, 2).map((achievement, aIdx) => (
+                        <div key={aIdx} className="flex items-start gap-2">
+                          <CheckCircle2 className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${item.colorScheme.text}`} />
+                          <span className="text-[11px] font-source-code-pro text-neutral-300 line-clamp-2 leading-tight">
+                            {achievement}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   )}
                 </div>
-              </div>
+
+                {/* Footer Tech Pills */}
+                <div className="mt-5 pt-3 border-t border-white/10 relative z-10">
+                  <div className="flex flex-wrap gap-1.5">
+                    {item.skills.slice(0, 4).map((skill, sIdx) => (
+                      <span
+                        key={sIdx}
+                        className={`px-2.5 py-0.5 rounded-lg text-[10px] font-mono border backdrop-blur-md ${item.colorScheme.pillBg}`}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                    {item.skills.length > 4 && (
+                      <span className="px-2 py-0.5 rounded-lg text-[10px] font-mono text-neutral-400 bg-white/5 border border-white/10">
+                        +{item.skills.length - 4}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>

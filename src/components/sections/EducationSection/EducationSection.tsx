@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import {
   GraduationCap,
   Award,
@@ -17,11 +17,19 @@ import {
   Building2,
 } from "lucide-react";
 import { EDUCATION_DATA } from "@/constants/education";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { EducationSectionProps } from "./EducationSection.types";
 
 export function EducationSection({ className = "" }: EducationSectionProps) {
   const [selectedFilter, setSelectedFilter] = useState<string>("all");
   const [expandedCardId, setExpandedCardId] = useState<string | null>("graduation");
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 80%", "end 60%"],
+  });
+  const scaleY = useSpring(scrollYProgress, { stiffness: 300, damping: 30 });
 
   const filteredEducation = selectedFilter === "all"
     ? EDUCATION_DATA
@@ -214,7 +222,13 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
       </div>
 
       {/* Main Connected Timeline & Education Cards Container */}
-      <div className="relative border-l-2 border-white/10 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-10">
+      <div ref={timelineRef} className="relative border-l-2 border-white/10 ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-10">
+        {/* Scroll-Linked Glowing Laser Spine */}
+        <motion.div
+          style={{ scaleY, transformOrigin: "top" }}
+          className="absolute -left-[2px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-purple-500 via-violet-400 to-emerald-400 shadow-[0_0_12px_rgba(168,85,247,0.9)] z-10 pointer-events-none"
+        />
+
         <AnimatePresence mode="popLayout">
           {filteredEducation.map((item, index) => {
             const isExpanded = expandedCardId === item.id;
@@ -232,9 +246,11 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
                   {getIconForLevel(item.id)}
                 </div>
 
-                {/* Card Container */}
-                <div
-                  className={`bg-neutral-950/80 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-2xl transition-all duration-500 ${item.colorScheme.border}`}
+                {/* Card Container with Spotlight */}
+                <SpotlightCard
+                  spotlightColor="rgba(168, 85, 247, 0.18)"
+                  borderColor="rgba(168, 85, 247, 0.5)"
+                  className={`bg-neutral-950/80 border border-white/10 backdrop-blur-xl p-6 sm:p-8 relative overflow-hidden shadow-2xl transition-all duration-500 ${item.colorScheme.border}`}
                 >
                   {/* Card Background Ambient Radial Mesh */}
                   <div
@@ -374,7 +390,7 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </div>
+                </SpotlightCard>
               </motion.div>
             );
           })}
