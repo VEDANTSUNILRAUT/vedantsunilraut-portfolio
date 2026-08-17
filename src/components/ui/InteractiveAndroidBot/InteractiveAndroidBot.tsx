@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useCallback } from "react";
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { Sparkles, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 
 interface Particle {
   id: number;
@@ -124,11 +124,6 @@ export function InteractiveAndroidBot() {
           alt="Android Bot"
           className="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-[0_0_16px_rgba(52,211,153,0.8)] filter transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(167,139,250,0.9)]"
         />
-
-        {/* Mini floating sparkles badge */}
-        <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-violet-600/90 border border-violet-400 text-white flex items-center justify-center shadow-lg group-hover:scale-125 transition-transform">
-          <Sparkles className="w-2.5 h-2.5 text-white" />
-        </div>
       </motion.div>
 
       {/* Particle Burst Elements */}
