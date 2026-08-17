@@ -1,9 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Wifi, Signal, Sparkles } from "lucide-react";
+import { Wifi, Signal, Sparkles, ChevronDown } from "lucide-react";
 
-export function AndroidStatusBar() {
+interface AndroidStatusBarProps {
+  onOpenQuickSettings?: () => void;
+}
+
+export function AndroidStatusBar({ onOpenQuickSettings }: AndroidStatusBarProps) {
   const [timeStr, setTimeStr] = useState<string>("");
 
   useEffect(() => {
@@ -21,7 +25,11 @@ export function AndroidStatusBar() {
   }, []);
 
   return (
-    <header className="w-full h-8 sm:h-9 px-4 sm:px-6 flex items-center justify-between text-neutral-200 bg-black/40 backdrop-blur-xl border-b border-white/5 select-none z-50 font-sans tracking-tight text-xs">
+    <header 
+      onClick={onOpenQuickSettings}
+      className="w-full h-8 sm:h-9 px-4 sm:px-6 flex items-center justify-between text-neutral-200 bg-black/40 hover:bg-black/60 transition-colors backdrop-blur-xl border-b border-white/5 select-none z-50 font-sans tracking-tight text-xs cursor-pointer group"
+      title="Tap to open Quick Settings"
+    >
       {/* Left: Time & Notification Badges */}
       <div className="flex items-center gap-2.5">
         <span className="font-semibold text-[11px] sm:text-xs text-white tracking-wide">
@@ -35,11 +43,12 @@ export function AndroidStatusBar() {
         </div>
       </div>
 
-      {/* Center: Punch-Hole Front Camera Lens */}
-      <div className="flex items-center justify-center">
-        <div className="w-3.5 h-3.5 rounded-full bg-black border border-neutral-800 shadow-[inset_0_0_2px_rgba(255,255,255,0.2)] flex items-center justify-center">
+      {/* Center: Punch-Hole Front Camera Lens with Subtle Pull Cue */}
+      <div className="flex items-center gap-1">
+        <div className="w-3.5 h-3.5 rounded-full bg-black border border-neutral-800 shadow-[inset_0_0_2px_rgba(255,255,255,0.2)] flex items-center justify-center group-hover:border-purple-500/40 transition-colors">
           <div className="w-1.5 h-1.5 rounded-full bg-neutral-900 border border-blue-500/40" />
         </div>
+        <ChevronDown className="w-3 h-3 text-white/40 group-hover:text-purple-400 group-hover:translate-y-0.5 transition-all opacity-0 group-hover:opacity-100 sm:opacity-70" />
       </div>
 
       {/* Right: Android Status Icons (5G, Signal, Wi-Fi, Battery) */}

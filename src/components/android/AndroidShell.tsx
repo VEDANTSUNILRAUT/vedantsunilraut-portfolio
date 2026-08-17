@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AndroidStatusBar } from "./AndroidStatusBar";
+import { AndroidQuickSettingsSheet } from "./AndroidQuickSettingsSheet";
 import { AndroidBottomNav, AndroidTabType } from "./AndroidBottomNav";
 
 import { AndroidHomeScreen } from "./screens/AndroidHomeScreen";
@@ -13,6 +14,7 @@ import { AndroidContactScreen } from "./screens/AndroidContactScreen";
 
 export function AndroidShell() {
   const [activeTab, setActiveTab] = useState<AndroidTabType>("home");
+  const [isQuickSettingsOpen, setIsQuickSettingsOpen] = useState<boolean>(false);
   const mainRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -49,10 +51,16 @@ export function AndroidShell() {
 
   return (
     <div className="w-full min-h-screen flex flex-col justify-between bg-transparent text-white relative z-10 font-sans">
-      {/* Top Realistic Android Status Bar */}
+      {/* Top Realistic Android Status Bar with Pull-down Trigger */}
       <div className="sticky top-0 left-0 right-0 z-50">
-        <AndroidStatusBar />
+        <AndroidStatusBar onOpenQuickSettings={() => setIsQuickSettingsOpen(true)} />
       </div>
+
+      {/* Android Quick Settings Top Sheet (Pull Down Shade) */}
+      <AndroidQuickSettingsSheet 
+        isOpen={isQuickSettingsOpen} 
+        onClose={() => setIsQuickSettingsOpen(false)} 
+      />
 
       {/* Central Active Android Screen with Material 3 Motion Transition */}
       <main 
@@ -86,4 +94,3 @@ export function AndroidShell() {
     </div>
   );
 }
-
