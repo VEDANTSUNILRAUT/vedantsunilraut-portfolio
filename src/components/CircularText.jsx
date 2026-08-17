@@ -21,7 +21,13 @@ const getTransition = (duration, from) => ({
   }
 });
 
-const CircularText = ({ text, spinDuration = 20, onHover = 'speedUp', className = '' }) => {
+const CircularText = ({
+  text,
+  spinDuration = 20,
+  onHover = 'speedUp',
+  className = '',
+  dotClassName = 'text-violet-400',
+}) => {
   const letters = Array.from(text);
   const controls = useAnimation();
   const rotation = useMotionValue(0);
@@ -95,9 +101,18 @@ const CircularText = ({ text, spinDuration = 20, onHover = 'speedUp', className 
         const x = factor * i;
         const y = factor * i;
         const transform = `rotateZ(${rotationDeg}deg) translate3d(${x}px, ${y}px, 0)`;
+        const isDot = letter === '•' || letter === '·' || letter === '●';
 
         return (
-          <span key={i} style={{ transform, WebkitTransform: transform }}>
+          <span
+            key={i}
+            className={isDot ? dotClassName : undefined}
+            style={{
+              transform,
+              WebkitTransform: transform,
+              ...(isDot ? { color: '#a78bfa', textShadow: '0 0 10px rgba(167, 139, 250, 0.8)' } : {})
+            }}
+          >
             {letter}
           </span>
         );
