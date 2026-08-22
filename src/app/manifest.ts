@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: "Vedant Raut",
     description: "Software Engineer at Logituit & Native Android Specialist",
     start_url: "/",
-    display: "standalone",
+    display: "fullscreen",
     background_color: "#000000",
     theme_color: "#a855f7",
     icons: [

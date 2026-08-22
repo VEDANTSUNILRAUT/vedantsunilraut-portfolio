@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Logo } from "@/components/common/Logo";
 import { NavPill } from "@/components/layout/NavPill";
-import { WeatherWidget } from "@/components/common/WeatherWidget";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
 import { HeaderProps } from "./Header.types";
 
@@ -41,18 +40,17 @@ export function Header({ className = "" }: HeaderProps) {
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between">
         {/* Left: Brand Logo */}
-        <div className="flex items-center justify-start flex-1">
+        <div className="flex items-center justify-start flex-1 min-w-0">
           <Logo />
         </div>
 
         {/* Center: Floating Pill Navigation */}
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center shrink-0">
           <NavPill />
         </div>
 
-        {/* Right: Weather Widget & Theme Toggle */}
-        <div className="flex items-center justify-end flex-1 gap-3">
-          <WeatherWidget />
+        {/* Right: Theme Toggle */}
+        <div className="flex items-center justify-end flex-1 min-w-0">
           <ThemeToggle />
         </div>
       </div>

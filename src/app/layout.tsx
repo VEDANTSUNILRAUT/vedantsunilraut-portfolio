@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { Outfit, EB_Garamond, Alata, Shadows_Into_Light, Henny_Penny, Source_Code_Pro, Geist } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
+import { ViewModeProvider } from "@/context/ViewModeContext";
 import { DeveloperLoader } from "@/components/common/DeveloperLoader";
 import { LenisScroll } from "@/components/common/ScrollProviders";
 import { InfiniteCanvasBackground } from "@/components/ui/InfiniteCanvasBackground";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { DeviceLayoutSwitcher } from "@/components/layout/DeviceLayoutSwitcher/DeviceLayoutSwitcher";
+import { DeviceViewToggle } from "@/components/common/DeviceViewToggle";
 import { PortfolioChatbot } from "@/components/ui/PortfolioChatbot";
 import { cn } from "@/lib/utils";
 
@@ -129,36 +131,43 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* Global Lenis Smooth Momentum Scroll Wrapper */}
-          <LenisScroll>
-            {/* Global Developer Loader */}
-            <DeveloperLoader />
+          <ViewModeProvider>
+            {/* Global Lenis Smooth Momentum Scroll Wrapper */}
+            <LenisScroll>
+              {/* Global Developer Loader */}
+              <DeveloperLoader />
 
-            {/* Standalone Noise overlay */}
-            <div 
-              className="pointer-events-none fixed inset-0 z-50 mix-blend-overlay"
-              style={{ 
-                backgroundImage: 'url("/noise.svg")', 
-                backgroundSize: '256px 256px',
-                opacity: 'var(--noise-opacity)'
-              }} 
-            />
+              {/* Standalone Noise overlay */}
+              <div 
+                className="pointer-events-none fixed inset-0 z-50 mix-blend-overlay"
+                style={{ 
+                  backgroundImage: 'url("/noise.svg")', 
+                  backgroundSize: '256px 256px',
+                  opacity: 'var(--noise-opacity)'
+                }} 
+              />
 
-            {/* Persistent Background for both Web & Mobile */}
-            <InfiniteCanvasBackground />
+              {/* Persistent Background for both Web & Mobile */}
+              <InfiniteCanvasBackground />
 
-            {/* Automatic View Switcher: Desktop Web vs Native Android Mobile App */}
-            <DeviceLayoutSwitcher>
-              <Header />
-              <div className="relative z-10 w-full min-h-screen flex flex-col items-center">
-                {children}
+              {/* Automatic View Switcher: Desktop Web vs Android Mobile Emulator / Native App */}
+              <DeviceLayoutSwitcher>
+                <Header />
+                <div className="relative z-10 w-full min-h-screen flex flex-col items-center">
+                  {children}
+                </div>
+                <Footer />
+              </DeviceLayoutSwitcher>
+
+              {/* Floating Device View Switcher (Exact level of Chatbot on leftmost side) */}
+              <div className="fixed bottom-20 left-4 sm:bottom-6 sm:left-6 z-50 flex items-center">
+                <DeviceViewToggle variant="floating" />
               </div>
-              <Footer />
-            </DeviceLayoutSwitcher>
 
-            {/* Vedant Executive AI Chatbot */}
-            <PortfolioChatbot />
-          </LenisScroll>
+              {/* Vedant Executive AI Chatbot */}
+              <PortfolioChatbot />
+            </LenisScroll>
+          </ViewModeProvider>
         </ThemeProvider>
       </body>
     </html>

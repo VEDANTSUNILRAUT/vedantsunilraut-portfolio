@@ -12,7 +12,11 @@ import { AndroidWorkScreen } from "./screens/AndroidWorkScreen";
 import { AndroidSkillsScreen } from "./screens/AndroidSkillsScreen";
 import { AndroidContactScreen } from "./screens/AndroidContactScreen";
 
-export function AndroidShell() {
+export interface AndroidShellProps {
+  isEmulator?: boolean;
+}
+
+export function AndroidShell({ isEmulator = false }: AndroidShellProps) {
   const [activeTab, setActiveTab] = useState<AndroidTabType>("home");
   const [isQuickSettingsOpen, setIsQuickSettingsOpen] = useState<boolean>(false);
   const mainRef = useRef<HTMLElement | null>(null);
@@ -45,38 +49,50 @@ export function AndroidShell() {
 
   const handleScroll = () => {
     if (mainRef.current) {
-      window.dispatchEvent(new CustomEvent("mobilescroll", { detail: { scrollY: mainRef.current.scrollTop } }));
+      window.dispatchEvent(
+        new CustomEvent("mobilescroll", {
+          detail: { scrollY: mainRef.current.scrollTop },
+        })
+      );
     }
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col justify-between bg-transparent text-white relative z-10 font-sans">
-      {/* Top Realistic Android Status Bar with Pull-down Trigger */}
-      <div className="sticky top-0 left-0 right-0 z-50">
-        <AndroidStatusBar onOpenQuickSettings={() => setIsQuickSettingsOpen(true)} />
-      </div>
+    <div
+      className={`w-full flex flex-col justify-between bg-black text-white relative z-10 font-sans ${
+        isEmulator ? "h-full min-h-0 overflow-hidden" : "min-h-screen"
+      }`}
+    >
+      {/* 1. Top Android Status Bar: Rendered specifically for Emulator Preview */}
+      {isEmulator && (
+        <div className="shrink-0 sticky top-0 left-0 right-0 z-50">
+          <AndroidStatusBar onOpenQuickSettings={() => setIsQuickSettingsOpen(true)} />
+        </div>
+      )}
 
-      {/* Android Quick Settings Top Sheet (Pull Down Shade) */}
-      <AndroidQuickSettingsSheet 
-        isOpen={isQuickSettingsOpen} 
-        onClose={() => setIsQuickSettingsOpen(false)} 
+      {/* 2. Android Quick Settings Pull-Down Sheet */}
+      <AndroidQuickSettingsSheet
+        isOpen={isQuickSettingsOpen}
+        onClose={() => setIsQuickSettingsOpen(false)}
       />
 
-      {/* Central Active Android Screen with Material 3 Motion Transition */}
-      <main 
-        ref={mainRef} 
+      {/* 3. Central Active Android Screen with Material 3 Motion Transition */}
+      <main
+        ref={mainRef}
         onScroll={handleScroll}
-        data-lenis-prevent 
-        className="flex-1 w-full overflow-y-auto z-10 pt-2 pb-24 sm:pb-28 custom-scrollbar"
+        data-lenis-prevent
+        className={`flex-1 w-full overflow-y-auto z-10 custom-scrollbar ${
+          isEmulator ? "pt-2 pb-20 px-3 sm:px-4" : "pt-4 pb-24 px-4 sm:px-6"
+        }`}
       >
-        <div className="w-full max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
+        <div className="w-full max-w-xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
               initial={{ opacity: 0, y: 10, scale: 0.99 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.99 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
               className="w-full"
             >
               {renderScreen()}
@@ -85,8 +101,14 @@ export function AndroidShell() {
         </div>
       </main>
 
-      {/* Bottom Sticky Android Material 3 Navigation Bar */}
-      <div className="fixed sm:sticky bottom-0 left-0 right-0 z-50 pointer-events-none">
+      {/* 4. Bottom Android Material 3 Navigation Bar */}
+      <div
+        className={`shrink-0 z-40 ${
+          isEmulator
+            ? "sticky bottom-0 left-0 right-0 bg-black/90 backdrop-blur-xl"
+            : "fixed bottom-0 left-0 right-0 pointer-events-none"
+        }`}
+      >
         <div className="w-full pointer-events-auto">
           <AndroidBottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>

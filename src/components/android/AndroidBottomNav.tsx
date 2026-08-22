@@ -19,7 +19,7 @@ export function AndroidBottomNav({ activeTab, setActiveTab }: AndroidBottomNavPr
   ];
 
   return (
-    <nav className="w-full sm:max-w-md md:max-w-lg sm:mx-auto h-16 sm:mb-4 sm:rounded-2xl bg-black/75 border-t sm:border border-white/10 backdrop-blur-2xl px-2 sm:px-4 flex items-center justify-around z-50 select-none pb-1 sm:pb-1 shadow-2xl sm:shadow-[0_12px_36px_rgba(0,0,0,0.8)]">
+    <nav className="w-full h-15 bg-black/90 border-t border-white/10 backdrop-blur-2xl px-2 flex items-center justify-around z-50 select-none pb-2 pt-1">
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = activeTab === tab.id;

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, Sparkles, User, ArrowUpRight } from "lucide-react";
 import { ChatMessage, PortfolioChatbotProps } from "./PortfolioChatbot.types";
 import { getBotResponse, QUICK_QUESTIONS } from "@/constants/botKnowledge";
+import { useViewMode } from "@/context/ViewModeContext";
 
 let messageCounter = 0;
 function generateUniqueId(prefix: string): string {
@@ -25,6 +26,7 @@ function AiAvatar({ size = "md" }: { size?: "sm" | "md" }) {
 }
 
 export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
+  const { viewMode } = useViewMode();
   const [isOpen, setIsOpen] = useState(false);
   const [inputMsg, setInputMsg] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -121,6 +123,10 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
       );
     });
   };
+
+  if (viewMode === "mobile") {
+    return null;
+  }
 
   return (
     <div className={`fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end ${className}`}>

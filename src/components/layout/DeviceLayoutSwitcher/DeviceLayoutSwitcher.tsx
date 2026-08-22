@@ -1,7 +1,10 @@
 "use client";
 
+import React from "react";
 import { useDeviceType } from "@/hooks/useDeviceType";
+import { useViewMode } from "@/context/ViewModeContext";
 import { AndroidShell } from "@/components/android/AndroidShell";
+import { AndroidEmulator } from "@/components/android/AndroidEmulator";
 
 interface DeviceLayoutSwitcherProps {
   children: React.ReactNode;
@@ -9,17 +12,28 @@ interface DeviceLayoutSwitcherProps {
 
 export function DeviceLayoutSwitcher({ children }: DeviceLayoutSwitcherProps) {
   const { isMobile, isMounted } = useDeviceType();
+  const { viewMode } = useViewMode();
 
-  // Before mounting, render children to avoid layout shift / flash
+  // 1. SSR / Hydration Safety
   if (!isMounted) {
     return <>{children}</>;
   }
 
-  // If viewed on mobile viewport or smartphone device -> automatically render Android App View!
+  // 2. Real Mobile Device Viewport (<768px or phone device):
+  // Direct AndroidShell with native presentation
   if (isMobile) {
-    return <AndroidShell />;
+    return <AndroidShell isEmulator={false} />;
   }
 
-  // Desktop / Laptop View
+  // 3. Desktop View with Mobile Emulator Switcher:
+  if (viewMode === "mobile") {
+    return (
+      <AndroidEmulator>
+        <AndroidShell isEmulator={true} />
+      </AndroidEmulator>
+    );
+  }
+
+  // Default: Desktop View
   return <>{children}</>;
 }

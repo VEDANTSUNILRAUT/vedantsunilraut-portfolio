@@ -106,7 +106,7 @@ export function AndroidHomeScreen({ setActiveTab: _setActiveTab }: AndroidHomeSc
         </div>
 
         {/* Dynamic Name Title */}
-        <div className="mt-1 text-2xl sm:text-3xl font-source-code-pro font-normal tracking-wide">
+        <div className="mt-1 text-xl font-source-code-pro font-normal tracking-wide">
           <ShinyText
             text="I am Vedant Sunil Raut"
             disabled={false}
@@ -119,20 +119,20 @@ export function AndroidHomeScreen({ setActiveTab: _setActiveTab }: AndroidHomeSc
         </div>
 
         {/* Main Headline */}
-        <h1 className="mt-2 font-eb-garamond text-2xl sm:text-4xl leading-[1.3] text-balance text-white font-normal">
+        <h1 className="mt-2 font-eb-garamond text-2xl leading-[1.25] text-balance text-white font-normal px-2">
           Architecting high-performance software & shaping{" "}
-          <span className="italic-gradient-text block sm:inline font-semibold">
+          <span className="italic-gradient-text block font-semibold">
             Mobile Realities
           </span>
         </h1>
 
         {/* Subtitle / Role */}
-        <p className="mt-2 text-xs sm:text-sm font-mono text-neutral-300 max-w-md leading-relaxed">
+        <p className="mt-2 text-xs font-mono text-neutral-300 max-w-xs leading-relaxed px-2">
           Native Android Engineer specializing in Kotlin, Jetpack Compose, Kotlin Multiplatform (KMP) & Full-Stack Systems.
         </p>
 
         {/* Primary Call-to-Actions */}
-        <div className="mt-5 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+        <div className="mt-4 flex flex-col items-center gap-2.5 w-full">
           <SparkleBurstButton
             text={siteConfig.hero.primaryCta.text}
             href={siteConfig.hero.primaryCta.href}
@@ -141,12 +141,12 @@ export function AndroidHomeScreen({ setActiveTab: _setActiveTab }: AndroidHomeSc
         </div>
 
         {/* Quick Social Links & CV */}
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-2.5 pt-3 w-full">
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-2 pt-1 w-full">
           <a
             href={siteConfig.socials.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:border-purple-500/40 text-neutral-300 hover:text-white transition-all active:scale-95 flex items-center gap-1.5 text-xs font-mono"
+            className="px-2.5 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:border-purple-500/40 text-neutral-300 hover:text-white transition-all active:scale-95 flex items-center gap-1.5 text-[11px] font-mono"
           >
             <Github className="w-3.5 h-3.5" />
             <span>GitHub</span>
@@ -157,7 +157,7 @@ export function AndroidHomeScreen({ setActiveTab: _setActiveTab }: AndroidHomeSc
             href={siteConfig.socials.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:border-purple-500/40 text-neutral-300 hover:text-white transition-all active:scale-95 flex items-center gap-1.5 text-xs font-mono"
+            className="px-2.5 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:border-purple-500/40 text-neutral-300 hover:text-white transition-all active:scale-95 flex items-center gap-1.5 text-[11px] font-mono"
           >
             <Linkedin className="w-3.5 h-3.5 text-blue-400" />
             <span>LinkedIn</span>
@@ -168,7 +168,7 @@ export function AndroidHomeScreen({ setActiveTab: _setActiveTab }: AndroidHomeSc
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-1.5 rounded-xl bg-purple-500/10 border border-purple-500/30 hover:bg-purple-500/20 text-purple-300 hover:text-white transition-all active:scale-95 flex items-center gap-1.5 text-xs font-mono"
+            className="px-2.5 py-1.5 rounded-xl bg-purple-500/10 border border-purple-500/30 hover:bg-purple-500/20 text-purple-300 hover:text-white transition-all active:scale-95 flex items-center gap-1.5 text-[11px] font-mono"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Resume / CV</span>
@@ -181,7 +181,7 @@ export function AndroidHomeScreen({ setActiveTab: _setActiveTab }: AndroidHomeSc
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.15 }}
-        className="w-full p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex flex-wrap items-center justify-around gap-2 text-center text-xs font-mono text-neutral-300"
+        className="w-full py-2.5 px-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex flex-wrap items-center justify-around gap-1.5 text-center text-[11px] font-mono text-neutral-300"
       >
         <div className="flex items-center gap-1.5">
           <Smartphone className="w-3.5 h-3.5 text-purple-400" />

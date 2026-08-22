@@ -70,7 +70,7 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-md z-[100]"
+            className="absolute inset-0 bg-black/70 backdrop-blur-md z-[100]"
           />
 
           {/* Quick Settings Top Sheet Panel */}
@@ -79,7 +79,7 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "-100%", opacity: 0.8 }}
             transition={{ type: "spring", stiffness: 350, damping: 32 }}
-            className="fixed top-0 left-0 right-0 z-[101] max-w-xl sm:max-w-2xl md:max-w-3xl mx-auto rounded-b-[32px] bg-neutral-950/95 border-b border-x border-white/15 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col text-white font-sans select-none"
+            className="absolute top-0 left-0 right-0 z-[101] w-full max-w-xl mx-auto rounded-b-[32px] bg-neutral-950/95 border-b border-x border-white/15 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col text-white font-sans select-none"
           >
             {/* 1. Material You Top Header */}
             <div className="pt-3 px-6 pb-2 flex items-center justify-between border-b border-white/5">
