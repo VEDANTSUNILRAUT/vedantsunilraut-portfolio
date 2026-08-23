@@ -6,23 +6,24 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { siteConfig } from "@/constants/site";
 import { AndroidTabType } from "../AndroidBottomNav";
-import { AndroidFooter } from "../AndroidFooter";
-import ShinyText from "@/components/ShinyText";
-import { SparkleBurstButton } from "@/components/ui/SparkleBurstButton";
-import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
+import { useAndroidToast } from "../AndroidToast";
 import { useClipboard } from "@/hooks/useClipboard";
+import ShinyText from "@/components/ShinyText";
 import { 
+  Smartphone, 
   Layers, 
-  User, 
-  Smartphone,
-  Github,
-  Linkedin,
-  Terminal,
-  ExternalLink,
-  Download,
-  ArrowUpRight,
-  Copy,
-  Check
+  Terminal, 
+  ArrowUpRight, 
+  Copy, 
+  Check, 
+  Download, 
+  Github, 
+  Linkedin, 
+  Cpu, 
+  Sparkles,
+  MapPin,
+  Briefcase,
+  Code2
 } from "lucide-react";
 
 const emptySubscribe = () => () => {};
@@ -37,63 +38,102 @@ function getGreetingSnapshot(): string {
 
 interface AndroidHomeScreenProps {
   setActiveTab?: (tab: AndroidTabType) => void;
+  onOpenAssistant?: () => void;
 }
 
-export function AndroidHomeScreen({ setActiveTab: _setActiveTab }: AndroidHomeScreenProps) {
+export function AndroidHomeScreen({ setActiveTab, onOpenAssistant }: AndroidHomeScreenProps) {
   const [imageError, setImageError] = useState(false);
   const { copied, copy } = useClipboard();
+  const { showToast } = useAndroidToast();
+  
   const greeting = useSyncExternalStore(
     emptySubscribe,
     getGreetingSnapshot,
     () => "Good Day"
   );
 
+  const handleCopyEmail = () => {
+    copy(siteConfig.brand.email);
+    showToast("Email copied to clipboard!", "success");
+  };
+
+  const handleDownloadResume = () => {
+    showToast("Downloading Vedant's Resume / CV...", "sparkle");
+  };
+
   return (
-    <div className="w-full flex flex-col items-center pt-2 pb-6 space-y-6">
+    <div className="w-full flex flex-col items-center pt-1 pb-4 space-y-4 select-none">
       
-      {/* 1. Main Profile & Hero Showcase (Direct on Background) */}
+      {/* 1. Android Material You Widget Shelf */}
+      <div className="w-full grid grid-cols-2 gap-2">
+        {/* Widget 1: Live Role & Company */}
+        <div className="p-3 rounded-2xl bg-neutral-900/80 border border-white/10 backdrop-blur-xl flex flex-col justify-between shadow-lg">
+          <div className="flex items-center justify-between">
+            <div className="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+              <Briefcase className="w-3.5 h-3.5" />
+            </div>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
+          </div>
+          <div className="mt-3">
+            <span className="text-[9px] font-mono uppercase text-neutral-400 tracking-wider">Current Role</span>
+            <div className="text-xs font-bold text-white tracking-tight">Software Engineer</div>
+            <div className="text-[10px] font-mono text-emerald-400">@ Logituit</div>
+          </div>
+        </div>
+
+        {/* Widget 2: Location & Tech Specialization */}
+        <div className="p-3 rounded-2xl bg-neutral-900/80 border border-white/10 backdrop-blur-xl flex flex-col justify-between shadow-lg">
+          <div className="flex items-center justify-between">
+            <div className="w-6 h-6 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center">
+              <Smartphone className="w-3.5 h-3.5" />
+            </div>
+            <span className="text-[9px] font-mono text-purple-300 bg-purple-500/10 px-1.5 py-0.2 rounded border border-purple-500/30">
+              @Composable
+            </span>
+          </div>
+          <div className="mt-3">
+            <span className="text-[9px] font-mono uppercase text-neutral-400 tracking-wider">Specialist</span>
+            <div className="text-xs font-bold text-white tracking-tight">Native Android & KMP</div>
+            <div className="text-[10px] font-mono text-neutral-400 flex items-center gap-1">
+              <MapPin className="w-2.5 h-2.5 text-neutral-400" />
+              <span>India · Hybrid</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 2. Hero Profile Card (Android App Style) */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full flex flex-col items-center text-center pt-2 pb-2"
+        transition={{ duration: 0.4 }}
+        className="w-full p-4 rounded-3xl bg-gradient-to-b from-neutral-900/90 via-neutral-950 to-neutral-950 border border-white/10 backdrop-blur-2xl shadow-xl flex flex-col items-center text-center"
       >
-        {/* Live Status Pill */}
-        <div className="mb-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] sm:text-xs font-mono text-neutral-300">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
-          <span>Software Engineer @ Logituit</span>
-        </div>
-
-        {/* Vedant Photo with Bottom and Right Black Gradient Fade-out */}
-        <div className="relative mb-4 w-44 h-44 sm:w-52 sm:h-52 rounded-3xl overflow-hidden">
+        {/* Photo Container */}
+        <div className="relative mb-3 w-36 h-36 rounded-2xl overflow-hidden ring-1 ring-white/15 shadow-2xl">
           {!imageError ? (
             <>
               <Image
                 src="/vedant-hero.png"
                 alt="Vedant Sunil Raut"
                 fill
-                sizes="(max-width: 640px) 176px, 208px"
+                sizes="144px"
                 priority
-                className="object-cover object-top rounded-3xl"
+                className="object-cover object-top rounded-2xl"
                 onError={() => setImageError(true)}
               />
-              {/* Bottom Side Black Gradient Fade */}
-              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none z-10" />
-              {/* Right Edge Black Gradient Fade */}
-              <div className="absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-black via-black/30 to-transparent pointer-events-none z-10" />
-              {/* Bottom-Right Corner Blend */}
-              <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-black via-black/50 to-transparent pointer-events-none z-10" />
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-neutral-950 via-neutral-950/60 to-transparent pointer-events-none" />
             </>
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center bg-purple-950/40 text-purple-300">
-              <User className="w-12 h-12 mb-1" />
-              <span className="text-[10px] font-mono">VR</span>
+              <Code2 className="w-10 h-10 mb-1" />
+              <span className="text-[10px] font-mono">Vedant Raut</span>
             </div>
           )}
         </div>
 
-        {/* Greeting with waving hand */}
-        <div className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono text-neutral-400">
+        {/* Greeting */}
+        <div className="inline-flex items-center gap-1.5 text-xs font-mono text-neutral-400">
           <span>Hello</span>
           <motion.span
             animate={{ rotate: [0, 20, -10, 20, -5, 12, 0] }}
@@ -105,149 +145,160 @@ export function AndroidHomeScreen({ setActiveTab: _setActiveTab }: AndroidHomeSc
           <span>, {greeting}!</span>
         </div>
 
-        {/* Dynamic Name Title */}
+        {/* Name Title */}
         <div className="mt-1 text-xl font-source-code-pro font-normal tracking-wide">
           <ShinyText
             text="I am Vedant Sunil Raut"
             disabled={false}
             speed={3}
-            className="font-semibold text-white cursor-default"
+            className="font-semibold text-white"
             color="#ffffff"
             shineColor="#c084fc"
             spread={120}
           />
         </div>
 
-        {/* Main Headline */}
-        <h1 className="mt-2 font-eb-garamond text-2xl leading-[1.25] text-balance text-white font-normal px-2">
+        {/* Core Tagline */}
+        <h1 className="mt-1.5 font-eb-garamond text-xl leading-[1.25] text-balance text-white font-normal px-2">
           Architecting high-performance software & shaping{" "}
-          <span className="italic-gradient-text block font-semibold">
+          <span className="italic-gradient-text font-semibold">
             Mobile Realities
           </span>
         </h1>
 
-        {/* Subtitle / Role */}
-        <p className="mt-2 text-xs font-mono text-neutral-300 max-w-xs leading-relaxed px-2">
-          Native Android Engineer specializing in Kotlin, Jetpack Compose, Kotlin Multiplatform (KMP) & Full-Stack Systems.
+        <p className="mt-1.5 text-[11px] font-mono text-neutral-300 max-w-xs leading-relaxed px-1">
+          Specializing in Kotlin, Jetpack Compose, Kotlin Multiplatform (KMP) & Full-Stack Systems at Logituit.
         </p>
 
-        {/* Primary Call-to-Actions */}
-        <div className="mt-4 flex flex-col items-center gap-2.5 w-full">
-          <SparkleBurstButton
-            text={siteConfig.hero.primaryCta.text}
-            href={siteConfig.hero.primaryCta.href}
-          />
-          <CopyEmailButton />
-        </div>
+        {/* Primary Action Buttons */}
+        <div className="mt-3.5 flex flex-col gap-2 w-full">
+          <div className="grid grid-cols-2 gap-2 w-full">
+            <button
+              onClick={() => setActiveTab && setActiveTab("contact")}
+              className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white font-semibold text-xs flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(168,85,247,0.4)] active:scale-95 transition-all cursor-pointer"
+            >
+              <span>Connect / Hire</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </button>
 
-        {/* Quick Social Links & CV */}
-        <div className="mt-4 flex flex-wrap items-center justify-center gap-2 pt-1 w-full">
-          <a
-            href={siteConfig.socials.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-2.5 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:border-purple-500/40 text-neutral-300 hover:text-white transition-all active:scale-95 flex items-center gap-1.5 text-[11px] font-mono"
-          >
-            <Github className="w-3.5 h-3.5" />
-            <span>GitHub</span>
-            <ExternalLink className="w-2.5 h-2.5 opacity-60" />
-          </a>
-
-          <a
-            href={siteConfig.socials.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-2.5 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:border-purple-500/40 text-neutral-300 hover:text-white transition-all active:scale-95 flex items-center gap-1.5 text-[11px] font-mono"
-          >
-            <Linkedin className="w-3.5 h-3.5 text-blue-400" />
-            <span>LinkedIn</span>
-            <ExternalLink className="w-2.5 h-2.5 opacity-60" />
-          </a>
-
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-2.5 py-1.5 rounded-xl bg-purple-500/10 border border-purple-500/30 hover:bg-purple-500/20 text-purple-300 hover:text-white transition-all active:scale-95 flex items-center gap-1.5 text-[11px] font-mono"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>Resume / CV</span>
-          </a>
-        </div>
-      </motion.div>
-
-      {/* 2. Core Tech Pillars Chip Row */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.15 }}
-        className="w-full py-2.5 px-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex flex-wrap items-center justify-around gap-1.5 text-center text-[11px] font-mono text-neutral-300"
-      >
-        <div className="flex items-center gap-1.5">
-          <Smartphone className="w-3.5 h-3.5 text-purple-400" />
-          <span>Native Android</span>
-        </div>
-        <span className="text-white/20">•</span>
-        <div className="flex items-center gap-1.5">
-          <Terminal className="w-3.5 h-3.5 text-emerald-400" />
-          <span>Kotlin & Compose</span>
-        </div>
-        <span className="text-white/20">•</span>
-        <div className="flex items-center gap-1.5">
-          <Layers className="w-3.5 h-3.5 text-blue-400" />
-          <span>KMP Architect</span>
-        </div>
-      </motion.div>
-
-      {/* 3. CTA Banner Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="w-full p-6 sm:p-8 rounded-3xl bg-neutral-950/70 border border-white/15 backdrop-blur-2xl relative overflow-hidden flex flex-col items-center text-center shadow-2xl space-y-4"
-      >
-        {/* Top Rim Glow Gradient */}
-        <div className="absolute top-0 inset-x-0 mx-auto w-3/4 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent shadow-[0_0_15px_rgba(168,85,247,0.8)]" />
-
-        <span className="text-[10px] sm:text-xs uppercase tracking-widest text-purple-400 font-mono font-medium block">
-          NEED A SOFTWARE OR ANDROID DEVELOPER?
-        </span>
-
-        <h2 className="font-eb-garamond text-xl sm:text-3xl text-white font-normal leading-tight">
-          Have an idea? Let&apos;s shape the <span className="italic-gradient-text font-semibold">future</span> together.
-        </h2>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto pt-2">
-          <a
-            href={siteConfig.brand.connectMailto}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white text-black font-sans font-semibold text-xs sm:text-sm hover:bg-neutral-200 transition-all shadow-xl active:scale-95 whitespace-nowrap"
-          >
-            <span>Start a Conversation</span>
-            <ArrowUpRight className="w-4 h-4 text-black" />
-          </a>
-
-          <button
-            onClick={() => copy(siteConfig.brand.email)}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white/5 border border-white/15 text-xs sm:text-sm font-mono text-neutral-200 hover:border-purple-400/40 hover:bg-purple-500/10 transition-all active:scale-95 whitespace-nowrap"
-          >
-            {copied ? (
-              <>
-                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span className="text-emerald-300 font-medium">Copied!</span>
-              </>
-            ) : (
-              <>
-                <Copy className="w-4 h-4 text-purple-400 shrink-0" />
-                <span>{siteConfig.brand.email}</span>
-              </>
+            {onOpenAssistant && (
+              <button
+                onClick={onOpenAssistant}
+                className="py-2.5 px-3 rounded-xl bg-purple-950/60 border border-purple-500/40 hover:border-purple-400 text-purple-200 font-semibold text-xs flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(168,85,247,0.25)] active:scale-95 transition-all cursor-pointer"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-purple-300 animate-pulse" />
+                <span>Ask AI Bot</span>
+              </button>
             )}
+          </div>
+
+          <div className="grid grid-cols-2 gap-2 w-full">
+            <button
+              onClick={handleCopyEmail}
+              className="py-2 px-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-neutral-200 text-[11px] font-mono flex items-center justify-center gap-1.5 active:scale-95 transition-all cursor-pointer"
+            >
+              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-purple-400" />}
+              <span>{copied ? "Copied!" : "Copy Email"}</span>
+            </button>
+
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleDownloadResume}
+              className="py-2 px-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-neutral-200 text-[11px] font-mono flex items-center justify-center gap-1.5 active:scale-95 transition-all cursor-pointer"
+            >
+              <Download className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Resume PDF</span>
+            </a>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* 3. Android Engineering Pillars */}
+      <div className="w-full space-y-2">
+        <div className="flex items-center justify-between px-1">
+          <span className="text-[11px] font-mono uppercase text-neutral-400 tracking-wider">Engineering Focus</span>
+          <button
+            onClick={() => setActiveTab && setActiveTab("skills")}
+            className="text-[10px] font-mono text-purple-400 flex items-center gap-0.5 hover:underline cursor-pointer"
+          >
+            <span>View All</span>
+            <ArrowUpRight className="w-2.5 h-2.5" />
           </button>
         </div>
-      </motion.div>
 
-      {/* 4. Reusable Mobile Footer */}
-      <AndroidFooter />
+        {/* Card 1: Jetpack Compose */}
+        <div className="p-3 rounded-2xl bg-neutral-900/60 border border-white/10 backdrop-blur-xl flex items-start gap-3">
+          <div className="w-8 h-8 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-400 flex items-center justify-center shrink-0 mt-0.5">
+            <Smartphone className="w-4 h-4" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-xs font-bold text-white tracking-tight flex items-center justify-between">
+              <span>Jetpack Compose UI</span>
+              <span className="text-[9px] font-mono text-purple-300 bg-purple-500/20 px-1.5 py-0.2 rounded">60 FPS</span>
+            </div>
+            <p className="text-[10px] text-neutral-400 mt-0.5 leading-normal">
+              Declarative state-driven UI, custom canvas drawing, baseline profiles & smooth physics animations.
+            </p>
+          </div>
+        </div>
+
+        {/* Card 2: Kotlin Multiplatform */}
+        <div className="p-3 rounded-2xl bg-neutral-900/60 border border-white/10 backdrop-blur-xl flex items-start gap-3">
+          <div className="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5">
+            <Layers className="w-4 h-4" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-xs font-bold text-white tracking-tight flex items-center justify-between">
+              <span>Kotlin Multiplatform (KMP)</span>
+              <span className="text-[9px] font-mono text-cyan-300 bg-cyan-500/20 px-1.5 py-0.2 rounded">Cross-Platform</span>
+            </div>
+            <p className="text-[10px] text-neutral-400 mt-0.5 leading-normal">
+              Shared architecture, domain logic, offline-first Room database & Ktor network stack across platforms.
+            </p>
+          </div>
+        </div>
+
+        {/* Card 3: Architecture & Performance */}
+        <div className="p-3 rounded-2xl bg-neutral-900/60 border border-white/10 backdrop-blur-xl flex items-start gap-3">
+          <div className="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+            <Terminal className="w-4 h-4" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-xs font-bold text-white tracking-tight flex items-center justify-between">
+              <span>Clean Architecture & Coroutines</span>
+              <span className="text-[9px] font-mono text-emerald-300 bg-emerald-500/20 px-1.5 py-0.2 rounded">MVI / MVVM</span>
+            </div>
+            <p className="text-[10px] text-neutral-400 mt-0.5 leading-normal">
+              Dependency Injection (Hilt/Koin), reactive Flow streams, memory profiling, and modular codebases.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* 4. Quick Links Footer Row */}
+      <div className="w-full flex items-center justify-center gap-3 pt-2">
+        <a
+          href={siteConfig.socials.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-neutral-300 hover:text-white flex items-center gap-1.5 text-xs font-mono active:scale-95 transition-all"
+        >
+          <Github className="w-3.5 h-3.5" />
+          <span>GitHub</span>
+        </a>
+
+        <a
+          href={siteConfig.socials.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-neutral-300 hover:text-white flex items-center gap-1.5 text-xs font-mono active:scale-95 transition-all"
+        >
+          <Linkedin className="w-3.5 h-3.5 text-blue-400" />
+          <span>LinkedIn</span>
+        </a>
+      </div>
 
     </div>
   );

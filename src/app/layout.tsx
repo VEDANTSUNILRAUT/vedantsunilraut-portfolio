@@ -159,8 +159,8 @@ export default function RootLayout({
                 <Footer />
               </DeviceLayoutSwitcher>
 
-              {/* Floating Device View Switcher (Exact level of Chatbot on leftmost side) */}
-              <div className="fixed bottom-20 left-4 sm:bottom-6 sm:left-6 z-50 flex items-center">
+              {/* Floating Device View Switcher (Desktop only - hidden on mobile devices) */}
+              <div className="fixed bottom-6 left-6 z-50 hidden md:flex items-center">
                 <DeviceViewToggle variant="floating" />
               </div>
 

@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Monitor, Smartphone } from "lucide-react";
 import { useViewMode, ViewMode } from "@/context/ViewModeContext";
+import { useDeviceType } from "@/hooks/useDeviceType";
 
 interface DeviceViewToggleProps {
   className?: string;
@@ -11,6 +12,12 @@ interface DeviceViewToggleProps {
 
 export function DeviceViewToggle({ className = "", variant = "floating" }: DeviceViewToggleProps) {
   const { viewMode, setViewMode } = useViewMode();
+  const { isMobile, isMounted } = useDeviceType();
+
+  // If opened directly on a real mobile device, hide the toggle button completely
+  if (isMounted && isMobile) {
+    return null;
+  }
 
   // Circular Floating Button variant (matches PortfolioChatbot design exactly)
   if (variant === "floating" || variant === "circle") {

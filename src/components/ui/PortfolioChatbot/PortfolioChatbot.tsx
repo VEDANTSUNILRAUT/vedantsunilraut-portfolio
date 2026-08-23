@@ -129,18 +129,32 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
   }
 
   return (
-    <div className={`fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end ${className}`}>
-      
-      {/* Sleek Minimalist Chat Window */}
+    <>
+      {/* Mobile Dark Backdrop */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 15 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 15 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="w-[92vw] sm:w-[380px] h-[500px] mb-4 bg-neutral-950/95 border border-white/15 backdrop-blur-2xl rounded-2xl shadow-2xl flex flex-col overflow-hidden"
-          >
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 sm:hidden"
+            aria-hidden="true"
+          />
+        )}
+      </AnimatePresence>
+
+      <div className={`fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end ${className}`}>
+        {/* Sleek Minimalist Chat Window (Centered on mobile, floating on desktop) */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="fixed inset-x-3 top-1/2 -translate-y-1/2 sm:translate-y-0 sm:top-auto sm:inset-auto sm:relative z-50 w-auto sm:w-[380px] h-[480px] max-h-[80dvh] sm:max-h-none sm:h-[500px] sm:mb-4 bg-neutral-950/95 border border-white/20 backdrop-blur-2xl rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            >
             {/* Header */}
             <div className="px-4 py-3 bg-neutral-900/80 border-b border-white/10 flex items-center justify-between z-10">
               <div className="flex items-center gap-2.5">
@@ -316,5 +330,6 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
       </button>
 
     </div>
+    </>
   );
 }
