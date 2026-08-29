@@ -6,6 +6,7 @@ import { X, Send, Sparkles, User, ArrowUpRight } from "lucide-react";
 import { PortfolioChatbotProps } from "./PortfolioChatbot.types";
 import { useViewMode } from "@/context/ViewModeContext";
 import { useAssistant } from "@/context/AssistantContext";
+import { useDeviceType } from "@/hooks/useDeviceType";
 
 {/* Minimalist Professional AI Avatar */}
 function AiAvatar({ size = "md" }: { size?: "sm" | "md" }) {
@@ -21,6 +22,7 @@ function AiAvatar({ size = "md" }: { size?: "sm" | "md" }) {
 
 export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
   const { viewMode } = useViewMode();
+  const { isMobile, isMounted } = useDeviceType();
   const { messages, inputMsg, setInputMsg, isTyping, handleSend } = useAssistant();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -78,7 +80,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
     });
   };
 
-  if (viewMode === "mobile") {
+  if (viewMode === "mobile" || (isMounted && isMobile)) {
     return null;
   }
 

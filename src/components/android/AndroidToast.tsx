@@ -33,7 +33,7 @@ export function AndroidToastProvider({ children }: { children: React.ReactNode }
       {children}
 
       {/* Material 3 Floating Toast Stack (Positioned right above bottom navigation bar) */}
-      <div className="absolute bottom-18 left-0 right-0 z-50 flex flex-col items-center pointer-events-none px-4 gap-2">
+      <div className="absolute bottom-22 left-0 right-0 z-50 flex flex-col items-center pointer-events-none px-4 gap-2">
         <AnimatePresence>
           {toasts.map((toast) => (
             <motion.div
@@ -42,7 +42,7 @@ export function AndroidToastProvider({ children }: { children: React.ReactNode }
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.92 }}
               transition={{ type: "spring", stiffness: 450, damping: 30 }}
-              className="px-4 py-2 rounded-full bg-neutral-900/95 border border-white/20 text-white shadow-2xl backdrop-blur-2xl flex items-center gap-2 max-w-[90%] pointer-events-auto"
+              className="px-4 py-2.5 rounded-full bg-neutral-900/95 border border-purple-500/40 text-white shadow-2xl backdrop-blur-2xl flex items-center gap-2 max-w-[90%] pointer-events-auto"
             >
               {toast.type === "sparkle" ? (
                 <Sparkles className="w-3.5 h-3.5 text-purple-400 shrink-0" />

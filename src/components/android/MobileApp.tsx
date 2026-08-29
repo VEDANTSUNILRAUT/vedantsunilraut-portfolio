@@ -63,8 +63,8 @@ export function MobileApp({ isEmulator = false, className = "" }: MobileAppProps
   return (
     <AndroidToastProvider>
       <div
-        className={`w-full flex flex-col justify-between bg-black text-white relative z-10 font-sans ${
-          isEmulator ? "h-full min-h-0 overflow-hidden" : "min-h-screen"
+        className={`w-full flex flex-col justify-between bg-black text-white relative z-20 font-sans ${
+          isEmulator ? "h-full min-h-0 overflow-hidden" : "fixed inset-0 h-[100dvh] w-full overflow-hidden"
         } ${className}`}
       >
         {/* 1. Top App Bar (Material 3 Native Navigation Header) */}
@@ -83,9 +83,10 @@ export function MobileApp({ isEmulator = false, className = "" }: MobileAppProps
           ref={mainRef}
           onScroll={handleScroll}
           data-lenis-prevent
-          className="flex-1 w-full overflow-y-auto z-10 custom-scrollbar pt-2.5 pb-6 px-3 min-h-0 relative"
+          className="flex-1 w-full overflow-y-auto z-10 custom-scrollbar pt-2.5 pb-24 px-3 min-h-0 relative overscroll-contain"
+          style={{ WebkitOverflowScrolling: "touch" }}
         >
-          <div className="w-full max-w-sm mx-auto">
+          <div className="w-full max-w-md mx-auto">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
@@ -102,21 +103,21 @@ export function MobileApp({ isEmulator = false, className = "" }: MobileAppProps
         </main>
 
         {/* 4. Floating Material 3 Android AI Assistant FAB (Positioned above bottom nav) */}
-        <div className="absolute bottom-17 right-3.5 z-40">
+        <div className="absolute bottom-20 right-4 z-40">
           <motion.button
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
             onClick={() => setIsAssistantOpen(true)}
             aria-label="Open Android AI Assistant"
-            className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-purple-600 via-fuchsia-600 to-indigo-600 border border-purple-400/50 shadow-[0_0_20px_rgba(168,85,247,0.5)] flex items-center justify-center text-white cursor-pointer group"
+            className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 via-fuchsia-600 to-indigo-600 border border-purple-400/50 shadow-[0_0_25px_rgba(168,85,247,0.6)] flex items-center justify-center text-white cursor-pointer group"
           >
             <Sparkles className="w-5 h-5 text-white group-hover:rotate-12 transition-transform duration-300" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-black" />
+            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-black animate-pulse" />
           </motion.button>
         </div>
 
         {/* 5. Bottom Android Material 3 Navigation Bar */}
-        <div className="shrink-0 sticky bottom-0 left-0 right-0 z-40 bg-neutral-950/95 backdrop-blur-xl">
+        <div className="shrink-0 sticky bottom-0 left-0 right-0 z-40 bg-neutral-950/95 backdrop-blur-2xl border-t border-white/10">
           <AndroidBottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
       </div>

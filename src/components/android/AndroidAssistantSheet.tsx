@@ -96,7 +96,7 @@ export function AndroidAssistantSheet({ isOpen, onClose }: AndroidAssistantSheet
               <button
                 onClick={onClose}
                 aria-label="Close Assistant"
-                className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-neutral-300 hover:text-white transition-colors cursor-pointer"
+                className="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-neutral-300 hover:text-white transition-colors cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -105,34 +105,34 @@ export function AndroidAssistantSheet({ isOpen, onClose }: AndroidAssistantSheet
             {/* Chat Messages Feed */}
             <div 
               data-lenis-prevent
-              className="flex-1 p-3.5 overflow-y-auto space-y-3 font-sans custom-scrollbar min-h-0"
+              className="flex-1 p-4 overflow-y-auto space-y-3.5 font-sans custom-scrollbar min-h-0"
             >
               {messages.map((msg) => (
-                <div key={msg.id} className="flex flex-col space-y-1.5">
+                <div key={msg.id} className="flex flex-col space-y-2">
                   <div
-                    className={`flex items-start gap-2 ${
+                    className={`flex items-start gap-2.5 ${
                       msg.sender === "user" ? "flex-row-reverse" : "flex-row"
                     }`}
                   >
                     {msg.sender === "user" ? (
-                      <div className="w-6 h-6 rounded-lg bg-white/15 text-white flex items-center justify-center text-xs shrink-0 mt-0.5">
-                        <User className="w-3.5 h-3.5" />
+                      <div className="w-7 h-7 rounded-xl bg-white/15 text-white flex items-center justify-center text-xs shrink-0 mt-0.5 shadow-sm">
+                        <User className="w-4 h-4" />
                       </div>
                     ) : (
-                      <div className="w-6 h-6 rounded-lg bg-purple-600/30 border border-purple-500/40 text-purple-300 flex items-center justify-center text-xs shrink-0 mt-0.5">
-                        <Bot className="w-3.5 h-3.5" />
+                      <div className="w-7 h-7 rounded-xl bg-purple-600/30 border border-purple-500/40 text-purple-300 flex items-center justify-center text-xs shrink-0 mt-0.5 shadow-sm">
+                        <Bot className="w-4 h-4" />
                       </div>
                     )}
 
                     <div
-                      className={`max-w-[85%] px-3 py-2 rounded-2xl text-xs shadow-sm ${
+                      className={`max-w-[85%] px-3.5 py-2.5 rounded-2xl text-xs shadow-sm leading-relaxed ${
                         msg.sender === "user"
-                          ? "bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-tr-xs font-medium"
+                          ? "bg-gradient-to-r from-purple-600 via-fuchsia-600 to-indigo-600 text-white rounded-tr-xs font-medium"
                           : "bg-neutral-900/90 border border-white/10 text-neutral-200 rounded-tl-xs"
                       }`}
                     >
                       {renderFormattedText(msg.text)}
-                      <span className="text-[9px] text-neutral-400 mt-1 block text-right opacity-60">
+                      <span className="text-[9px] text-neutral-400 mt-1 block text-right opacity-60 font-mono">
                         {msg.timestamp}
                       </span>
                     </div>
@@ -140,15 +140,15 @@ export function AndroidAssistantSheet({ isOpen, onClose }: AndroidAssistantSheet
 
                   {/* Quick Suggestion Pills */}
                   {msg.quickReplies && msg.quickReplies.length > 0 && (
-                    <div className="flex flex-wrap gap-1 pl-8 mt-1">
+                    <div className="flex flex-wrap gap-1.5 pl-9 mt-1">
                       {msg.quickReplies.map((reply, qIdx) => (
                         <button
                           key={qIdx}
                           onClick={() => handleSend(reply)}
-                          className="px-2.5 py-0.5 rounded-full bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-500/40 text-[10px] font-mono text-neutral-300 hover:text-white transition-all active:scale-95 text-left flex items-center gap-1 cursor-pointer"
+                          className="px-3 py-1 rounded-full bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-500/40 text-[10px] font-mono text-neutral-300 hover:text-white transition-all active:scale-95 text-left flex items-center gap-1.5 cursor-pointer shadow-sm"
                         >
                           <span>{reply}</span>
-                          <ArrowUpRight className="w-2.5 h-2.5 text-neutral-500" />
+                          <ArrowUpRight className="w-3 h-3 text-neutral-400" />
                         </button>
                       ))}
                     </div>
@@ -158,11 +158,11 @@ export function AndroidAssistantSheet({ isOpen, onClose }: AndroidAssistantSheet
 
               {/* Typing Indicator */}
               {isTyping && (
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-lg bg-purple-600/30 border border-purple-500/40 text-purple-300 flex items-center justify-center text-xs shrink-0">
-                    <Bot className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-xl bg-purple-600/30 border border-purple-500/40 text-purple-300 flex items-center justify-center text-xs shrink-0">
+                    <Bot className="w-4 h-4" />
                   </div>
-                  <div className="px-3 py-2 rounded-2xl bg-neutral-900/90 border border-white/10 rounded-tl-xs flex items-center gap-1.5">
+                  <div className="px-3.5 py-2 rounded-2xl bg-neutral-900/90 border border-white/10 rounded-tl-xs flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce" />
                     <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce [animation-delay:0.15s]" />
                     <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce [animation-delay:0.3s]" />
@@ -174,22 +174,22 @@ export function AndroidAssistantSheet({ isOpen, onClose }: AndroidAssistantSheet
             </div>
 
             {/* Input Bar */}
-            <div className="p-2.5 bg-neutral-900/90 border-t border-white/10 flex items-center gap-2 shrink-0">
+            <div className="p-3 bg-neutral-900/95 border-t border-white/10 flex items-center gap-2.5 shrink-0">
               <input
                 type="text"
                 value={inputMsg}
                 onChange={(e) => setInputMsg(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Ask Android Assistant..."
-                className="flex-1 px-3 py-2 rounded-full bg-black/60 border border-white/15 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-purple-500/60 font-sans transition-colors"
+                className="flex-1 px-4 py-2.5 rounded-full bg-black/70 border border-white/15 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-purple-500/80 focus:ring-1 focus:ring-purple-500/40 font-sans transition-all"
               />
               <button
                 onClick={() => handleSend()}
                 disabled={!inputMsg.trim()}
                 aria-label="Send query"
-                className="w-8 h-8 rounded-full bg-purple-600 hover:bg-purple-500 disabled:opacity-30 text-white flex items-center justify-center transition-colors active:scale-95 shadow-md shrink-0 cursor-pointer"
+                className="w-9 h-9 rounded-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:brightness-110 disabled:opacity-30 text-white flex items-center justify-center transition-all active:scale-95 shadow-md shrink-0 cursor-pointer"
               >
-                <Send className="w-3.5 h-3.5" />
+                <Send className="w-4 h-4" />
               </button>
             </div>
           </motion.div>
