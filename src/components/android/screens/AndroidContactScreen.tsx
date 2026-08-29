@@ -4,19 +4,14 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { siteConfig } from "@/constants/site";
 import { useAndroidToast } from "../AndroidToast";
-import { useClipboard } from "@/hooks/useClipboard";
 import { 
   Mail, 
   Send, 
   Github, 
   Linkedin, 
-  ArrowUpRight, 
-  Copy, 
   Check, 
   Download, 
-  MessageSquare, 
-  Sparkles,
-  MapPin
+  MessageSquare
 } from "lucide-react";
 
 export function AndroidContactScreen() {
@@ -28,12 +23,6 @@ export function AndroidContactScreen() {
   const [isSent, setIsSent] = useState(false);
 
   const { showToast } = useAndroidToast();
-  const { copied, copy } = useClipboard();
-
-  const handleCopyEmail = () => {
-    copy(siteConfig.brand.email);
-    showToast("Email address copied to clipboard!", "success");
-  };
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();

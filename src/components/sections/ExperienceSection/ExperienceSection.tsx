@@ -18,7 +18,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { WORK_EXPERIENCE_DATA, WorkExperienceItem } from "@/constants/experience";
+import { WORK_EXPERIENCE_DATA } from "@/constants/experience";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { ExperienceSectionProps } from "./ExperienceSection.types";
 

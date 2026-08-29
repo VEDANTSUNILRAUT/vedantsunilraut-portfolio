@@ -3,15 +3,9 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, Sparkles, User, ArrowUpRight } from "lucide-react";
-import { ChatMessage, PortfolioChatbotProps } from "./PortfolioChatbot.types";
-import { getBotResponse, QUICK_QUESTIONS } from "@/constants/botKnowledge";
+import { PortfolioChatbotProps } from "./PortfolioChatbot.types";
 import { useViewMode } from "@/context/ViewModeContext";
-
-let messageCounter = 0;
-function generateUniqueId(prefix: string): string {
-  messageCounter += 1;
-  return `${prefix}-${messageCounter}`;
-}
+import { useAssistant } from "@/context/AssistantContext";
 
 {/* Minimalist Professional AI Avatar */}
 function AiAvatar({ size = "md" }: { size?: "sm" | "md" }) {
@@ -27,18 +21,8 @@ function AiAvatar({ size = "md" }: { size?: "sm" | "md" }) {
 
 export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
   const { viewMode } = useViewMode();
+  const { messages, inputMsg, setInputMsg, isTyping, handleSend } = useAssistant();
   const [isOpen, setIsOpen] = useState(false);
-  const [inputMsg, setInputMsg] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      id: "welcome-1",
-      sender: "bot",
-      text: "Hello! I am Vedant's AI Assistant. Ask me anything about his **Android Engineering**, **Tech Stack**, **Featured Projects**, or **Hiring Availability**.",
-      timestamp: "Just now",
-      quickReplies: QUICK_QUESTIONS,
-    },
-  ]);
 
   const chatEndRef = useRef<HTMLDivElement | null>(null);
 
@@ -47,36 +31,6 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
       chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages, isTyping, isOpen]);
-
-  const handleSend = (textToSend?: string) => {
-    const text = textToSend || inputMsg;
-    if (!text.trim()) return;
-
-    const userMessage: ChatMessage = {
-      id: generateUniqueId("user"),
-      sender: "user",
-      text: text.trim(),
-      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
-    if (!textToSend) setInputMsg("");
-    setIsTyping(true);
-
-    setTimeout(() => {
-      const responseData = getBotResponse(text);
-      const botMessage: ChatMessage = {
-        id: generateUniqueId("bot"),
-        sender: "bot",
-        text: responseData.reply,
-        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-        quickReplies: responseData.quickReplies,
-      };
-
-      setMessages((prev) => [...prev, botMessage]);
-      setIsTyping(false);
-    }, 450);
-  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -168,7 +122,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
               <button
                 onClick={() => setIsOpen(false)}
                 aria-label="Close chat"
-                className="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-neutral-400 hover:text-white transition-colors"
+                className="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-neutral-400 hover:text-white transition-colors cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -215,7 +169,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
                         <button
                           key={qIdx}
                           onClick={() => handleSend(reply)}
-                          className="px-3 py-1 rounded-full bg-white/5 hover:bg-purple-500/15 border border-white/10 hover:border-purple-500/40 text-[11px] text-neutral-300 hover:text-white transition-all active:scale-95 text-left flex items-center gap-1 group"
+                          className="px-3 py-1 rounded-full bg-white/5 hover:bg-purple-500/15 border border-white/10 hover:border-purple-500/40 text-[11px] text-neutral-300 hover:text-white transition-all active:scale-95 text-left flex items-center gap-1 group cursor-pointer"
                         >
                           <span>{reply}</span>
                           <ArrowUpRight className="w-3 h-3 text-neutral-500 group-hover:text-purple-300 transition-colors" />
@@ -255,7 +209,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
                 onClick={() => handleSend()}
                 disabled={!inputMsg.trim()}
                 aria-label="Send message"
-                className="w-8 h-8 rounded-full bg-purple-600 hover:bg-purple-500 disabled:opacity-30 disabled:hover:bg-purple-600 text-white flex items-center justify-center transition-colors active:scale-95 shadow-md shrink-0"
+                className="w-8 h-8 rounded-full bg-purple-600 hover:bg-purple-500 disabled:opacity-30 disabled:hover:bg-purple-600 text-white flex items-center justify-center transition-colors active:scale-95 shadow-md shrink-0 cursor-pointer"
               >
                 <Send className="w-3.5 h-3.5" />
               </button>
@@ -325,10 +279,7 @@ export function PortfolioChatbot({ className = "" }: PortfolioChatbotProps) {
             </motion.div>
           )}
         </AnimatePresence>
-
-
       </button>
-
     </div>
     </>
   );

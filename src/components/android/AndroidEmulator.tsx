@@ -2,12 +2,17 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { AndroidStatusBar } from "./AndroidStatusBar";
+import { AndroidQuickSettingsSheet } from "./AndroidQuickSettingsSheet";
+import { useMobileState } from "@/context/MobileStateContext";
 
 interface AndroidEmulatorProps {
   children: React.ReactNode;
 }
 
 export function AndroidEmulator({ children }: AndroidEmulatorProps) {
+  const { isQuickSettingsOpen, setIsQuickSettingsOpen } = useMobileState();
+
   return (
     <section className="fixed inset-0 z-50 w-full h-[100dvh] flex items-center justify-center p-3 bg-black/95 backdrop-blur-3xl overflow-hidden select-none">
       {/* Interactive True-to-Scale Android Smartphone Chassis */}
@@ -40,7 +45,18 @@ export function AndroidEmulator({ children }: AndroidEmulatorProps) {
               transform: "translateZ(0)",
             }}
           >
-            {/* Screen Content (AndroidShell) */}
+            {/* Top Android Status Bar: Interactive (Tapping pulls down Quick Settings) */}
+            <div className="shrink-0 sticky top-0 left-0 right-0 z-50">
+              <AndroidStatusBar onOpenQuickSettings={() => setIsQuickSettingsOpen(true)} />
+            </div>
+
+            {/* Android Quick Settings Pull-Down Sheet */}
+            <AndroidQuickSettingsSheet
+              isOpen={isQuickSettingsOpen}
+              onClose={() => setIsQuickSettingsOpen(false)}
+            />
+
+            {/* Screen Content (Shared MobileApp) */}
             <div className="w-full h-full relative flex flex-col min-h-0 overflow-hidden">
               {children}
             </div>

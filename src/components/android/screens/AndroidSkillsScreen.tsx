@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Cpu, Smartphone, Layers, Terminal, Database, Wrench, CheckCircle2, Sparkles, ShieldCheck } from "lucide-react";
+import { Cpu, ShieldCheck } from "lucide-react";
 
 interface SkillCategory {
   name: string;

@@ -3,6 +3,8 @@ import { Outfit, EB_Garamond, Alata, Shadows_Into_Light, Henny_Penny, Source_Cod
 import "./globals.css";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { ViewModeProvider } from "@/context/ViewModeContext";
+import { MobileStateProvider } from "@/context/MobileStateContext";
+import { AssistantProvider } from "@/context/AssistantContext";
 import { DeveloperLoader } from "@/components/common/DeveloperLoader";
 import { LenisScroll } from "@/components/common/ScrollProviders";
 import { InfiniteCanvasBackground } from "@/components/ui/InfiniteCanvasBackground";
@@ -132,41 +134,45 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ViewModeProvider>
-            {/* Global Lenis Smooth Momentum Scroll Wrapper */}
-            <LenisScroll>
-              {/* Global Developer Loader */}
-              <DeveloperLoader />
+            <MobileStateProvider>
+              <AssistantProvider>
+                {/* Global Lenis Smooth Momentum Scroll Wrapper */}
+                <LenisScroll>
+                  {/* Global Developer Loader */}
+                  <DeveloperLoader />
 
-              {/* Standalone Noise overlay */}
-              <div 
-                className="pointer-events-none fixed inset-0 z-50 mix-blend-overlay"
-                style={{ 
-                  backgroundImage: 'url("/noise.svg")', 
-                  backgroundSize: '256px 256px',
-                  opacity: 'var(--noise-opacity)'
-                }} 
-              />
+                  {/* Standalone Noise overlay */}
+                  <div 
+                    className="pointer-events-none fixed inset-0 z-50 mix-blend-overlay"
+                    style={{ 
+                      backgroundImage: 'url("/noise.svg")', 
+                      backgroundSize: '256px 256px',
+                      opacity: 'var(--noise-opacity)'
+                    }} 
+                  />
 
-              {/* Persistent Background for both Web & Mobile */}
-              <InfiniteCanvasBackground />
+                  {/* Persistent Background for both Web & Mobile */}
+                  <InfiniteCanvasBackground />
 
-              {/* Automatic View Switcher: Desktop Web vs Android Mobile Emulator / Native App */}
-              <DeviceLayoutSwitcher>
-                <Header />
-                <div className="relative z-10 w-full min-h-screen flex flex-col items-center">
-                  {children}
-                </div>
-                <Footer />
-              </DeviceLayoutSwitcher>
+                  {/* Automatic View Switcher: Desktop Web vs Android Mobile Emulator / Native App */}
+                  <DeviceLayoutSwitcher>
+                    <Header />
+                    <div className="relative z-10 w-full min-h-screen flex flex-col items-center">
+                      {children}
+                    </div>
+                    <Footer />
+                  </DeviceLayoutSwitcher>
 
-              {/* Floating Device View Switcher (Desktop only - hidden on mobile devices) */}
-              <div className="fixed bottom-6 left-6 z-50 hidden md:flex items-center">
-                <DeviceViewToggle variant="floating" />
-              </div>
+                  {/* Floating Device View Switcher (Desktop only - hidden on mobile devices) */}
+                  <div className="fixed bottom-6 left-6 z-50 hidden md:flex items-center">
+                    <DeviceViewToggle variant="floating" />
+                  </div>
 
-              {/* Vedant Executive AI Chatbot */}
-              <PortfolioChatbot />
-            </LenisScroll>
+                  {/* Vedant Executive AI Chatbot */}
+                  <PortfolioChatbot />
+                </LenisScroll>
+              </AssistantProvider>
+            </MobileStateProvider>
           </ViewModeProvider>
         </ThemeProvider>
       </body>

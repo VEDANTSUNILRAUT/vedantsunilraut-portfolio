@@ -19,7 +19,6 @@ import {
   Download, 
   Github, 
   Linkedin, 
-  Cpu, 
   Sparkles,
   MapPin,
   Briefcase,

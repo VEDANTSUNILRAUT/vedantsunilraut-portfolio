@@ -34,7 +34,7 @@ export function AndroidBottomNav({ activeTab, setActiveTab }: AndroidBottomNavPr
             key={tab.id}
             onClick={() => setActiveTab(tab.id as AndroidTabType)}
             className="relative flex flex-col items-center justify-center flex-1 py-0.5 group transition-all cursor-pointer"
-            aria-selected={isActive}
+            aria-current={isActive ? "page" : undefined}
           >
             {/* Jetpack Compose Material 3 Pill Indicator */}
             <div className="relative px-3.5 py-1 rounded-full flex items-center justify-center">

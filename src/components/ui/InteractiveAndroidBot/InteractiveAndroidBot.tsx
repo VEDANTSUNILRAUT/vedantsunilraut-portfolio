@@ -24,7 +24,6 @@ const BOT_MESSAGES = [
 
 export function InteractiveAndroidBot() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
   const [activeMessage, setActiveMessage] = useState<string | null>(null);
   const [particles, setParticles] = useState<Particle[]>([]);
   const [clickCount, setClickCount] = useState(0);
@@ -51,12 +50,7 @@ export function InteractiveAndroidBot() {
     [mouseX, mouseY]
   );
 
-  const handleMouseEnter = useCallback(() => {
-    setIsHovered(true);
-  }, []);
-
   const handleMouseLeave = useCallback(() => {
-    setIsHovered(false);
     mouseX.set(0);
     mouseY.set(0);
   }, [mouseX, mouseY]);
@@ -95,7 +89,6 @@ export function InteractiveAndroidBot() {
     <div
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
       style={{ perspective: 600 }}

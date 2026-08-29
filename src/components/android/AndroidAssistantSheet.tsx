@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Sparkles, 
@@ -8,29 +8,9 @@ import {
   Send, 
   User, 
   Bot, 
-  ArrowUpRight, 
-  MessageSquare,
-  CornerDownLeft
+  ArrowUpRight 
 } from "lucide-react";
-import { getBotResponse, QUICK_QUESTIONS } from "@/constants/botKnowledge";
-
-interface Message {
-  id: string;
-  sender: "user" | "bot";
-  text: string;
-  timestamp: string;
-  quickReplies?: string[];
-}
-
-const INITIAL_MESSAGES: Message[] = [
-  {
-    id: "welcome",
-    sender: "bot",
-    text: "Hi! I am Vedant's **AI Assistant** inside Android. Ask me anything about Vedant's Android development experience at Logituit, tech stack, or projects!",
-    timestamp: "Just now",
-    quickReplies: QUICK_QUESTIONS,
-  },
-];
+import { useAssistant } from "@/context/AssistantContext";
 
 interface AndroidAssistantSheetProps {
   isOpen: boolean;
@@ -38,9 +18,7 @@ interface AndroidAssistantSheetProps {
 }
 
 export function AndroidAssistantSheet({ isOpen, onClose }: AndroidAssistantSheetProps) {
-  const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
-  const [inputMsg, setInputMsg] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
+  const { messages, inputMsg, setInputMsg, isTyping, handleSend } = useAssistant();
   const chatEndRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToBottom = () => {
@@ -52,38 +30,6 @@ export function AndroidAssistantSheet({ isOpen, onClose }: AndroidAssistantSheet
       scrollToBottom();
     }
   }, [isOpen, messages, isTyping]);
-
-  const handleSend = (textToSend?: string) => {
-    const query = (textToSend || inputMsg).trim();
-    if (!query) return;
-
-    const timeStr = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-
-    const userMessage: Message = {
-      id: `${Date.now()}-user`,
-      sender: "user",
-      text: query,
-      timestamp: timeStr,
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
-    if (!textToSend) setInputMsg("");
-    setIsTyping(true);
-
-    setTimeout(() => {
-      const response = getBotResponse(query);
-      const botMessage: Message = {
-        id: `${Date.now()}-bot`,
-        sender: "bot",
-        text: response.reply,
-        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-        quickReplies: response.quickReplies,
-      };
-
-      setMessages((prev) => [...prev, botMessage]);
-      setIsTyping(false);
-    }, 450);
-  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {

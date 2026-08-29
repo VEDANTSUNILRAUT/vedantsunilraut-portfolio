@@ -9,12 +9,9 @@ import {
   Github, 
   ExternalLink, 
   Star, 
-  Sparkles, 
   CheckCircle2, 
-  Info,
-  X,
-  Code2,
-  Share2
+  X, 
+  Code2
 } from "lucide-react";
 
 export function AndroidProjectsScreen() {

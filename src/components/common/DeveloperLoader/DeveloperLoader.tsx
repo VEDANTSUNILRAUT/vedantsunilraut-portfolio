@@ -7,17 +7,17 @@ import { DeveloperLoaderProps } from "./DeveloperLoader.types";
 
 export function DeveloperLoader({ className = "", forceShow = false }: DeveloperLoaderProps) {
   const isMounted = useIsMounted();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return !sessionStorage.getItem("hasLoaded");
+  });
 
   const DURATION = 1400; // Time in ms to complete 1 full infinity cycle
 
   useEffect(() => {
-    const alreadyLoaded = typeof window !== "undefined" && Boolean(sessionStorage.getItem("hasLoaded"));
-    if (!forceShow && alreadyLoaded) {
+    if (!forceShow && typeof window !== "undefined" && sessionStorage.getItem("hasLoaded")) {
       return;
     }
-
-    setIsLoading(true);
 
     const timer = setTimeout(() => {
       if (typeof window !== "undefined") {

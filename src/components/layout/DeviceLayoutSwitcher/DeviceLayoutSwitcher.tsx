@@ -3,7 +3,7 @@
 import React from "react";
 import { useDeviceType } from "@/hooks/useDeviceType";
 import { useViewMode } from "@/context/ViewModeContext";
-import { AndroidShell } from "@/components/android/AndroidShell";
+import { MobileApp } from "@/components/android/MobileApp";
 import { AndroidEmulator } from "@/components/android/AndroidEmulator";
 
 interface DeviceLayoutSwitcherProps {
@@ -20,16 +20,17 @@ export function DeviceLayoutSwitcher({ children }: DeviceLayoutSwitcherProps) {
   }
 
   // 2. Real Mobile Device Viewport (<768px or phone device):
-  // Direct AndroidShell with native presentation
+  // Direct MobileApp with native presentation
   if (isMobile) {
-    return <AndroidShell isEmulator={false} />;
+    return <MobileApp isEmulator={false} />;
   }
 
   // 3. Desktop View with Mobile Emulator Switcher:
+  // MobileApp rendered inside Emulator Chrome
   if (viewMode === "mobile") {
     return (
       <AndroidEmulator>
-        <AndroidShell isEmulator={true} />
+        <MobileApp isEmulator={true} />
       </AndroidEmulator>
     );
   }

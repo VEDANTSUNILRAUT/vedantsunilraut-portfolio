@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { WORK_EXPERIENCE_DATA, WorkExperienceItem } from "@/constants/experience";
-import { Briefcase, Calendar, MapPin, ChevronDown, CheckCircle2, Sparkles, Building2 } from "lucide-react";
+import { Calendar, MapPin, ChevronDown, CheckCircle2, Building2 } from "lucide-react";
 
 export function AndroidWorkScreen() {
   const [filter, setFilter] = useState<"All" | "Full-Time" | "Internship">("All");
@@ -45,7 +45,6 @@ export function AndroidWorkScreen() {
       <div className="w-full space-y-3">
         {filteredData.map((item: WorkExperienceItem) => {
           const isExpanded = expandedId === item.id;
-          const isLogituit = item.company === "Logituit";
 
           return (
             <motion.div
