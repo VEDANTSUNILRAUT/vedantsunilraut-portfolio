@@ -186,6 +186,8 @@ const INTENTS: KnowledgeIntent[] = [
       "graduation",
       "btech",
       "b.tech",
+      "be",
+      "b.e.",
       "sipna",
       "topper",
       "marks",
@@ -195,7 +197,7 @@ const INTENTS: KnowledgeIntent[] = [
       "university",
     ],
     response: () => ({
-      reply: `🎓 **Vedant's Academic Qualifications:**\n\n1. 🎓 **B.Tech in Computer Science & Engineering:**\n   - *Institute:* Sipna College of Engineering & Technology, Amravati\n   - *Score:* **9.60 CGPA / 8.85 CGPA** (First Class with Distinction, Semester Topper)\n\n2. 📚 **HSC (12th Grade Science):**\n   - *Institute:* Adarsha Science Mahavidyalaya\n   - *Score:* **91.80%** (98/100 in Computer Science)\n\n3. 🏆 **SSC (10th Grade):**\n   - *Institute:* Shree Kanhoji Baba Vidyalaya\n   - *Score:* **94.50%** (School Distinction Topper)`,
+      reply: `🎓 **Vedant's Academic Qualifications:**\n\n1. 🎓 **B.E. in Computer Science & Engineering (2021 – 2025):**\n   - *Institute:* Sipna College of Engineering & Technology, Amravati\n   - *Score:* **9.6 / 10.0 CGPA (University Topper & College Topper)**\n   - *Highlights:* Built **Talent-Bridge** (AI-integrated placement web app) as final-year project; hackathons & coding competitions.\n\n2. 📚 **Higher Secondary Certificate (HSC) — Science (2020 – 2021):**\n   - *Institute:* Adarsha Science, Jairamdas Bhagchand Arts & Birla Commerce Mahavidyalaya, Dhamangaon Railway\n   - *Score:* **90.67%** (Distinction)\n   - *Highlights:* Active Volleyball player.\n\n3. 🏆 **Secondary School Certificate (SSC) (2018 – 2019):**\n   - *Institute:* Shri Kanhoji Baba Vidhyalay, Anjansingi\n   - *Score:* **85.65%** (Distinction)\n   - *Highlights:* Volleyball Team Captain.`,
       quickReplies: ["What is Vedant's tech stack?", "Tell me about Vedant's projects"],
     }),
   },
@@ -269,7 +271,7 @@ const INTENTS: KnowledgeIntent[] = [
       "distinction",
     ],
     response: () => ({
-      reply: `🏆 **Certifications & Key Achievements:**\n\n1. 🤖 **Google AI/ML Virtual Internship Certificate:** Google AI/ML track via EduSkills.\n2. ☁️ **AWS Cloud Practitioner Virtual Internship:** Cloud architecture & services via EduSkills.\n3. 🥇 **Semester 1st Rank Topper:** Sipna College of Engineering & Technology (9.60 CGPA).\n4. 🏅 **98/100 CS Score:** High Distinction in 12th Board HSC Computer Science.\n5. 🏆 **10th School Topper:** 94.50% distinction score in SSC.`,
+      reply: `🏆 **Certifications & Key Achievements:**\n\n1. 🤖 **Google AI/ML Virtual Internship Certificate:** Google AI/ML track via EduSkills.\n2. ☁️ **AWS Cloud Practitioner Virtual Internship:** Cloud architecture & services via EduSkills.\n3. 🥇 **University Topper & College Topper:** Sipna College of Engineering & Technology (9.6 / 10.0 CGPA in B.E. CSE).\n4. 🏅 **90.67% HSC Science Score:** High Distinction in 12th Board HSC examinations.\n5. 🏆 **85.65% SSC Score & Volleyball Team Captain:** Shri Kanhoji Baba Vidhyalay.`,
       quickReplies: ["Tell me about Vedant's projects", "What is Vedant's tech stack?"],
     }),
   },
@@ -393,7 +395,7 @@ export function getBotResponse(userQuery: string): BotResponse {
 
   // Intelligent Fallback
   return {
-    reply: `I'd love to help with that! As Vedant's Executive AI Assistant, I can answer questions about:\n\n- 📱 **Android & Kotlin Architecture**\n- 🌐 **Next.js & Full-Stack Tech Stack**\n- 💻 **9 Featured Projects & Live Demos**\n- 💼 **Work Experience at Logituit & Internships**\n- 🎓 **B.Tech 9.60 CGPA & Academic Qualifications**\n- 📬 **Email, Phone & Social Links**\n\nWhat would you like to explore?`,
+    reply: `I'd love to help with that! As Vedant's Executive AI Assistant, I can answer questions about:\n\n- 📱 **Android & Kotlin Architecture**\n- 🌐 **Next.js & Full-Stack Tech Stack**\n- 💻 **Featured Projects & Live Demos**\n- 💼 **Work Experience at Logituit**\n- 🎓 **B.E. 9.6 CGPA & Academic Qualifications**\n- 📬 **Email, Phone & Social Links**\n\nWhat would you like to explore?`,
     quickReplies: QUICK_QUESTIONS,
   };
 }

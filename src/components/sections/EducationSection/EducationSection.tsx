@@ -121,7 +121,7 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
                 : "text-neutral-400 hover:text-white hover:bg-white/5"
             }`}
           >
-            Graduation (B.Tech)
+            Graduation (B.E.)
           </button>
           <button
             onClick={() => setSelectedFilter("12th-hsc")}
@@ -153,17 +153,22 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="p-5 rounded-2xl bg-neutral-950/70 border border-purple-500/20 backdrop-blur-xl relative overflow-hidden group hover:border-purple-500/40 transition-all shadow-lg"
+          className="p-5 rounded-2xl bg-neutral-950/70 border border-purple-500/30 backdrop-blur-xl relative overflow-hidden group hover:border-purple-500/60 transition-all shadow-lg"
         >
-          <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all" />
+          <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/15 rounded-full blur-2xl group-hover:bg-purple-500/30 transition-all" />
           <div className="flex items-start justify-between">
             <div>
-              <span className="text-[10px] uppercase font-mono tracking-widest text-purple-400 block mb-1">
-                GRADUATION
-              </span>
-              <h4 className="text-xl font-bold text-white tracking-tight">8.85 CGPA</h4>
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className="text-[10px] uppercase font-mono tracking-widest text-purple-400 font-semibold">
+                  GRADUATION (B.E.)
+                </span>
+                <span className="px-1.5 py-0.2 rounded bg-purple-500/20 text-[9px] font-mono text-purple-300 border border-purple-500/30">
+                  TOPPER
+                </span>
+              </div>
+              <h4 className="text-xl font-bold text-white tracking-tight">9.6 / 10.0 CGPA</h4>
               <p className="text-xs text-neutral-400 mt-1 font-source-code-pro">
-                B.Tech Computer Science & Eng.
+                University & College Topper
               </p>
             </div>
             <div className="p-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-300">
@@ -185,9 +190,9 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
               <span className="text-[10px] uppercase font-mono tracking-widest text-cyan-400 block mb-1">
                 12TH CLASS (HSC)
               </span>
-              <h4 className="text-xl font-bold text-white tracking-tight">91.80%</h4>
+              <h4 className="text-xl font-bold text-white tracking-tight">90.67%</h4>
               <p className="text-xs text-neutral-400 mt-1 font-source-code-pro">
-                Science (PCMB & CS Topper)
+                Science Stream · Distinction
               </p>
             </div>
             <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">
@@ -209,9 +214,9 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
               <span className="text-[10px] uppercase font-mono tracking-widest text-emerald-400 block mb-1">
                 10TH CLASS (SSC)
               </span>
-              <h4 className="text-xl font-bold text-white tracking-tight">94.50%</h4>
+              <h4 className="text-xl font-bold text-white tracking-tight">85.65%</h4>
               <p className="text-xs text-neutral-400 mt-1 font-source-code-pro">
-                School Distinction Topper
+                Secondary School · Team Captain
               </p>
             </div>
             <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
@@ -267,6 +272,12 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
                         >
                           {item.levelTag}
                         </span>
+                        {item.isFeatured && (
+                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold tracking-wider uppercase bg-amber-500/15 border border-amber-500/30 text-amber-300 flex items-center gap-1 shadow-sm">
+                            <Trophy className="w-3 h-3 text-amber-400" />
+                            Featured Highlight
+                          </span>
+                        )}
                         <span className="px-3 py-1 rounded-full text-[10px] font-mono text-neutral-400 bg-white/5 border border-white/10">
                           {item.status}
                         </span>
