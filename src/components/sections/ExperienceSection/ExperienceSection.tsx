@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import {
   Briefcase,
@@ -15,16 +15,16 @@ import {
   Smartphone,
   Zap,
   Award,
-  ChevronLeft,
-  ChevronRight,
+  ArrowUpRight,
+  X,
 } from "lucide-react";
-import { WORK_EXPERIENCE_DATA } from "@/constants/experience";
+import { WORK_EXPERIENCE_DATA, WorkExperienceItem } from "@/constants/experience";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { ExperienceSectionProps } from "./ExperienceSection.types";
 
 export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
   const [expandedCardId, setExpandedCardId] = useState<string | null>("fulltime-logituit");
-  const carouselRef = useRef<HTMLDivElement>(null);
+  const [selectedInternship, setSelectedInternship] = useState<WorkExperienceItem | null>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -40,12 +40,21 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
     setExpandedCardId((prev) => (prev === id ? null : id));
   };
 
-  const scrollCarousel = (direction: "left" | "right") => {
-    if (carouselRef.current) {
-      const scrollAmount = direction === "left" ? -360 : 360;
-      carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSelectedInternship(null);
+      }
+    };
+    if (selectedInternship) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
     }
-  };
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
+    };
+  }, [selectedInternship]);
 
   return (
     <section
@@ -130,7 +139,7 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
               </span>
               <h4 className="text-xl font-bold text-white tracking-tight">11 mos at Logituit</h4>
               <p className="text-xs text-neutral-400 mt-1 font-source-code-pro">
-                1 Full-Time + 7 Internships
+                1 Full-Time + 6 Internships
               </p>
             </div>
             <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">
@@ -330,139 +339,311 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
         </div>
       </div>
 
-      {/* SECTION 2: Horizontal Spinning / Sliding Internships Carousel */}
-      <div className="mt-12">
-        {/* Carousel Header Row */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-purple-400" />
-            <h3 className="text-sm font-mono uppercase tracking-widest text-purple-300 font-semibold">
-              Internship Engagements & Roles
-            </h3>
+      {/* SECTION 2: Bitogrid Internship Experience Grid */}
+      <div className="mt-16 sm:mt-20 pt-10 border-t border-white/10">
+        {/* Header Row */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <Sparkles className="w-4 h-4 text-purple-400" />
+              <h3 className="text-sm font-mono uppercase tracking-widest text-purple-300 font-semibold">
+                Internship & Specialized Engagements
+              </h3>
+            </div>
+            <p className="text-xs sm:text-sm font-source-code-pro text-neutral-400 max-w-xl leading-relaxed">
+              Hands-on engineering apprenticeships, full-stack microservices, ML research, and cloud computing programs.
+            </p>
           </div>
 
-          {/* Navigation Scroll Buttons */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => scrollCarousel("left")}
-              className="p-2 rounded-xl bg-neutral-900 border border-white/10 text-neutral-300 hover:text-white hover:border-purple-400/50 hover:bg-neutral-800 transition-all active:scale-95 shadow-md"
-              aria-label="Previous internships"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => scrollCarousel("right")}
-              className="p-2 rounded-xl bg-neutral-900 border border-white/10 text-neutral-300 hover:text-white hover:border-purple-400/50 hover:bg-neutral-800 transition-all active:scale-95 shadow-md"
-              aria-label="Next internships"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
+          <div className="flex items-center gap-2 self-start sm:self-auto">
+            <span className="px-3 py-1 rounded-full text-[11px] font-mono font-medium bg-purple-500/10 border border-purple-500/20 text-purple-300 shadow-sm">
+              {internshipExperience.length} Completed Engagements
+            </span>
           </div>
         </div>
 
-        {/* Horizontal Carousel Scroll Track */}
-        <div
-          ref={carouselRef}
-          className="flex gap-5 overflow-x-auto pb-6 scrollbar-none snap-x snap-mandatory scroll-smooth"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
-          {internshipExperience.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="w-[320px] sm:w-[400px] shrink-0 snap-start h-full"
-            >
-              <SpotlightCard
-                spotlightColor="rgba(168, 85, 247, 0.15)"
-                borderColor="rgba(168, 85, 247, 0.4)"
-                className={`bg-neutral-950/80 border border-white/10 backdrop-blur-xl p-6 relative overflow-hidden shadow-xl transition-all duration-300 flex flex-col justify-between group h-full ${item.colorScheme.border}`}
+        {/* Bitogrid Responsive Grid Pattern */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
+          {internshipExperience.map((item, index) => {
+            const desktopColSpan =
+              item.colSpan?.desktop === 7
+                ? "lg:col-span-7"
+                : item.colSpan?.desktop === 5
+                ? "lg:col-span-5"
+                : item.colSpan?.desktop === 6
+                ? "lg:col-span-6"
+                : "lg:col-span-4";
+
+            const tabletColSpan = "md:col-span-6";
+
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.07 }}
+                className={`col-span-1 ${tabletColSpan} ${desktopColSpan} flex flex-col`}
               >
-                {/* Background Glow */}
-                <div
-                  className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${item.colorScheme.glow} blur-3xl pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity`}
-                />
+                <SpotlightCard
+                  spotlightColor="rgba(168, 85, 247, 0.15)"
+                  borderColor="rgba(168, 85, 247, 0.4)"
+                  className={`bg-neutral-950/80 border border-white/10 backdrop-blur-xl p-6 sm:p-7 relative overflow-hidden shadow-xl hover:border-purple-500/40 transition-all duration-300 flex flex-col justify-between group h-full ${item.colorScheme.border}`}
+                >
+                  {/* Background Corner Glow */}
+                  <div
+                    className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${item.colorScheme.glow} blur-3xl pointer-events-none opacity-40 group-hover:opacity-75 transition-opacity`}
+                  />
 
-                <div className="relative z-10 space-y-4">
-                  {/* Header Badge & Duration */}
-                  <div className="flex items-center justify-between gap-2">
-                    <span
-                      className={`px-3 py-1 rounded-full text-[10px] font-mono font-semibold uppercase border ${item.colorScheme.badgeBg}`}
-                    >
-                      {item.type}
-                    </span>
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono text-neutral-400 bg-white/5 border border-white/10">
-                      {item.duration}
-                    </span>
-                  </div>
+                  {/* Top Content Area */}
+                  <div className="relative z-10 space-y-4">
+                    {/* Status & Compensation Badges Row */}
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
+                        {/* Status Indicator Pill */}
+                        <div
+                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold uppercase border ${
+                            item.status === "Ongoing"
+                              ? "bg-purple-500/10 border-purple-500/30 text-purple-300"
+                              : item.status === "Open"
+                              ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-300"
+                              : item.status === "Closing Soon"
+                              ? "bg-amber-500/10 border-amber-500/30 text-amber-300"
+                              : "bg-emerald-500/10 border-emerald-500/30 text-emerald-300"
+                          }`}
+                        >
+                          <span
+                            className={`w-1.5 h-1.5 rounded-full ${
+                              item.status === "Ongoing"
+                                ? "bg-purple-400 animate-pulse"
+                                : item.status === "Open"
+                                ? "bg-cyan-400 animate-pulse"
+                                : item.status === "Closing Soon"
+                                ? "bg-amber-400 animate-pulse"
+                                : "bg-emerald-400"
+                            }`}
+                          />
+                          <span>{item.status || "Completed"}</span>
+                        </div>
 
-                  {/* Role & Company */}
-                  <div>
-                    <h4 className="text-lg font-bold text-white tracking-tight group-hover:text-purple-200 transition-colors">
-                      {item.role}
-                    </h4>
-                    <p className={`text-xs font-semibold mt-0.5 ${item.colorScheme.text}`}>
-                      {item.company}
+                        {/* Paid / Compensation Status */}
+                        {item.compensation && (
+                          <span className="px-2.5 py-1 rounded-full text-[10px] font-mono text-neutral-300 bg-white/5 border border-white/10">
+                            {item.compensation}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Duration Badge */}
+                      <div className="flex items-center gap-1 text-[10px] font-mono text-neutral-400 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full">
+                        <Clock className="w-3 h-3 text-neutral-400 shrink-0" />
+                        <span>{item.duration}</span>
+                      </div>
+                    </div>
+
+                    {/* Job Title & Company */}
+                    <div>
+                      <h4 className="text-lg sm:text-xl font-bold text-white tracking-tight group-hover:text-purple-200 transition-colors">
+                        {item.role}
+                      </h4>
+                      <p className={`text-xs sm:text-sm font-semibold mt-1 flex items-center gap-1.5 ${item.colorScheme.text}`}>
+                        <Building2 className="w-3.5 h-3.5 shrink-0 text-neutral-400" />
+                        <span>{item.company}</span>
+                      </p>
+                    </div>
+
+                    {/* Period & Location */}
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] font-mono text-neutral-400 pt-0.5">
+                      <div className="flex items-center gap-1.5">
+                        <Calendar className="w-3 h-3 text-neutral-500 shrink-0" />
+                        <span>{item.period}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <MapPin className="w-3 h-3 text-neutral-500 shrink-0" />
+                        <span className="truncate">{item.location}</span>
+                      </div>
+                    </div>
+
+                    {/* 2-3 Sentence Description */}
+                    <p className="text-xs font-source-code-pro text-neutral-300 leading-relaxed pt-1">
+                      {item.description}
                     </p>
+
+                    {/* Skills & Tech Badges */}
+                    <div className="pt-2">
+                      <div className="flex flex-wrap gap-1.5">
+                        {item.skills.slice(0, 4).map((skill, sIdx) => (
+                          <span
+                            key={sIdx}
+                            className={`px-2.5 py-0.5 rounded-lg text-[10px] font-mono border backdrop-blur-md ${item.colorScheme.pillBg}`}
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                        {item.skills.length > 4 && (
+                          <span className="px-2 py-0.5 rounded-lg text-[10px] font-mono text-neutral-400 bg-white/5 border border-white/10">
+                            +{item.skills.length - 4}
+                          </span>
+                        )}
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Period & Location */}
-                  <div className="flex flex-col gap-1 text-[11px] font-mono text-neutral-400 pt-1">
-                    <div className="flex items-center gap-1.5">
-                      <Calendar className="w-3 h-3 text-neutral-500 shrink-0" />
-                      <span>{item.period}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <MapPin className="w-3 h-3 text-neutral-500 shrink-0" />
-                      <span className="truncate">{item.location}</span>
-                    </div>
+                  {/* Card Bottom: Prominent CTA */}
+                  <div className="mt-6 pt-4 border-t border-white/10 relative z-10 flex items-center justify-between">
+                    <button
+                      onClick={() => setSelectedInternship(item)}
+                      className="w-full inline-flex items-center justify-between px-4 py-2 rounded-xl bg-white/5 hover:bg-purple-500/20 text-xs font-mono font-medium text-neutral-200 hover:text-white border border-white/10 hover:border-purple-400/50 transition-all duration-200 group/cta shadow-sm cursor-pointer active:scale-[0.98]"
+                    >
+                      <span className="font-semibold text-purple-300 group-hover/cta:text-purple-200">
+                        {item.ctaText || "View Experience"}
+                      </span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-purple-400 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 transition-transform" />
+                    </button>
+                  </div>
+                </SpotlightCard>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Detail Modal for Selected Internship */}
+      <AnimatePresence>
+        {selectedInternship && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedInternship(null)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer"
+            />
+
+            {/* Modal Dialog Content */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.25 }}
+              className="relative w-full max-w-2xl bg-neutral-950 border border-purple-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col z-10"
+            >
+              {/* Background ambient glow */}
+              <div
+                className={`absolute top-0 right-0 w-80 h-80 bg-gradient-to-br ${selectedInternship.colorScheme.glow} blur-3xl pointer-events-none opacity-40`}
+              />
+
+              {/* Modal Header */}
+              <div className="flex items-center justify-between pb-4 border-b border-white/10 relative z-10">
+                <div className="flex flex-wrap items-center gap-2">
+                  <div
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold uppercase border ${
+                      selectedInternship.status === "Ongoing"
+                        ? "bg-purple-500/10 border-purple-500/30 text-purple-300"
+                        : "bg-emerald-500/10 border-emerald-500/30 text-emerald-300"
+                    }`}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <span>{selectedInternship.status || "Completed"}</span>
                   </div>
 
-                  {/* Description */}
-                  <p className="text-xs font-source-code-pro text-neutral-300 line-clamp-3 leading-relaxed pt-1">
-                    {item.description}
+                  {selectedInternship.compensation && (
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-mono text-neutral-300 bg-white/5 border border-white/10">
+                      {selectedInternship.compensation}
+                    </span>
+                  )}
+
+                  <span className="px-2.5 py-1 rounded-full text-[10px] font-mono text-neutral-400 bg-white/5 border border-white/10">
+                    {selectedInternship.duration}
+                  </span>
+                </div>
+
+                <button
+                  onClick={() => setSelectedInternship(null)}
+                  className="p-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white transition-colors border border-white/10 cursor-pointer"
+                  aria-label="Close modal"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Modal Body */}
+              <div className="overflow-y-auto space-y-6 pt-5 pr-1 relative z-10">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    {selectedInternship.role}
+                  </h3>
+                  <p className={`text-sm sm:text-base font-semibold mt-1 ${selectedInternship.colorScheme.text}`}>
+                    {selectedInternship.company}
                   </p>
+                  <div className="flex flex-wrap items-center gap-y-1.5 gap-x-4 text-xs font-mono text-neutral-400 pt-2">
+                    <div className="flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-neutral-500" />
+                      <span>{selectedInternship.period}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-neutral-500" />
+                      <span>{selectedInternship.location}</span>
+                    </div>
+                  </div>
+                </div>
 
-                  {/* Key Achievements Bullets */}
-                  {item.achievements.length > 0 && (
-                    <div className="space-y-1.5 pt-2 border-t border-white/10">
-                      {item.achievements.slice(0, 2).map((achievement, aIdx) => (
-                        <div key={aIdx} className="flex items-start gap-2">
-                          <CheckCircle2 className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${item.colorScheme.text}`} />
-                          <span className="text-[11px] font-source-code-pro text-neutral-300 line-clamp-2 leading-tight">
+                <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                  <p className="text-xs sm:text-sm font-source-code-pro text-neutral-200 leading-relaxed">
+                    {selectedInternship.description}
+                  </p>
+                </div>
+
+                {selectedInternship.achievements.length > 0 && (
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-mono uppercase tracking-widest text-neutral-400 flex items-center gap-2">
+                      <Award className="w-4 h-4 text-purple-400" />
+                      <span>Key Responsibilities & Deliverables</span>
+                    </h4>
+                    <div className="space-y-2.5">
+                      {selectedInternship.achievements.map((achievement, aIdx) => (
+                        <div key={aIdx} className="flex items-start gap-2.5">
+                          <CheckCircle2 className={`w-4 h-4 mt-0.5 shrink-0 ${selectedInternship.colorScheme.text}`} />
+                          <span className="text-xs sm:text-sm font-source-code-pro text-neutral-300 leading-relaxed">
                             {achievement}
                           </span>
                         </div>
                       ))}
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
 
-                {/* Footer Tech Pills */}
-                <div className="mt-5 pt-3 border-t border-white/10 relative z-10">
-                  <div className="flex flex-wrap gap-1.5">
-                    {item.skills.slice(0, 4).map((skill, sIdx) => (
+                <div className="space-y-2.5 pt-2">
+                  <h4 className="text-xs font-mono uppercase tracking-widest text-neutral-400">
+                    Technologies & Applied Skills
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedInternship.skills.map((skill, sIdx) => (
                       <span
                         key={sIdx}
-                        className={`px-2.5 py-0.5 rounded-lg text-[10px] font-mono border backdrop-blur-md ${item.colorScheme.pillBg}`}
+                        className={`px-3 py-1 rounded-xl text-xs font-mono border backdrop-blur-md ${selectedInternship.colorScheme.pillBg}`}
                       >
                         {skill}
                       </span>
                     ))}
-                    {item.skills.length > 4 && (
-                      <span className="px-2 py-0.5 rounded-lg text-[10px] font-mono text-neutral-400 bg-white/5 border border-white/10">
-                        +{item.skills.length - 4}
-                      </span>
-                    )}
                   </div>
                 </div>
-              </SpotlightCard>
+              </div>
+
+              {/* Modal Footer */}
+              <div className="mt-6 pt-4 border-t border-white/10 flex justify-end relative z-10">
+                <button
+                  onClick={() => setSelectedInternship(null)}
+                  className="px-5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-mono font-medium transition-colors shadow-lg shadow-purple-600/20 cursor-pointer"
+                >
+                  Close Details
+                </button>
+              </div>
             </motion.div>
-          ))}
-        </div>
-      </div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

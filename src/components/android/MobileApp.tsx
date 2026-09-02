@@ -21,7 +21,7 @@ export interface MobileAppProps {
 }
 
 export function MobileApp({ isEmulator = false, className = "" }: MobileAppProps) {
-  const { activeTab, setActiveTab, isAssistantOpen, setIsAssistantOpen } = useMobileState();
+  const { activeTab, setActiveTab, isAssistantOpen, setIsAssistantOpen, brightness } = useMobileState();
   const mainRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -67,6 +67,18 @@ export function MobileApp({ isEmulator = false, className = "" }: MobileAppProps
           isEmulator ? "h-full min-h-0 overflow-hidden" : "fixed inset-0 h-[100dvh] w-full overflow-hidden"
         } ${className}`}
       >
+        {/* Real Mobile Software Backlight Dimming Overlay */}
+        {!isEmulator && (
+          <div
+            aria-hidden="true"
+            className="fixed inset-0 pointer-events-none z-[45] transition-opacity duration-75"
+            style={{
+              backgroundColor: "#000000",
+              opacity: Math.max(0, Math.min(0.85, (100 - brightness) / 100 * 0.85)),
+            }}
+          />
+        )}
+
         {/* 1. Top App Bar (Material 3 Native Navigation Header) */}
         <div className="shrink-0 sticky top-0 left-0 right-0 z-30">
           <AndroidTopBar activeScreen={activeTab} />

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
+import { useMobileState } from "@/context/MobileStateContext";
 import { 
   Wifi, 
   Signal, 
@@ -26,6 +27,7 @@ interface AndroidQuickSettingsSheetProps {
 
 export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSettingsSheetProps) {
   const { theme, setTheme } = useTheme();
+  const { brightness, setBrightness } = useMobileState();
 
   // Simulated visual toggle states for other buttons
   const [isDataOn, setIsDataOn] = useState(true);
@@ -35,7 +37,6 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
   const [isTorchOn, setIsTorchOn] = useState(false);
   const [isRotateOn, setIsRotateOn] = useState(true);
   const [isDndOn, setIsDndOn] = useState(false);
-  const [brightness, setBrightness] = useState(80);
 
   // Time & Date formatting for Material You header
   const [timeStr, setTimeStr] = useState("");
@@ -79,13 +80,13 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "-100%", opacity: 0.8 }}
             transition={{ type: "spring", stiffness: 350, damping: 32 }}
-            className="absolute top-0 left-0 right-0 z-[101] w-full max-w-xl mx-auto rounded-b-[32px] bg-neutral-950/95 border-b border-x border-white/15 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col text-white font-sans select-none"
+            className="absolute top-0 left-0 right-0 z-[101] w-full max-w-xl mx-auto rounded-b-[32px] bg-neutral-950/98 border-b border-x border-white/15 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col text-white font-sans select-none"
           >
             {/* 1. Material You Top Header */}
-            <div className="pt-3 px-6 pb-2 flex items-center justify-between border-b border-white/5">
+            <div className="pt-3 px-5 pb-2.5 flex items-center justify-between border-b border-white/5">
               {/* Left: Clock & Date */}
               <div className="flex flex-col">
-                <span className="text-xl sm:text-2xl font-bold tracking-tight leading-none text-white">
+                <span className="text-xl font-bold tracking-tight leading-none text-white">
                   {timeStr || "10:30"}
                 </span>
                 <span className="text-[11px] font-mono text-neutral-400 mt-0.5">
@@ -98,7 +99,7 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
                 <button
                   type="button"
                   onClick={onClose}
-                  className="w-9 h-9 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 flex items-center justify-center text-neutral-300 active:scale-95 transition-all"
+                  className="w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 flex items-center justify-center text-neutral-300 active:scale-95 transition-all cursor-pointer"
                   aria-label="Settings"
                 >
                   <Settings className="w-4 h-4" />
@@ -106,7 +107,7 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
                 <button
                   type="button"
                   onClick={onClose}
-                  className="w-9 h-9 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 flex items-center justify-center text-neutral-300 active:scale-95 transition-all"
+                  className="w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 flex items-center justify-center text-neutral-300 active:scale-95 transition-all cursor-pointer"
                   aria-label="Power menu"
                 >
                   <Power className="w-4 h-4 text-rose-400" />
@@ -114,16 +115,16 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
               </div>
             </div>
 
-            {/* 2. Quick Settings Tiles Grid (2 columns on mobile, 4 columns on tablet) */}
-            <div className="p-5 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+            {/* 2. Quick Settings Tiles Grid (Authentic 2-Column Android Material You Layout) */}
+            <div className="px-4 py-3 grid grid-cols-2 gap-2.5">
               
               {/* Tile 1: Mobile Data */}
               <button
                 type="button"
                 onClick={() => setIsDataOn(!isDataOn)}
-                className={`p-3 rounded-2xl flex items-center gap-3 transition-all cursor-pointer text-left active:scale-95 border ${
+                className={`px-3 py-2.5 rounded-2xl flex items-center gap-2.5 transition-all cursor-pointer text-left active:scale-95 border min-w-0 ${
                   isDataOn
-                    ? "bg-purple-600/30 border-purple-500/50 text-white shadow-[0_0_15px_rgba(168,85,247,0.25)]"
+                    ? "bg-purple-600/30 border-purple-500/50 text-white shadow-[0_0_12px_rgba(168,85,247,0.25)]"
                     : "bg-white/5 border-white/10 text-neutral-400 hover:bg-white/10"
                 }`}
               >
@@ -132,7 +133,7 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
                 }`}>
                   <Signal className="w-4 h-4" />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1 overflow-hidden">
                   <div className="text-xs font-semibold tracking-tight truncate">Mobile Data</div>
                   <div className="text-[10px] font-mono text-neutral-400 truncate">{isDataOn ? "5G Active" : "Turned Off"}</div>
                 </div>
@@ -142,9 +143,9 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
               <button
                 type="button"
                 onClick={() => setIsWifiOn(!isWifiOn)}
-                className={`p-3 rounded-2xl flex items-center gap-3 transition-all cursor-pointer text-left active:scale-95 border ${
+                className={`px-3 py-2.5 rounded-2xl flex items-center gap-2.5 transition-all cursor-pointer text-left active:scale-95 border min-w-0 ${
                   isWifiOn
-                    ? "bg-purple-600/30 border-purple-500/50 text-white shadow-[0_0_15px_rgba(168,85,247,0.25)]"
+                    ? "bg-purple-600/30 border-purple-500/50 text-white shadow-[0_0_12px_rgba(168,85,247,0.25)]"
                     : "bg-white/5 border-white/10 text-neutral-400 hover:bg-white/10"
                 }`}
               >
@@ -153,7 +154,7 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
                 }`}>
                   <Wifi className="w-4 h-4" />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1 overflow-hidden">
                   <div className="text-xs font-semibold tracking-tight truncate">Wi-Fi</div>
                   <div className="text-[10px] font-mono text-neutral-400 truncate">{isWifiOn ? "Vedant-5G" : "Disconnected"}</div>
                 </div>
@@ -163,9 +164,9 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
               <button
                 type="button"
                 onClick={() => setIsPlaneOn(!isPlaneOn)}
-                className={`p-3 rounded-2xl flex items-center gap-3 transition-all cursor-pointer text-left active:scale-95 border ${
+                className={`px-3 py-2.5 rounded-2xl flex items-center gap-2.5 transition-all cursor-pointer text-left active:scale-95 border min-w-0 ${
                   isPlaneOn
-                    ? "bg-amber-600/30 border-amber-500/50 text-white shadow-[0_0_15px_rgba(245,158,11,0.25)]"
+                    ? "bg-amber-600/30 border-amber-500/50 text-white shadow-[0_0_12px_rgba(245,158,11,0.25)]"
                     : "bg-white/5 border-white/10 text-neutral-400 hover:bg-white/10"
                 }`}
               >
@@ -174,7 +175,7 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
                 }`}>
                   <Plane className="w-4 h-4" />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1 overflow-hidden">
                   <div className="text-xs font-semibold tracking-tight truncate">Airplane</div>
                   <div className="text-[10px] font-mono text-neutral-400 truncate">{isPlaneOn ? "Enabled" : "Off"}</div>
                 </div>
@@ -184,12 +185,12 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
               <button
                 type="button"
                 onClick={() => setTheme(isDarkMode ? "light" : "dark")}
-                className="p-3 rounded-2xl flex items-center gap-3 transition-all cursor-pointer text-left active:scale-95 border bg-purple-600/30 border-purple-500/50 text-white shadow-[0_0_15px_rgba(168,85,247,0.3)] hover:bg-purple-600/40"
+                className="px-3 py-2.5 rounded-2xl flex items-center gap-2.5 transition-all cursor-pointer text-left active:scale-95 border min-w-0 bg-purple-600/30 border-purple-500/50 text-white shadow-[0_0_12px_rgba(168,85,247,0.3)] hover:bg-purple-600/40"
               >
                 <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-purple-400 text-black">
                   {isDarkMode ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4 text-amber-950" />}
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1 overflow-hidden">
                   <div className="text-xs font-semibold tracking-tight truncate">Theme</div>
                   <div className="text-[10px] font-mono text-purple-300 font-bold truncate capitalize">
                     {theme || "Dark"} Mode
@@ -201,9 +202,9 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
               <button
                 type="button"
                 onClick={() => setIsBluetoothOn(!isBluetoothOn)}
-                className={`p-3 rounded-2xl flex items-center gap-3 transition-all cursor-pointer text-left active:scale-95 border ${
+                className={`px-3 py-2.5 rounded-2xl flex items-center gap-2.5 transition-all cursor-pointer text-left active:scale-95 border min-w-0 ${
                   isBluetoothOn
-                    ? "bg-purple-600/30 border-purple-500/50 text-white shadow-[0_0_15px_rgba(168,85,247,0.25)]"
+                    ? "bg-purple-600/30 border-purple-500/50 text-white shadow-[0_0_12px_rgba(168,85,247,0.25)]"
                     : "bg-white/5 border-white/10 text-neutral-400 hover:bg-white/10"
                 }`}
               >
@@ -212,7 +213,7 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
                 }`}>
                   <Bluetooth className="w-4 h-4" />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1 overflow-hidden">
                   <div className="text-xs font-semibold tracking-tight truncate">Bluetooth</div>
                   <div className="text-[10px] font-mono text-neutral-400 truncate">{isBluetoothOn ? "Connected" : "Off"}</div>
                 </div>
@@ -222,9 +223,9 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
               <button
                 type="button"
                 onClick={() => setIsTorchOn(!isTorchOn)}
-                className={`p-3 rounded-2xl flex items-center gap-3 transition-all cursor-pointer text-left active:scale-95 border ${
+                className={`px-3 py-2.5 rounded-2xl flex items-center gap-2.5 transition-all cursor-pointer text-left active:scale-95 border min-w-0 ${
                   isTorchOn
-                    ? "bg-yellow-500/30 border-yellow-400/50 text-white shadow-[0_0_15px_rgba(234,179,8,0.25)]"
+                    ? "bg-yellow-500/30 border-yellow-400/50 text-white shadow-[0_0_12px_rgba(234,179,8,0.25)]"
                     : "bg-white/5 border-white/10 text-neutral-400 hover:bg-white/10"
                 }`}
               >
@@ -233,7 +234,7 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
                 }`}>
                   <Flashlight className="w-4 h-4" />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1 overflow-hidden">
                   <div className="text-xs font-semibold tracking-tight truncate">Torch</div>
                   <div className="text-[10px] font-mono text-neutral-400 truncate">{isTorchOn ? "On" : "Off"}</div>
                 </div>
@@ -243,9 +244,9 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
               <button
                 type="button"
                 onClick={() => setIsRotateOn(!isRotateOn)}
-                className={`p-3 rounded-2xl flex items-center gap-3 transition-all cursor-pointer text-left active:scale-95 border ${
+                className={`px-3 py-2.5 rounded-2xl flex items-center gap-2.5 transition-all cursor-pointer text-left active:scale-95 border min-w-0 ${
                   isRotateOn
-                    ? "bg-purple-600/30 border-purple-500/50 text-white shadow-[0_0_15px_rgba(168,85,247,0.25)]"
+                    ? "bg-purple-600/30 border-purple-500/50 text-white shadow-[0_0_12px_rgba(168,85,247,0.25)]"
                     : "bg-white/5 border-white/10 text-neutral-400 hover:bg-white/10"
                 }`}
               >
@@ -254,7 +255,7 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
                 }`}>
                   <RotateCw className="w-4 h-4" />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1 overflow-hidden">
                   <div className="text-xs font-semibold tracking-tight truncate">Auto-Rotate</div>
                   <div className="text-[10px] font-mono text-neutral-400 truncate">{isRotateOn ? "Portrait" : "Locked"}</div>
                 </div>
@@ -264,9 +265,9 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
               <button
                 type="button"
                 onClick={() => setIsDndOn(!isDndOn)}
-                className={`p-3 rounded-2xl flex items-center gap-3 transition-all cursor-pointer text-left active:scale-95 border ${
+                className={`px-3 py-2.5 rounded-2xl flex items-center gap-2.5 transition-all cursor-pointer text-left active:scale-95 border min-w-0 ${
                   isDndOn
-                    ? "bg-rose-600/30 border-rose-500/50 text-white shadow-[0_0_15px_rgba(244,63,94,0.25)]"
+                    ? "bg-rose-600/30 border-rose-500/50 text-white shadow-[0_0_12px_rgba(244,63,94,0.25)]"
                     : "bg-white/5 border-white/10 text-neutral-400 hover:bg-white/10"
                 }`}
               >
@@ -275,27 +276,37 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
                 }`}>
                   <BellOff className="w-4 h-4" />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1 overflow-hidden">
                   <div className="text-xs font-semibold tracking-tight truncate">DND</div>
-                  <div className="text-[10px] font-mono text-neutral-400 truncate">{isDndOn ? "Priority only" : "Off"}</div>
+                  <div className="text-[10px] font-mono text-neutral-400 truncate">{isDndOn ? "Priority" : "Off"}</div>
                 </div>
               </button>
 
             </div>
 
-            {/* 3. Brightness Slider Bar */}
-            <div className="px-5 pb-3">
-              <div className="p-3 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-3">
-                <Sun className="w-4 h-4 text-purple-300 shrink-0" />
-                <input
-                  type="range"
-                  min="20"
-                  max="100"
-                  value={brightness}
-                  onChange={(e) => setBrightness(Number(e.target.value))}
-                  className="w-full accent-purple-400 bg-neutral-800 h-2 rounded-lg cursor-pointer"
+            {/* 3. Brightness Slider Bar (Live Screen Backlight Control) */}
+            <div className="px-4 pb-2.5">
+              <div className="p-2.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-2.5">
+                <Sun 
+                  className={`w-4 h-4 shrink-0 transition-colors ${
+                    brightness > 50 ? "text-purple-300" : "text-neutral-500"
+                  }`} 
                 />
-                <Sliders className="w-4 h-4 text-neutral-400 shrink-0" />
+                <div className="relative flex-1 flex items-center">
+                  <input
+                    type="range"
+                    min="15"
+                    max="100"
+                    value={brightness}
+                    onChange={(e) => setBrightness(Number(e.target.value))}
+                    className="w-full accent-purple-400 bg-neutral-800 h-2 rounded-lg cursor-pointer"
+                    aria-label="Screen brightness"
+                  />
+                </div>
+                <span className="text-[11px] font-mono text-neutral-300 font-semibold w-7 text-right shrink-0">
+                  {brightness}%
+                </span>
+                <Sliders className="w-3.5 h-3.5 text-neutral-400 shrink-0" />
               </div>
             </div>
 
@@ -303,7 +314,7 @@ export function AndroidQuickSettingsSheet({ isOpen, onClose }: AndroidQuickSetti
             <button
               type="button"
               onClick={onClose}
-              className="w-full py-2.5 bg-white/5 hover:bg-white/10 border-t border-white/10 flex flex-col items-center justify-center gap-1 cursor-pointer transition-colors"
+              className="w-full py-2 bg-white/5 hover:bg-white/10 border-t border-white/10 flex flex-col items-center justify-center gap-1 cursor-pointer transition-colors"
             >
               <div className="w-10 h-1 rounded-full bg-white/30" />
               <div className="flex items-center gap-1 text-[10px] font-mono text-neutral-400">

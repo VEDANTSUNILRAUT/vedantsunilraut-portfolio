@@ -120,7 +120,6 @@ const INTENTS: KnowledgeIntent[] = [
       "fulltime",
       "full-time",
       "logituit",
-      "bytecraft",
       "hashedbit",
       "phn",
       "technohacks",
@@ -128,7 +127,7 @@ const INTENTS: KnowledgeIntent[] = [
       "work history",
     ],
     response: () => ({
-      reply: `💼 **Vedant's Career & Work Experience (8 Key Roles):**\n\n1. 📱 **Software Engineer:** Full-Time at **Logituit** (Mar 2026 – Present)\n   - *Focus:* Native Android App Development, Kotlin, Jetpack Compose & Clean Architecture.\n2. 🚀 **Software Engineer Trainee:** Internship at **Logituit** (Oct 2025 – Mar 2026 · 6 mos)\n3. 💻 **Software Engineering Intern:** **ByteCraft Labs** (6 Months)\n4. 🌐 **Software Development Intern:** **HashedBit Innovations** (JSCMS & LMS platform)\n5. 🤖 **ML & Data Science Intern:** **PHN Technology Pvt Ltd**\n6. ☕ **Java Developer Intern:** **TechnoHacks EduTech**\n7. 🎓 **Virtual AI/ML Intern:** Google AI/ML & AWS Cloud via **EduSkills**\n8. 💻 **Freelance Developer:** High-impact client applications`,
+      reply: `💼 **Vedant's Career & Work Experience (7 Key Roles):**\n\n1. 📱 **Software Engineer:** Full-Time at **Logituit** (Mar 2026 – Present)\n   - *Focus:* Native Android App Development, Kotlin, Jetpack Compose & Clean Architecture.\n2. 🚀 **Software Engineer Trainee:** Internship at **Logituit** (Oct 2025 – Mar 2026 · 6 mos)\n3. 🌐 **Software Development Intern:** **HashedBit Innovations** (JSCMS & LMS platform)\n4. 🤖 **ML & Data Science Intern:** **PHN Technology Pvt Ltd**\n5. ☕ **Java Developer Intern:** **TechnoHacks EduTech**\n6. 🎓 **Virtual AI/ML Intern:** Google AI/ML & AWS Cloud via **EduSkills**\n7. 💻 **Freelance Developer:** High-impact client applications`,
       quickReplies: ["Where is Vedant working?", "What is Vedant's tech stack?"],
     }),
   },

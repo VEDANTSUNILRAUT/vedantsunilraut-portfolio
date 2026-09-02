@@ -12,6 +12,8 @@ interface MobileStateContextType {
   setIsQuickSettingsOpen: (open: boolean) => void;
   scrollPositions: Record<string, number>;
   setScrollPosition: (key: string, pos: number) => void;
+  brightness: number;
+  setBrightness: (val: number) => void;
   resetMobileState: () => void;
 }
 
@@ -22,6 +24,18 @@ export function MobileStateProvider({ children }: { children: React.ReactNode })
   const [isAssistantOpen, setIsAssistantOpen] = useState<boolean>(false);
   const [isQuickSettingsOpen, setIsQuickSettingsOpen] = useState<boolean>(false);
   const [scrollPositions, setScrollPositions] = useState<Record<string, number>>({});
+  const [brightness, setBrightnessState] = useState<number>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("android_emulator_brightness");
+        if (saved) {
+          const parsed = Number(saved);
+          if (!isNaN(parsed) && parsed >= 15 && parsed <= 100) return parsed;
+        }
+      } catch {}
+    }
+    return 85;
+  });
 
   const setActiveTab = useCallback((tab: AndroidTabType) => {
     setActiveTabState(tab);
@@ -29,6 +43,16 @@ export function MobileStateProvider({ children }: { children: React.ReactNode })
 
   const setScrollPosition = useCallback((key: string, pos: number) => {
     setScrollPositions((prev) => ({ ...prev, [key]: pos }));
+  }, []);
+
+  const setBrightness = useCallback((val: number) => {
+    const clamped = Math.max(15, Math.min(100, Math.round(val)));
+    setBrightnessState(clamped);
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.setItem("android_emulator_brightness", String(clamped));
+      } catch {}
+    }
   }, []);
 
   const resetMobileState = useCallback(() => {
@@ -49,6 +73,8 @@ export function MobileStateProvider({ children }: { children: React.ReactNode })
         setIsQuickSettingsOpen,
         scrollPositions,
         setScrollPosition,
+        brightness,
+        setBrightness,
         resetMobileState,
       }}
     >

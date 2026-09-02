@@ -11,7 +11,7 @@ interface AndroidEmulatorProps {
 }
 
 export function AndroidEmulator({ children }: AndroidEmulatorProps) {
-  const { isQuickSettingsOpen, setIsQuickSettingsOpen } = useMobileState();
+  const { isQuickSettingsOpen, setIsQuickSettingsOpen, brightness } = useMobileState();
 
   return (
     <section className="fixed inset-0 z-50 w-full h-[100dvh] flex items-center justify-center p-3 bg-black/95 backdrop-blur-3xl overflow-hidden select-none">
@@ -45,6 +45,16 @@ export function AndroidEmulator({ children }: AndroidEmulatorProps) {
               transform: "translateZ(0)",
             }}
           >
+            {/* Real Physical Backlight Dimming Overlay (Controlled via Quick Settings) */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 pointer-events-none z-[95] transition-opacity duration-75"
+              style={{
+                backgroundColor: "#000000",
+                opacity: Math.max(0, Math.min(0.85, (100 - brightness) / 100 * 0.85)),
+              }}
+            />
+
             {/* Top Android Status Bar: Interactive (Tapping pulls down Quick Settings) */}
             <div className="shrink-0 sticky top-0 left-0 right-0 z-50">
               <AndroidStatusBar onOpenQuickSettings={() => setIsQuickSettingsOpen(true)} />
