@@ -15,41 +15,49 @@ interface SkillItem {
 }
 
 const mobileSkills: SkillItem[] = [
-  { name: "Android Native", symbol: <DevTechIcon name="Android" slug="android" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "Kotlin", symbol: <DevTechIcon name="Kotlin" slug="kotlin" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "Jetpack Compose", symbol: <DevTechIcon name="Jetpack Compose" slug="jetpackcompose" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "Kotlin Multiplatform", symbol: <DevTechIcon name="Kotlin Multiplatform" slug="kmp" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "Java", symbol: <DevTechIcon name="Java" slug="java" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "Android Studio", symbol: <DevTechIcon name="Android Studio" slug="androidstudio" className="w-5 h-5 sm:w-6 sm:h-6" /> },
+  { name: "Android Native", symbol: <DevTechIcon name="Android" slug="android" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "Kotlin", symbol: <DevTechIcon name="Kotlin" slug="kotlin" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "Jetpack Compose", symbol: <DevTechIcon name="Jetpack Compose" slug="jetpackcompose" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "Kotlin Multiplatform", symbol: <DevTechIcon name="Kotlin Multiplatform" slug="kmp" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "Java", symbol: <DevTechIcon name="Java" slug="java" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "Android Studio", symbol: <DevTechIcon name="Android Studio" slug="androidstudio" className="w-7 h-7 sm:w-8 sm:h-8" /> },
 ];
 
 const frontendSkills: SkillItem[] = [
-  { name: "Next.js", symbol: <DevTechIcon name="Next.js" slug="nextjs" invertOnDark className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "React.js", symbol: <DevTechIcon name="React" slug="react" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "TypeScript", symbol: <DevTechIcon name="TypeScript" slug="typescript" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "Tailwind CSS", symbol: <DevTechIcon name="Tailwind CSS" slug="tailwindcss" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "HTML5 / CSS3", symbol: <DevTechIcon name="HTML5" slug="html5" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "JavaScript", symbol: <DevTechIcon name="JavaScript" slug="javascript" className="w-5 h-5 sm:w-6 sm:h-6" /> },
+  { name: "Next.js", symbol: <DevTechIcon name="Next.js" slug="nextjs" invertOnDark className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "React.js", symbol: <DevTechIcon name="React" slug="react" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "TypeScript", symbol: <DevTechIcon name="TypeScript" slug="typescript" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "Tailwind CSS", symbol: <DevTechIcon name="Tailwind CSS" slug="tailwindcss" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { 
+    name: "HTML5 / CSS3", 
+    symbol: (
+      <div className="flex items-center gap-1.5 shrink-0">
+        <DevTechIcon name="HTML5" slug="html5" className="w-6 h-6 sm:w-7 sm:h-7" />
+        <DevTechIcon name="CSS3" slug="css3" className="w-6 h-6 sm:w-7 sm:h-7" />
+      </div>
+    ) 
+  },
+  { name: "JavaScript", symbol: <DevTechIcon name="JavaScript" slug="javascript" className="w-7 h-7 sm:w-8 sm:h-8" /> },
 ];
 
 const backendSkills: SkillItem[] = [
-  { name: "Node.js", symbol: <DevTechIcon name="Node.js" slug="nodedotjs" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "Express.js", symbol: <DevTechIcon name="Express" slug="express" invertOnDark className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "MySQL", symbol: <DevTechIcon name="MySQL" slug="mysql" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "PostgreSQL", symbol: <DevTechIcon name="PostgreSQL" slug="postgresql" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "PHP", symbol: <DevTechIcon name="PHP" slug="php" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "REST APIs", symbol: <DevTechIcon name="Postman" slug="postman" className="w-5 h-5 sm:w-6 sm:h-6" /> },
+  { name: "Node.js", symbol: <DevTechIcon name="Node.js" slug="nodejs" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "Express.js", symbol: <DevTechIcon name="Express" slug="express" invertOnDark className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "MySQL", symbol: <DevTechIcon name="MySQL" slug="mysql" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "PostgreSQL", symbol: <DevTechIcon name="PostgreSQL" slug="postgresql" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "PHP", symbol: <DevTechIcon name="PHP" slug="php" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "REST APIs", symbol: <DevTechIcon name="Postman" slug="postman" className="w-7 h-7 sm:w-8 sm:h-8" /> },
 ];
 
 const toolsSkills: SkillItem[] = [
-  { name: "Git / GitHub", symbol: <DevTechIcon name="Git" slug="git" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "Docker", symbol: <DevTechIcon name="Docker" slug="docker" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "Gradle (Kotlin DSL)", symbol: <DevTechIcon name="Gradle" slug="gradle" invertOnDark className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "Firebase", symbol: <DevTechIcon name="Firebase" slug="firebase" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "VS Code", symbol: <DevTechIcon name="VS Code" slug="visualstudiocode" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "Jira / Agile", symbol: <DevTechIcon name="Jira" slug="jira" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "Figma", symbol: <DevTechIcon name="Figma" slug="figma" className="w-5 h-5 sm:w-6 sm:h-6" /> },
-  { name: "AI Dev Tools", symbol: <DevTechIcon name="OpenAI" slug="openai" invertOnDark className="w-5 h-5 sm:w-6 sm:h-6" /> },
+  { name: "Git / GitHub", symbol: <DevTechIcon name="Git" slug="git" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "Docker", symbol: <DevTechIcon name="Docker" slug="docker" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "Gradle (DSL)", symbol: <DevTechIcon name="Gradle" slug="gradle" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "Firebase", symbol: <DevTechIcon name="Firebase" slug="firebase" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "VS Code", symbol: <DevTechIcon name="VS Code" slug="vscode" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "Jira / Agile", symbol: <DevTechIcon name="Jira" slug="jira" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "Figma", symbol: <DevTechIcon name="Figma" slug="figma" className="w-7 h-7 sm:w-8 sm:h-8" /> },
+  { name: "AI Dev Tools", symbol: <DevTechIcon name="OpenAI" slug="openai" invertOnDark className="w-7 h-7 sm:w-8 sm:h-8" /> },
 ];
 
 export function SkillsSection({ className = "" }: SkillsSectionProps) {
@@ -128,16 +136,16 @@ export function SkillsSection({ className = "" }: SkillsSectionProps) {
             </div>
 
             {/* Skills Grid Inside Bento Box */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 z-10 mt-2">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3 z-10 mt-2">
               {mobileSkills.map((item, idx) => (
                 <div
                   key={idx}
-                  className="group/item flex items-center gap-2.5 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-400/50 hover:bg-emerald-500/10 transition-all duration-300 cursor-pointer shadow-md"
+                  className="group/item flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-400/50 hover:bg-emerald-500/10 transition-all duration-300 cursor-pointer shadow-md"
                 >
-                  <div className="w-6 h-6 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
                     {item.symbol}
                   </div>
-                  <span className="text-xs font-mono text-neutral-200 group-hover/item:text-white truncate font-medium">
+                  <span className="text-xs sm:text-[13px] font-mono text-neutral-200 group-hover/item:text-white font-medium leading-tight" title={item.name}>
                     {item.name}
                   </span>
                 </div>
@@ -182,16 +190,16 @@ export function SkillsSection({ className = "" }: SkillsSectionProps) {
             </div>
 
             {/* Skills Grid Inside Bento Box */}
-            <div className="grid grid-cols-2 gap-2.5 z-10 mt-2">
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3 z-10 mt-2">
               {frontendSkills.map((item, idx) => (
                 <div
                   key={idx}
-                  className="group/item flex items-center gap-2.5 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-blue-400/50 hover:bg-blue-500/10 transition-all duration-300 cursor-pointer shadow-md"
+                  className="group/item flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10 hover:border-blue-400/50 hover:bg-blue-500/10 transition-all duration-300 cursor-pointer shadow-md"
                 >
-                  <div className="w-6 h-6 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
+                  <div className="min-w-8 h-8 sm:min-w-9 sm:h-9 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
                     {item.symbol}
                   </div>
-                  <span className="text-xs font-mono text-neutral-200 group-hover/item:text-white truncate font-medium">
+                  <span className="text-xs sm:text-[13px] font-mono text-neutral-200 group-hover/item:text-white font-medium leading-tight" title={item.name}>
                     {item.name}
                   </span>
                 </div>
@@ -236,16 +244,16 @@ export function SkillsSection({ className = "" }: SkillsSectionProps) {
             </div>
 
             {/* Skills Grid Inside Bento Box */}
-            <div className="grid grid-cols-2 gap-2.5 z-10 mt-2">
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3 z-10 mt-2">
               {backendSkills.map((item, idx) => (
                 <div
                   key={idx}
-                  className="group/item flex items-center gap-2.5 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-purple-400/50 hover:bg-purple-500/10 transition-all duration-300 cursor-pointer shadow-md"
+                  className="group/item flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10 hover:border-purple-400/50 hover:bg-purple-500/10 transition-all duration-300 cursor-pointer shadow-md"
                 >
-                  <div className="w-6 h-6 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
                     {item.symbol}
                   </div>
-                  <span className="text-xs font-mono text-neutral-200 group-hover/item:text-white truncate font-medium">
+                  <span className="text-xs sm:text-[13px] font-mono text-neutral-200 group-hover/item:text-white font-medium leading-tight" title={item.name}>
                     {item.name}
                   </span>
                 </div>
@@ -293,16 +301,16 @@ export function SkillsSection({ className = "" }: SkillsSectionProps) {
             </div>
 
             {/* Skills Grid Inside Bento Box */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 z-10 mt-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 z-10 mt-2">
               {toolsSkills.map((item, idx) => (
                 <div
                   key={idx}
-                  className="group/item flex items-center gap-2.5 p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-amber-400/50 hover:bg-amber-500/10 transition-all duration-300 cursor-pointer shadow-md"
+                  className="group/item flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10 hover:border-amber-400/50 hover:bg-amber-500/10 transition-all duration-300 cursor-pointer shadow-md"
                 >
-                  <div className="w-6 h-6 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
                     {item.symbol}
                   </div>
-                  <span className="text-xs font-mono text-neutral-200 group-hover/item:text-white truncate font-medium">
+                  <span className="text-xs sm:text-[13px] font-mono text-neutral-200 group-hover/item:text-white font-medium leading-tight" title={item.name}>
                     {item.name}
                   </span>
                 </div>
