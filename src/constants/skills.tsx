@@ -3,11 +3,16 @@ import { SkillItem, TechBadgeItem } from "@/types/skills";
 import { DevTechIcon } from "@/components/ui/DevTechIcon/DevTechIcon";
 import { themeConfig } from "./theme";
 
-export const techBadges: TechBadgeItem[] = [
-  { name: "Kotlin", color: `text-purple-300 ${themeConfig.accents.purple.pillClass}` },
+export const androidTechBadges: TechBadgeItem[] = [
   { name: "Android Native", color: `text-violet-300 ${themeConfig.accents.emerald.pillClass}` },
+  { name: "Kotlin", color: `text-purple-300 ${themeConfig.accents.purple.pillClass}` },
   { name: "Jetpack Compose", color: `text-purple-300 ${themeConfig.accents.cyan.pillClass}` },
   { name: "KMP (Multiplatform)", color: `text-fuchsia-300 ${themeConfig.accents.amber.pillClass}` },
+  { name: "Android Studio", color: `text-violet-300 ${themeConfig.accents.emerald.pillClass}` },
+  { name: "Java", color: `text-purple-300 ${themeConfig.accents.purple.pillClass}` },
+];
+
+export const otherTechBadges: TechBadgeItem[] = [
   { name: "Next.js", color: "text-white border-white/20 bg-white/10" },
   { name: "React", color: `text-violet-300 ${themeConfig.accents.teal.pillClass}` },
   { name: "TypeScript", color: `text-indigo-300 ${themeConfig.accents.blue.pillClass}` },
@@ -15,6 +20,11 @@ export const techBadges: TechBadgeItem[] = [
   { name: "Spring Boot", color: `text-violet-300 ${themeConfig.accents.emerald.pillClass}` },
   { name: "Git & GitHub", color: `text-fuchsia-300 ${themeConfig.accents.rose.pillClass}` },
   { name: "Docker", color: `text-purple-300 ${themeConfig.accents.sky.pillClass}` },
+];
+
+export const techBadges: TechBadgeItem[] = [
+  ...androidTechBadges,
+  ...otherTechBadges,
 ];
 
 export const projectTags: string[] = [

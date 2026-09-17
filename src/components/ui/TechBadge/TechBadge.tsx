@@ -5,11 +5,19 @@ import { DevTechIcon } from "@/components/ui/DevTechIcon/DevTechIcon";
 const badgeSlugMap: Record<string, { slug: string; invertOnDark?: boolean; variant?: string }> = {
   "Kotlin": { slug: "kotlin" },
   "Android SDK": { slug: "android" },
-  "Jetpack Compose": { slug: "androidstudio" },
+  "Android Native": { slug: "android" },
+  "Android": { slug: "android" },
+  "Android Studio": { slug: "androidstudio" },
+  "Jetpack Compose": { slug: "jetpackcompose" },
+  "KMP (Multiplatform)": { slug: "kmp" },
+  "KMP": { slug: "kmp" },
+  "Kotlin Multiplatform": { slug: "kmp" },
+  "React": { slug: "react" },
   "React.js": { slug: "react" },
   "Next.js": { slug: "nextjs", invertOnDark: true },
   "Node.js": { slug: "nodejs" },
   "TypeScript": { slug: "typescript" },
+  "Spring Boot": { slug: "spring" },
   "VS Code": { slug: "vscode" },
   "Git & GitHub": { slug: "github", invertOnDark: true },
   "Express.js": { slug: "express", invertOnDark: true },
@@ -29,7 +37,7 @@ export function TechBadge({ name, color = "text-neutral-300 border-neutral-500/2
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-xl border text-xs font-mono font-medium transition-transform hover:scale-105 ${color} ${className}`}
+      className={`inline-flex shrink-0 whitespace-nowrap items-center gap-1.5 px-3 py-1 rounded-xl border text-xs font-mono font-medium transition-transform hover:scale-105 ${color} ${className}`}
     >
       {badgeConfig && (
         <DevTechIcon 

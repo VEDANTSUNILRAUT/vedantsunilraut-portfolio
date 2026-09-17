@@ -32,6 +32,18 @@ export const themeConfig = {
     glassBorderDark: "rgba(255, 255, 255, 0.1)",
   },
 
+  // Light Mode System Colors (Slate, White, Violet)
+  light: {
+    background: "#f8fafc",
+    foreground: "#09090b",
+    surfaceCard: "#ffffff",
+    surfaceMuted: "#f1f5f9",
+    border: "#e2e8f0",
+    borderSubtle: "#ede9fe",
+    glassBg: "rgba(255, 255, 255, 0.85)",
+    glassBorder: "rgba(0, 0, 0, 0.08)",
+  },
+
   // Accent Palette mapping harmonized around Violet / Charcoal / White
   accents: {
     purple: {

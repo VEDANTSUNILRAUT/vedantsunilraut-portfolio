@@ -371,13 +371,14 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
     const render = () => {
       time += 0.015;
       primaryMidRgb = getPrimaryMidRgb();
+      const isLight = document.documentElement.classList.contains("light");
 
       mouseX += (targetMouseX - mouseX) * 0.05;
       mouseY += (targetMouseY - mouseY) * 0.05;
       scrollY += (targetScrollY - scrollY) * 0.08;
 
-      // Base Clear
-      ctx.fillStyle = "#000000";
+      // Base Clear - Dynamic theme background
+      ctx.fillStyle = isLight ? "#f8fafc" : "#050508";
       ctx.fillRect(0, 0, width, height);
 
       // Star Particles & Neural Connections
@@ -392,8 +393,8 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
         const currentAlpha = star.alpha * (0.6 + 0.4 * Math.sin(time * 2 + star.pulseOffset));
         const radius = star.baseRadius * star.z;
 
-        ctx.fillStyle = star.color;
-        ctx.globalAlpha = currentAlpha;
+        ctx.fillStyle = isLight ? "#8b5cf6" : star.color;
+        ctx.globalAlpha = isLight ? currentAlpha * 0.55 : currentAlpha;
         ctx.beginPath();
         ctx.arc(renderX, renderY, radius, 0, Math.PI * 2);
         ctx.fill();
@@ -480,8 +481,8 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
 
           const streakGrad = ctx.createLinearGradient(tailX, tailY, star.x, star.y);
           streakGrad.addColorStop(0, "rgba(255, 255, 255, 0)");
-          streakGrad.addColorStop(0.6, `rgba(${primaryMidRgb}, ${alpha * 0.6})`);
-          streakGrad.addColorStop(1, `rgba(255, 255, 255, ${alpha * 0.95})`);
+          streakGrad.addColorStop(0.6, `rgba(${primaryMidRgb}, ${alpha * 0.7})`);
+          streakGrad.addColorStop(1, isLight ? `rgba(${primaryMidRgb}, ${alpha * 0.95})` : `rgba(255, 255, 255, ${alpha * 0.95})`);
 
           ctx.strokeStyle = streakGrad;
           ctx.lineWidth = 1.8;
@@ -490,7 +491,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
           ctx.lineTo(star.x, star.y);
           ctx.stroke();
 
-          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+          ctx.fillStyle = isLight ? `rgba(${primaryMidRgb}, ${alpha})` : `rgba(255, 255, 255, ${alpha})`;
           ctx.beginPath();
           ctx.arc(star.x, star.y, 1.8, 0, Math.PI * 2);
           ctx.fill();

@@ -126,7 +126,7 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/devicon/devicon@latest/devicon.min.css"
         />
       </head>
-      <body className="relative min-h-screen bg-black text-white overflow-x-hidden transition-colors duration-300">
+      <body className="relative min-h-screen bg-background text-foreground overflow-x-hidden transition-colors duration-300">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

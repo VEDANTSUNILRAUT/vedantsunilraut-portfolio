@@ -27,12 +27,12 @@ export function AndroidStatusBar({ onOpenQuickSettings }: AndroidStatusBarProps)
   return (
     <header 
       onClick={onOpenQuickSettings}
-      className="w-full h-8 sm:h-9 px-4 sm:px-6 flex items-center justify-between text-neutral-200 bg-black/40 hover:bg-black/60 transition-colors backdrop-blur-xl border-b border-white/5 select-none z-50 font-sans tracking-tight text-xs cursor-pointer group"
+      className="w-full h-8 sm:h-9 px-4 sm:px-6 flex items-center justify-between text-neutral-800 dark:text-neutral-200 bg-white/70 dark:bg-black/40 hover:bg-white/90 dark:hover:bg-black/60 transition-colors backdrop-blur-xl border-b border-black/5 dark:border-white/5 select-none z-50 font-sans tracking-tight text-xs cursor-pointer group"
       title="Tap to open Quick Settings"
     >
       {/* Left: Time & Notification Badges */}
       <div className="flex items-center gap-2.5">
-        <span className="font-semibold text-[11px] sm:text-xs text-white tracking-wide">
+        <span className="font-semibold text-[11px] sm:text-xs text-neutral-900 dark:text-white tracking-wide">
           {timeStr || "10:24"}
         </span>
 

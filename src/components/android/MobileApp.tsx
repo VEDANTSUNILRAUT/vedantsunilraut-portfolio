@@ -63,7 +63,7 @@ export function MobileApp({ isEmulator = false, className = "" }: MobileAppProps
   return (
     <AndroidToastProvider>
       <div
-        className={`w-full flex flex-col justify-between bg-black text-white relative z-20 font-sans ${
+        className={`w-full flex flex-col justify-between bg-slate-50 dark:bg-black text-neutral-900 dark:text-white relative z-20 font-sans transition-colors duration-300 ${
           isEmulator ? "h-full min-h-0 overflow-hidden" : "fixed inset-0 h-[100dvh] w-full overflow-hidden"
         } ${className}`}
       >

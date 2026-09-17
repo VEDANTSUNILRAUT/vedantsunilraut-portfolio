@@ -23,7 +23,7 @@ export function AndroidBottomNav({ activeTab, setActiveTab }: AndroidBottomNavPr
     <nav
       role="navigation"
       aria-label="Android Bottom Navigation"
-      className="w-full h-16 bg-neutral-950/95 border-t border-white/10 backdrop-blur-2xl px-2 flex items-center justify-around z-40 select-none pb-1.5 pt-1"
+      className="w-full h-16 bg-white/90 dark:bg-neutral-950/95 border-t border-black/10 dark:border-white/10 backdrop-blur-2xl px-2 flex items-center justify-around z-40 select-none pb-1.5 pt-1"
     >
       {tabs.map((tab) => {
         const Icon = tab.icon;
@@ -42,12 +42,12 @@ export function AndroidBottomNav({ activeTab, setActiveTab }: AndroidBottomNavPr
                 <motion.div
                   layoutId="androidBottomNavPill"
                   transition={{ type: "spring", stiffness: 450, damping: 30 }}
-                  className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600/30 via-fuchsia-600/20 to-purple-600/30 border border-purple-500/40 shadow-[0_0_16px_rgba(168,85,247,0.35)]"
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600/20 via-fuchsia-600/15 to-purple-600/20 border border-purple-500/40 shadow-[0_0_16px_rgba(168,85,247,0.25)]"
                 />
               )}
               <Icon
                 className={`w-5 h-5 relative z-10 transition-all duration-200 ${
-                  isActive ? "text-purple-300 scale-110" : "text-neutral-400 group-hover:text-neutral-200"
+                  isActive ? "text-purple-600 dark:text-purple-300 scale-110" : "text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-800 dark:group-hover:text-neutral-200"
                 }`}
               />
             </div>
@@ -55,7 +55,7 @@ export function AndroidBottomNav({ activeTab, setActiveTab }: AndroidBottomNavPr
             {/* Label */}
             <span
               className={`text-[10px] font-mono mt-0.5 transition-colors tracking-tight ${
-                isActive ? "text-purple-300 font-bold" : "text-neutral-400"
+                isActive ? "text-purple-600 dark:text-purple-300 font-bold" : "text-neutral-500 dark:text-neutral-400"
               }`}
             >
               {tab.label}

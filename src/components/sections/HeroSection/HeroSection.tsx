@@ -2,6 +2,8 @@
 
 import { useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
+import { useIsMounted } from "@/hooks/useIsMounted";
 import { siteConfig } from "@/constants/site";
 import { TypewriterReveal } from "@/components/ui/TypewriterReveal";
 import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
@@ -26,7 +28,9 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
     getGreetingSnapshot,
     () => "Good Morning"
   );
-
+  const { theme } = useTheme();
+  const isMounted = useIsMounted();
+  const isLight = isMounted && theme === "light";
 
   return (
     <section id="home" className={`relative w-full min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-36 sm:pb-44 overflow-hidden scroll-mt-36 snap-start ${className}`}>
@@ -38,7 +42,7 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-1.5 inline-flex items-center gap-1.5 text-sm sm:text-base md:text-lg font-source-code-pro font-medium tracking-wide text-neutral-300"
+          className="mb-1.5 inline-flex items-center gap-1.5 text-sm sm:text-base md:text-lg font-source-code-pro font-medium tracking-wide text-neutral-600 dark:text-neutral-300"
         >
           <span>Hello</span>
           <motion.span
@@ -67,9 +71,9 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
             text="I am Vedant"
             disabled={false}
             speed={3}
-            className="font-semibold text-white cursor-default"
-            color="#ffffff"
-            shineColor="#c084fc"
+            className="font-semibold text-neutral-900 dark:text-white cursor-default"
+            color={isLight ? "#09090b" : "#ffffff"}
+            shineColor={isLight ? "#7c3aed" : "#c084fc"}
             spread={120}
           />
         </motion.p>
@@ -79,7 +83,7 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="font-eb-garamond text-4xl sm:text-6xl lg:text-7xl leading-[1.25] max-w-3xl text-balance tracking-tight text-white font-normal"
+          className="font-eb-garamond text-4xl sm:text-6xl lg:text-7xl leading-[1.25] max-w-3xl text-balance tracking-tight text-neutral-900 dark:text-white font-normal"
         >
           I create digital journeys that spark innovation{" "}
           <span className="italic-gradient-text block sm:inline font-semibold">
@@ -88,7 +92,7 @@ export function HeroSection({ className = "" }: HeroSectionProps) {
         </motion.h1>
 
         {/* Typewriter Subtitle */}
-        <div className="mt-6 font-source-code-pro text-sm sm:text-base text-neutral-300 max-w-2xl leading-relaxed min-h-[30px]">
+        <div className="mt-6 font-source-code-pro text-sm sm:text-base text-neutral-600 dark:text-neutral-300 max-w-2xl leading-relaxed min-h-[30px]">
           <TypewriterReveal text={siteConfig.hero.subtitle} delay={0.6} />
         </div>
 

@@ -46,7 +46,7 @@ export function AndroidTopBar({ activeScreen }: AndroidTopBarProps) {
   const badge = getScreenBadge();
 
   return (
-    <header className="w-full px-3.5 py-2.5 bg-neutral-950/90 border-b border-white/10 backdrop-blur-2xl flex items-center justify-between z-30 select-none">
+    <header className="w-full px-3.5 py-2.5 bg-white/90 dark:bg-neutral-950/90 border-b border-black/10 dark:border-white/10 backdrop-blur-2xl flex items-center justify-between z-30 select-none">
       {/* App Branding & Avatar */}
       <div className="flex items-center gap-2.5 min-w-0">
         <div className="relative w-8 h-8 rounded-xl bg-gradient-to-br from-purple-600/30 to-neutral-900 border border-purple-500/40 flex items-center justify-center overflow-hidden shrink-0 shadow-md">
@@ -55,14 +55,14 @@ export function AndroidTopBar({ activeScreen }: AndroidTopBarProps) {
         </div>
         <div className="flex flex-col min-w-0">
           <div className="flex items-center gap-1.5">
-            <span className="text-xs font-bold text-white tracking-tight truncate">
+            <span className="text-xs font-bold text-neutral-900 dark:text-white tracking-tight truncate">
               {siteConfig.brand.fullName}
             </span>
-            <span className="text-[9px] px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 font-mono font-semibold border border-purple-500/30">
+            <span className="text-[9px] px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-600 dark:text-purple-300 font-mono font-semibold border border-purple-500/30">
               v2.0
             </span>
           </div>
-          <span className="text-[10px] font-mono text-neutral-400 truncate">
+          <span className="text-[10px] font-mono text-neutral-600 dark:text-neutral-400 truncate">
             Software Engineer @ Logituit
           </span>
         </div>
@@ -79,7 +79,7 @@ export function AndroidTopBar({ activeScreen }: AndroidTopBarProps) {
         <button
           onClick={handleShare}
           aria-label="Share profile"
-          className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 active:scale-90 flex items-center justify-center text-neutral-300 hover:text-white transition-all cursor-pointer shadow-sm"
+          className="w-8 h-8 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 active:scale-90 flex items-center justify-center text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-all cursor-pointer shadow-sm"
         >
           <Share2 className="w-3.5 h-3.5" />
         </button>
@@ -88,12 +88,12 @@ export function AndroidTopBar({ activeScreen }: AndroidTopBarProps) {
         <button
           onClick={handleToggleTheme}
           aria-label="Toggle theme"
-          className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 active:scale-90 flex items-center justify-center text-neutral-300 hover:text-white transition-all cursor-pointer shadow-sm"
+          className="w-8 h-8 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 hover:bg-black/10 dark:hover:bg-white/10 active:scale-90 flex items-center justify-center text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-all cursor-pointer shadow-sm"
         >
           {theme === "dark" ? (
             <Sun className="w-3.5 h-3.5 text-amber-300" />
           ) : (
-            <Moon className="w-3.5 h-3.5 text-purple-400" />
+            <Moon className="w-3.5 h-3.5 text-purple-600" />
           )}
         </button>
       </div>

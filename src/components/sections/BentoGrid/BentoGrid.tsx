@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { MapPin, Copy, Check, Smartphone, Layers, PenTool, Activity, Compass, Sparkles, Zap } from "lucide-react";
 import { siteConfig } from "@/constants/site";
-import { techBadges, projectTags } from "@/constants/skills";
+import { androidTechBadges, otherTechBadges, projectTags } from "@/constants/skills";
 import { useClipboard } from "@/hooks/useClipboard";
 import { TechBadge } from "@/components/ui/TechBadge";
 import { BentoGridProps } from "./BentoGrid.types";
@@ -209,11 +209,41 @@ export function BentoGrid({ className = "" }: BentoGridProps) {
               Enthusiastic About Innovative and futuristic Tech
             </h3>
 
-            {/* Structured Tech Stack Badges Grid */}
-            <div className="flex flex-wrap gap-2 my-4">
-              {techBadges.map((badge, idx) => (
-                <TechBadge key={idx} name={badge.name} color={badge.color} />
-              ))}
+            {/* Seamless Infinite Horizontal Technology Marquee */}
+            <div className="relative -mx-6 sm:-mx-7 overflow-hidden py-1 my-3 [mask-image:linear-gradient(to_right,transparent_0%,black_1.5rem,black_calc(100%-1.5rem),transparent_100%)] select-none pointer-events-auto">
+              <div className="flex flex-col gap-2.5">
+                {/* Row 1: Android Tech - Moving LEFT -> RIGHT */}
+                <div className="flex w-max animate-marquee-right">
+                  {/* Technology Set 1 */}
+                  <div className="flex shrink-0 items-center gap-2 pr-2">
+                    {[...androidTechBadges, ...androidTechBadges].map((badge, idx) => (
+                      <TechBadge key={`r1-s1-${idx}`} name={badge.name} color={badge.color} />
+                    ))}
+                  </div>
+                  {/* Duplicate Technology Set 2 */}
+                  <div className="flex shrink-0 items-center gap-2 pr-2" aria-hidden="true">
+                    {[...androidTechBadges, ...androidTechBadges].map((badge, idx) => (
+                      <TechBadge key={`r1-s2-${idx}`} name={badge.name} color={badge.color} />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Row 2: Other Tech - Moving RIGHT -> LEFT */}
+                <div className="flex w-max animate-marquee-slower">
+                  {/* Technology Set 1 */}
+                  <div className="flex shrink-0 items-center gap-2 pr-2">
+                    {[...otherTechBadges, ...otherTechBadges].map((badge, idx) => (
+                      <TechBadge key={`r2-s1-${idx}`} name={badge.name} color={badge.color} />
+                    ))}
+                  </div>
+                  {/* Duplicate Technology Set 2 */}
+                  <div className="flex shrink-0 items-center gap-2 pr-2" aria-hidden="true">
+                    {[...otherTechBadges, ...otherTechBadges].map((badge, idx) => (
+                      <TechBadge key={`r2-s2-${idx}`} name={badge.name} color={badge.color} />
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 

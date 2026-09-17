@@ -15,7 +15,7 @@ export function NavPill({ className = "" }: NavPillProps) {
   };
 
   return (
-    <nav className={`hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-nav shadow-lg border border-white/10 dark:border-white/10 backdrop-blur-xl bg-black/40 dark:bg-black/40 ${className}`}>
+    <nav className={`hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-nav shadow-lg border border-black/10 dark:border-white/10 backdrop-blur-xl bg-white/80 dark:bg-black/40 ${className}`}>
       {siteConfig.navigation.map((item) => {
         const isActive =
           pathname === item.href ||
@@ -27,7 +27,7 @@ export function NavPill({ className = "" }: NavPillProps) {
               key={item.label}
               href={item.href}
               onClick={handleNavClick}
-              className="ml-1 px-3.5 py-1 rounded-full border border-white/30 dark:border-white/30 text-xs font-semibold text-white hover:bg-white/10 transition-all duration-200"
+              className="ml-1 px-3.5 py-1 rounded-full border border-black/20 dark:border-white/30 text-xs font-semibold text-neutral-900 dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-200"
             >
               {item.label}
             </Link>
@@ -41,13 +41,13 @@ export function NavPill({ className = "" }: NavPillProps) {
             onClick={handleNavClick}
             className={`relative px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
               isActive
-                ? "text-purple-300 font-semibold"
-                : "text-neutral-300 hover:text-white"
+                ? "text-purple-600 dark:text-purple-300 font-semibold"
+                : "text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white"
             }`}
           >
             {item.label}
             {isActive && (
-              <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-purple-400 shadow-[0_0_8px_rgba(192,132,252,0.8)]" />
+              <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-purple-600 dark:bg-purple-400 shadow-[0_0_8px_rgba(147,51,234,0.8)]" />
             )}
           </Link>
         );

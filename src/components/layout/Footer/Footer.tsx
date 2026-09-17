@@ -8,54 +8,54 @@ import { FooterProps } from "./Footer.types";
 
 export function Footer({ className = "" }: FooterProps) {
   return (
-    <footer id="contact" className={`w-full relative bg-black text-white overflow-hidden pt-12 sm:pt-16 pb-8 z-10 scroll-mt-12 sm:scroll-mt-16 snap-start ${className}`}>
+    <footer id="contact" className={`w-full relative bg-transparent text-neutral-900 dark:text-white overflow-hidden pt-12 sm:pt-16 pb-8 z-10 scroll-mt-12 sm:scroll-mt-16 snap-start ${className}`}>
       {/* Top Faded Soft Ambient Line */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         
         {/* 4-Column Footer Navigation & Links Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-black/10 dark:border-white/10">
           
           {/* Column 1: Brand Info (5 Cols) */}
           <div className="md:col-span-5 space-y-2.5">
             <Logo />
-            <p className="font-source-code-pro text-xs text-neutral-400 max-w-sm leading-relaxed">
+            <p className="font-source-code-pro text-xs text-neutral-600 dark:text-neutral-400 max-w-sm leading-relaxed">
               Vedant Raut — Software Engineer at Logituit. Building high-performance native mobile applications, Kotlin Multiplatform solutions, and modern digital platforms.
             </p>
             <div className="flex items-center gap-2 pt-1">
-              <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-              <span className="text-xs font-mono text-neutral-300">Software Engineer @ Logituit · Open to Connect</span>
+              <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
+              <span className="text-xs font-mono text-neutral-700 dark:text-neutral-300">Software Engineer @ Logituit · Open to Connect</span>
             </div>
           </div>
 
           {/* Column 2: Quick Links (3 Cols) */}
           <div className="md:col-span-3 space-y-2">
-            <h4 className="text-xs font-mono uppercase tracking-wider text-purple-400 font-semibold mb-2.5">
+            <h4 className="text-xs font-mono uppercase tracking-wider text-purple-600 dark:text-purple-400 font-semibold mb-2.5">
               Navigation
             </h4>
-            <ul className="space-y-1.5 text-xs font-mono text-neutral-400">
+            <ul className="space-y-1.5 text-xs font-mono text-neutral-600 dark:text-neutral-400">
               <li>
-                <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                <Link href="/" className="hover:text-neutral-900 dark:hover:text-white transition-colors">Home</Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-white transition-colors">About</Link>
+                <Link href="/about" className="hover:text-neutral-900 dark:hover:text-white transition-colors">About</Link>
               </li>
               <li>
-                <Link href="/work" className="hover:text-white transition-colors">Work Experience</Link>
+                <Link href="/work" className="hover:text-neutral-900 dark:hover:text-white transition-colors">Work Experience</Link>
               </li>
               <li>
-                <Link href="/projects" className="hover:text-white transition-colors">Projects</Link>
+                <Link href="/projects" className="hover:text-neutral-900 dark:hover:text-white transition-colors">Projects</Link>
               </li>
               <li>
-                <Link href="/hire" className="hover:text-white transition-colors">Contact</Link>
+                <Link href="/hire" className="hover:text-neutral-900 dark:hover:text-white transition-colors">Contact</Link>
               </li>
             </ul>
           </div>
 
           {/* Column 3: Social Links (4 Cols) */}
           <div className="md:col-span-4 space-y-2">
-            <h4 className="text-xs font-mono uppercase tracking-wider text-purple-400 font-semibold mb-2.5">
+            <h4 className="text-xs font-mono uppercase tracking-wider text-purple-600 dark:text-purple-400 font-semibold mb-2.5">
               Connect & Socials
             </h4>
             <div className="flex flex-wrap gap-2">
@@ -63,27 +63,27 @@ export function Footer({ className = "" }: FooterProps) {
                 href={siteConfig.socials.github}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-neutral-300 hover:text-white hover:border-purple-400/40 transition-colors"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs font-mono text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:border-purple-400/40 transition-colors"
               >
-                <Github className="w-3.5 h-3.5 text-purple-400" />
+                <Github className="w-3.5 h-3.5 text-purple-500" />
                 <span>GitHub</span>
               </a>
               <a
                 href={siteConfig.socials.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-neutral-300 hover:text-white hover:border-purple-400/40 transition-colors"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs font-mono text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:border-purple-400/40 transition-colors"
               >
-                <Linkedin className="w-3.5 h-3.5 text-blue-400" />
+                <Linkedin className="w-3.5 h-3.5 text-blue-500" />
                 <span>LinkedIn</span>
               </a>
               <a
                 href={siteConfig.socials.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-neutral-300 hover:text-white hover:border-purple-400/40 transition-colors"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs font-mono text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:border-purple-400/40 transition-colors"
               >
-                <Instagram className="w-3.5 h-3.5 text-pink-400" />
+                <Instagram className="w-3.5 h-3.5 text-pink-500" />
                 <span>Instagram</span>
               </a>
             </div>
