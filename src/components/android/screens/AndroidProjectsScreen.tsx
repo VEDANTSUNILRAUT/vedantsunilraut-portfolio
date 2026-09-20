@@ -13,6 +13,7 @@ import {
   X, 
   Code2
 } from "lucide-react";
+import { TechBadge } from "@/components/ui/TechBadge";
 
 export function AndroidProjectsScreen() {
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
@@ -101,15 +102,16 @@ export function AndroidProjectsScreen() {
             {/* Tech Stack Chips */}
             <div className="flex flex-wrap gap-1.5">
               {project.techStack.slice(0, 4).map((tech) => (
-                <span
+                <TechBadge
                   key={tech}
-                  className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-neutral-300 font-medium"
-                >
-                  {tech}
-                </span>
+                  name={tech}
+                  color="bg-white/5 border-white/10 text-neutral-300"
+                  className="px-2 py-0.5 text-[10px] rounded-lg font-mono font-normal"
+                  iconClassName="w-2.5 h-2.5"
+                />
               ))}
               {project.techStack.length > 4 && (
-                <span className="px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-mono text-neutral-500 font-medium">
+                <span className="px-2 py-0.5 rounded-lg bg-white/5 border border-white/10 text-[10px] font-mono text-neutral-400 font-medium">
                   +{project.techStack.length - 4}
                 </span>
               )}

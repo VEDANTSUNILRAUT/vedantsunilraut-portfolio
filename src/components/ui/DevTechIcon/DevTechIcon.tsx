@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { 
   Code2, Smartphone, Layers, Server, Database, GitBranch, Github, 
-  Terminal, Flame, Globe, Send, Box, Coffee, Cpu, Wrench, Wind, Atom, FileCode2, Sparkles
+  Terminal, Flame, Globe, Send, Box, Coffee, Cpu, Wrench, Wind, Atom, FileCode2, Sparkles, Zap
 } from "lucide-react";
 
 interface DevTechIconProps {
@@ -14,42 +14,61 @@ interface DevTechIconProps {
   invertOnDark?: boolean;
 }
 
-const fallbackLucideMap: Record<string, React.ReactNode> = {
-  "Android SDK": <Smartphone className="w-7 h-7 text-emerald-400" />,
-  "Android": <Smartphone className="w-7 h-7 text-emerald-400" />,
-  "Kotlin": <Code2 className="w-7 h-7 text-purple-400" />,
-  "Jetpack Compose": <Layers className="w-7 h-7 text-blue-400" />,
-  "Kotlin Multiplatform": <Layers className="w-7 h-7 text-purple-400" />,
-  "KMP": <Layers className="w-7 h-7 text-purple-400" />,
-  "React.js": <Atom className="w-7 h-7 text-cyan-400" />,
-  "React": <Atom className="w-7 h-7 text-cyan-400" />,
-  "Next.js": <Globe className="w-7 h-7 text-white" />,
-  "TypeScript": <FileCode2 className="w-7 h-7 text-blue-300" />,
-  "JavaScript": <Code2 className="w-7 h-7 text-yellow-400" />,
-  "C": <Code2 className="w-7 h-7 text-blue-400" />,
-  "HTML5": <FileCode2 className="w-7 h-7 text-orange-500" />,
-  "CSS3": <Wind className="w-7 h-7 text-blue-500" />,
-  "Tailwind CSS": <Wind className="w-7 h-7 text-sky-400" />,
-  "Node.js": <Server className="w-7 h-7 text-green-400" />,
-  "Express.js": <Cpu className="w-7 h-7 text-neutral-300" />,
-  "Spring Boot": <Server className="w-7 h-7 text-green-500" />,
-  "REST API": <Server className="w-7 h-7 text-emerald-400" />,
-  "MongoDB": <Database className="w-7 h-7 text-emerald-500" />,
-  "MySQL": <Database className="w-7 h-7 text-blue-400" />,
-  "PostgreSQL": <Database className="w-7 h-7 text-indigo-400" />,
-  "Firebase": <Flame className="w-7 h-7 text-amber-400" />,
-  "Git": <GitBranch className="w-7 h-7 text-orange-400" />,
-  "GitHub": <Github className="w-7 h-7 text-white" />,
-  "VS Code": <FileCode2 className="w-7 h-7 text-sky-400" />,
-  "Android Studio": <Wrench className="w-7 h-7 text-emerald-400" />,
-  "IntelliJ IDEA": <Terminal className="w-7 h-7 text-purple-500" />,
-  "Vercel": <Globe className="w-7 h-7 text-white" />,
-  "Figma": <Layers className="w-7 h-7 text-pink-400" />,
-  "Java": <Coffee className="w-7 h-7 text-amber-500" />,
-  "Gemini": <Sparkles className="w-7 h-7 text-purple-400" />,
-  "Gemini AI": <Sparkles className="w-7 h-7 text-purple-400" />,
-  "Postman": <Send className="w-7 h-7 text-orange-400" />,
-  "Docker": <Box className="w-7 h-7 text-blue-400" />,
+const fallbackLucideMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  "Android SDK": Smartphone,
+  "Android": Smartphone,
+  "Android Native": Smartphone,
+  "Kotlin": Code2,
+  "Jetpack Compose": Layers,
+  "Kotlin Multiplatform": Layers,
+  "KMP": Layers,
+  "KMP (Multiplatform)": Layers,
+  "React.js": Atom,
+  "React": Atom,
+  "Next.js": Globe,
+  "TypeScript": FileCode2,
+  "JavaScript": Code2,
+  "C": Code2,
+  "HTML5": FileCode2,
+  "HTML": FileCode2,
+  "CSS3": Wind,
+  "CSS": Wind,
+  "Tailwind CSS": Wind,
+  "Node.js": Server,
+  "Express.js": Cpu,
+  "Spring Boot": Server,
+  "REST API": Server,
+  "REST APIs": Server,
+  "MongoDB": Database,
+  "MySQL": Database,
+  "PostgreSQL": Database,
+  "Firebase": Flame,
+  "Git": GitBranch,
+  "Git & GitHub": Github,
+  "GitHub": Github,
+  "VS Code": FileCode2,
+  "Android Studio": Wrench,
+  "IntelliJ IDEA": Terminal,
+  "Vercel": Globe,
+  "Figma": Layers,
+  "Java": Coffee,
+  "Gemini": Sparkles,
+  "Gemini AI": Sparkles,
+  "AI Integration": Sparkles,
+  "AI Dev Tools": Sparkles,
+  "Postman": Send,
+  "Docker": Box,
+  "Motion.dev": Zap,
+  "Cloudflare": Globe,
+  "PHP": Server,
+  "html2pdf.js": FileCode2,
+  "JSP & Servlet": Coffee,
+  "JDBC": Database,
+  "Gradle": Wrench,
+  "Gradle (DSL)": Wrench,
+  "Jira": Layers,
+  "Jira / Agile": Layers,
+  "OpenAI": Sparkles,
 };
 
 const localIconMap: Record<string, string> = {
@@ -95,6 +114,9 @@ const localIconMap: Record<string, string> = {
   "gradle": "/tech-icons/gradle.svg",
   "jira": "/tech-icons/jira.svg",
   "openai": "/tech-icons/openai.svg",
+  "cloudflare": "/tech-icons/cloudflare.svg",
+  "framermotion": "/tech-icons/framermotion.svg",
+  "motion": "/tech-icons/motion.svg",
 };
 
 export function DevTechIcon({ 
@@ -106,8 +128,9 @@ export function DevTechIcon({
 }: DevTechIconProps) {
   const [hasError, setHasError] = useState(false);
 
-  if (hasError) {
-    return <>{fallbackLucideMap[name] || <Code2 className="w-7 h-7 text-purple-400" />}</>;
+  if (hasError || !slug) {
+    const FallbackComponent = fallbackLucideMap[name] || Code2;
+    return <FallbackComponent className={`${className} shrink-0`} />;
   }
 
   const iconUrl = localIconMap[slug] || `https://cdn.jsdelivr.net/gh/devicon/devicon@latest/icons/${slug}/${slug}-${variant}.svg`;

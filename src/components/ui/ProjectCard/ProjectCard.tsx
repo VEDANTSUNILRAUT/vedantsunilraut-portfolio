@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Smartphone, Github, ExternalLink } from "lucide-react";
+import { TechBadge } from "@/components/ui/TechBadge";
 import { ProjectCardProps } from "./ProjectCard.types";
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
@@ -76,12 +77,11 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         <div className="pt-2 flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap gap-2">
             {project.techStack.map((tech, tIdx) => (
-              <span
+              <TechBadge
                 key={tIdx}
-                className="px-3 py-1.5 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs font-mono font-medium text-neutral-700 dark:text-neutral-200 hover:border-purple-400/40 hover:bg-purple-500/10 transition-colors"
-              >
-                {tech}
-              </span>
+                name={tech}
+                color="bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/10 text-neutral-700 dark:text-neutral-200 hover:border-purple-400/40 hover:bg-purple-500/10"
+              />
             ))}
           </div>
 
