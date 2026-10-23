@@ -18,6 +18,9 @@ export const projects: FeaturedProject[] = [
     glowColor: themeConfig.accents.purple.main,
     githubUrl: "https://github.com/VEDANTSUNILRAUT/vedantsunilraut-portfolio",
     liveUrl: "https://vedantsunilraut.vercel.app",
+    deviceType: "browser",
+    urlDisplay: "vedantsunilraut.vercel.app",
+    image: "/projects/portfolio.svg",
   },
   {
     id: "project-2",
@@ -33,6 +36,9 @@ export const projects: FeaturedProject[] = [
     bgGradient: "from-violet-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.cyan.main,
     githubUrl: "https://github.com/VEDANTSUNILRAUT/Talent-Bridge",
+    deviceType: "browser",
+    urlDisplay: "talent-bridge.app/dashboard",
+    image: "/projects/talent-bridge.svg",
   },
   {
     id: "project-3",
@@ -48,6 +54,9 @@ export const projects: FeaturedProject[] = [
     bgGradient: "from-indigo-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.emerald.main,
     githubUrl: "https://github.com/VEDANTSUNILRAUT/Invoice-Generator",
+    deviceType: "browser",
+    urlDisplay: "invoice-generator.app/billing",
+    image: "/projects/invoice-generator.svg",
   },
   {
     id: "project-4",
@@ -63,6 +72,9 @@ export const projects: FeaturedProject[] = [
     bgGradient: "from-fuchsia-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.amber.main,
     githubUrl: "https://github.com/VEDANTSUNILRAUT/Cattle-Hub",
+    deviceType: "browser",
+    urlDisplay: "cattle-hub.internal/livestock",
+    image: "/projects/cattle-hub.svg",
   },
   {
     id: "project-5",
@@ -77,6 +89,9 @@ export const projects: FeaturedProject[] = [
     bgGradient: "from-purple-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.rose.main,
     githubUrl: "https://github.com/VEDANTSUNILRAUT/Gym-Management-System",
+    deviceType: "browser",
+    urlDisplay: "gym-hub.internal/members",
+    image: "/projects/gym-hub.svg",
   },
   {
     id: "project-6",
@@ -91,6 +106,9 @@ export const projects: FeaturedProject[] = [
     bgGradient: "from-violet-950/40 via-neutral-900/90 to-black",
     glowColor: themeConfig.accents.blue.main,
     githubUrl: "https://github.com/VEDANTSUNILRAUT/RoyalHotel-Management",
+    deviceType: "browser",
+    urlDisplay: "royal-hotel.internal/reservations",
+    image: "/projects/royal-hotel.svg",
   },
 ];
 

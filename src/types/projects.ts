@@ -10,5 +10,8 @@ export interface FeaturedProject {
   glowColor: string;
   githubUrl?: string;
   liveUrl?: string;
+  image?: string;
+  deviceType?: "browser" | "mobile";
+  urlDisplay?: string;
 }
 

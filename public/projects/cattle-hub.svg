@@ -1,0 +1,94 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-cattle" x1="0" y1="0" x2="1200" y2="750" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#180e05"/>
+      <stop offset="50%" stop-color="#241407"/>
+      <stop offset="100%" stop-color="#0d0702"/>
+    </linearGradient>
+    <linearGradient id="amber-glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <filter id="blur-glow-amber" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="70"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#bg-cattle)"/>
+  <circle cx="320" cy="180" r="180" fill="#f59e0b" fill-opacity="0.2" filter="url(#blur-glow-amber)"/>
+  <circle cx="920" cy="520" r="210" fill="#d97706" fill-opacity="0.18" filter="url(#blur-glow-amber)"/>
+
+  <!-- Top Navigation -->
+  <rect x="40" y="30" width="1120" height="60" rx="16" fill="#24160a" stroke="#ffffff" stroke-opacity="0.12"/>
+  <circle cx="75" cy="60" r="14" fill="#f59e0b"/>
+  <text x="75" y="65" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">CH</text>
+  <text x="105" y="65" fill="#f3f4f6" font-family="system-ui, sans-serif" font-size="15" font-weight="700">CattleHub Management System</text>
+  <rect x="990" y="44" width="150" height="32" rx="8" fill="url(#amber-glow)"/>
+  <text x="1065" y="65" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Java Enterprise Hub</text>
+
+  <!-- Left Sidebar -->
+  <rect x="40" y="110" width="220" height="600" rx="16" fill="#24160a" stroke="#ffffff" stroke-opacity="0.1"/>
+  <text x="65" y="145" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="1">HERD LOGISTICS</text>
+  <rect x="55" y="165" width="190" height="34" rx="8" fill="#3b220d" stroke="#f59e0b" stroke-opacity="0.4"/>
+  <text x="75" y="187" fill="#fde68a" font-family="system-ui, sans-serif" font-size="12">🐄 Livestock Registry</text>
+  <text x="75" y="222" fill="#d1d5db" font-family="system-ui, sans-serif" font-size="12">🩺 Health &amp; Vaccine Logs</text>
+  <text x="75" y="257" fill="#d1d5db" font-family="system-ui, sans-serif" font-size="12">🥛 Milk Yield Monitoring</text>
+  <text x="75" y="292" fill="#d1d5db" font-family="system-ui, sans-serif" font-size="12">🌾 Feed Inventory</text>
+  <text x="75" y="327" fill="#d1d5db" font-family="system-ui, sans-serif" font-size="12">📋 JDBC Records Export</text>
+
+  <!-- Main Content -->
+  <rect x="280" y="110" width="880" height="600" rx="20" fill="#1c1006" stroke="#ffffff" stroke-opacity="0.12"/>
+
+  <!-- Metrics Row -->
+  <g transform="translate(310, 140)">
+    <rect x="0" y="0" width="260" height="120" rx="14" fill="#2c1a0c" stroke="#ffffff" stroke-opacity="0.08"/>
+    <text x="20" y="35" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="12">Active Cattle Registered</text>
+    <text x="20" y="75" fill="#fde68a" font-family="system-ui, sans-serif" font-size="32" font-weight="800">1,420</text>
+    <text x="20" y="100" fill="#34d399" font-family="system-ui, sans-serif" font-size="11">✓ 99.4% Health Compliance</text>
+
+    <rect x="280" y="0" width="260" height="120" rx="14" fill="#2c1a0c" stroke="#ffffff" stroke-opacity="0.08"/>
+    <text x="300" y="35" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="12">Daily Milk Production</text>
+    <text x="300" y="75" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="32" font-weight="800">4,850 L</text>
+    <text x="300" y="100" fill="#60a5fa" font-family="system-ui, sans-serif" font-size="11">▲ +8.2% vs Last Month</text>
+
+    <rect x="560" y="0" width="260" height="120" rx="14" fill="#2c1a0c" stroke="#ffffff" stroke-opacity="0.08"/>
+    <text x="580" y="35" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="12">Feed Stock Remaining</text>
+    <text x="580" y="75" fill="#f59e0b" font-family="system-ui, sans-serif" font-size="32" font-weight="800">38 Days</text>
+    <text x="580" y="100" fill="#fcd34d" font-family="system-ui, sans-serif" font-size="11">Automatic Restock Armed</text>
+  </g>
+
+  <!-- Records Table -->
+  <rect x="310" y="290" width="820" height="390" rx="16" fill="#2c1a0c" stroke="#ffffff" stroke-opacity="0.08"/>
+  <text x="335" y="325" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="700">Live Herd Health &amp; Activity Stream</text>
+
+  <!-- Record Row 1 -->
+  <rect x="335" y="345" width="770" height="65" rx="10" fill="#3b220d"/>
+  <circle cx="365" cy="377" r="16" fill="#f59e0b" fill-opacity="0.2"/>
+  <text x="365" y="382" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" text-anchor="middle">#01</text>
+  <text x="395" y="372" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="600">Holstein Friesian (Tag #CH-882)</text>
+  <text x="395" y="392" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="11">Age: 3.5 yrs • Weight: 640kg • Last Vet Check: Yesterday</text>
+  <rect x="1000" y="362" width="85" height="28" rx="6" fill="#059669"/>
+  <text x="1042" y="380" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Healthy</text>
+
+  <!-- Record Row 2 -->
+  <rect x="335" y="425" width="770" height="65" rx="10" fill="#3b220d"/>
+  <circle cx="365" cy="457" r="16" fill="#f59e0b" fill-opacity="0.2"/>
+  <text x="365" y="462" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" text-anchor="middle">#02</text>
+  <text x="395" y="452" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="600">Jersey Crossbreed (Tag #CH-741)</text>
+  <text x="395" y="472" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="11">Age: 4.1 yrs • Weight: 520kg • Lactation Phase II</text>
+  <rect x="1000" y="442" width="85" height="28" rx="6" fill="#059669"/>
+  <text x="1042" y="460" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Healthy</text>
+
+  <!-- Record Row 3 -->
+  <rect x="335" y="505" width="770" height="65" rx="10" fill="#3b220d"/>
+  <circle cx="365" cy="537" r="16" fill="#f59e0b" fill-opacity="0.2"/>
+  <text x="365" y="542" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" text-anchor="middle">#03</text>
+  <text x="395" y="532" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="600">Gir Dairy Cow (Tag #CH-905)</text>
+  <text x="395" y="552" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="11">Age: 2.8 yrs • Weight: 480kg • Scheduled for Deworming</text>
+  <rect x="1000" y="522" width="85" height="28" rx="6" fill="#d97706"/>
+  <text x="1042" y="540" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Attention</text>
+
+  <!-- Tech Strip -->
+  <rect x="335" y="590" width="770" height="65" rx="10" fill="#1f1207" stroke="#ffffff" stroke-opacity="0.06"/>
+  <text x="355" y="627" fill="#fbbf24" font-family="system-ui, monospace" font-size="12">JAVA SERVLETS • JSP • JDBC • MYSQL PERSISTENCE ARCHITECTURE</text>
+</svg>
