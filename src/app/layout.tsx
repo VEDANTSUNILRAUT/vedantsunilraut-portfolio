@@ -132,12 +132,6 @@ export default function RootLayout({
         "font-sans"
       )}
     >
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/devicon/devicon@latest/devicon.min.css"
-        />
-      </head>
       <body className="relative min-h-screen bg-background text-foreground overflow-x-hidden transition-colors duration-300">
         <ThemeProvider
           attribute="class"
@@ -153,13 +147,14 @@ export default function RootLayout({
                   {/* Global Developer Loader */}
                   <DeveloperLoader />
 
-                  {/* Standalone Noise overlay */}
+                  {/* GPU-Optimized Noise Overlay (zero compositor repainting overhead) */}
                   <div 
-                    className="pointer-events-none fixed inset-0 z-50 mix-blend-overlay"
+                    className="pointer-events-none fixed inset-0 z-50"
                     style={{ 
                       backgroundImage: 'url("/noise.svg")', 
                       backgroundSize: '256px 256px',
-                      opacity: 'var(--noise-opacity)'
+                      opacity: '0.025',
+                      transform: 'translateZ(0)'
                     }} 
                   />
 

@@ -23,12 +23,12 @@ export const themeConfig = {
 
   // Base System Colors (Black, Charcoal, White)
   base: {
-    background: "#050508",
+    background: "#000000",
     foreground: "#ffffff",
-    surfaceCharcoal: "#121216",
-    surfaceCard: "#18181c",
-    borderCharcoal: "#272730",
-    glassBgDark: "rgba(20, 20, 26, 0.65)",
+    surfaceCharcoal: "#050506",
+    surfaceCard: "#0a0a0d",
+    borderCharcoal: "#18181f",
+    glassBgDark: "rgba(10, 10, 13, 0.75)",
     glassBorderDark: "rgba(255, 255, 255, 0.1)",
   },
 

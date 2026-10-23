@@ -15,22 +15,27 @@ export function LenisScroll({ children }: { children: React.ReactNode }) {
     }
 
     const lenis = new Lenis({
-      duration: 1.8,
-      lerp: 0.07,
+      duration: 0.85,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 0.9,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
     });
 
     lenisRef.current = lenis;
+    document.documentElement.classList.add("lenis", "lenis-smooth");
 
+    let animId: number;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      animId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    animId = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(animId);
+      document.documentElement.classList.remove("lenis", "lenis-smooth");
       lenis.destroy();
       lenisRef.current = null;
     };

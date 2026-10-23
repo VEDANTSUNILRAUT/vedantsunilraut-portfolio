@@ -12,10 +12,11 @@ export function Logo({ className = "", size = 50 }: LogoProps) {
       aria-label="Home"
     >
       <Image
-        src="/vr-logo.png"
+        src="/vr-logo.webp"
         alt="Logo"
         width={size}
         height={size}
+        priority
         className="relative text-white dark:text-white"
       />
     </Link>

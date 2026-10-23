@@ -12,7 +12,7 @@ export function DeveloperLoader({ className = "", forceShow = false }: Developer
     return !sessionStorage.getItem("hasLoaded");
   });
 
-  const DURATION = 1400; // Time in ms to complete 1 full infinity cycle
+  const DURATION = 350; // Snappy branded initial mount duration in ms
 
   useEffect(() => {
     if (!forceShow && typeof window !== "undefined" && sessionStorage.getItem("hasLoaded")) {

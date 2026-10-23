@@ -139,7 +139,9 @@ export function DevTechIcon({
     <img
       src={iconUrl}
       alt={name}
-      loading="eager"
+      width={32}
+      height={32}
+      loading="lazy"
       onError={() => setHasError(true)}
       className={`object-contain transition-transform group-hover:scale-110 ${className} ${invertOnDark ? "invert" : ""}`}
     />

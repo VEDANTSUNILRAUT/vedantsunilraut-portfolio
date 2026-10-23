@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useCallback } from "react";
+import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
 import { Zap } from "lucide-react";
 
@@ -112,9 +113,11 @@ export function InteractiveAndroidBot() {
         <div className="absolute inset-0 rounded-full border border-emerald-500/40 animate-ping opacity-40 pointer-events-none" />
 
         {/* Android Bot SVG */}
-        <img
+        <Image
           src="/tech-icons/android.svg"
           alt="Android Bot"
+          width={48}
+          height={48}
           className="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-[0_0_16px_rgba(52,211,153,0.8)] filter transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(167,139,250,0.9)]"
         />
       </motion.div>

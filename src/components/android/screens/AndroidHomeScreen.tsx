@@ -117,7 +117,7 @@ export function AndroidHomeScreen({ setActiveTab, onOpenAssistant }: AndroidHome
             {!imageError ? (
               <>
                 <Image
-                  src="/vedant-hero.png"
+                  src="/vedant-hero.webp"
                   alt="Vedant Sunil Raut"
                   fill
                   sizes="128px"

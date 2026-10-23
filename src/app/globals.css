@@ -192,9 +192,32 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 9.5rem;
-  scroll-snap-type: y proximity;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.snap-start {
+  scroll-snap-align: none !important;
 }
 
 html,
@@ -214,19 +237,19 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.025em;
 }
 
-/* Glassmorphism helpers - Charcoal & Violet Dark Theme */
+/* Glassmorphism helpers - Deep Pitch Black & Violet Dark Theme */
 .glass-panel {
-  background: rgba(20, 20, 26, 0.65);
+  background: rgba(8, 8, 11, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-nav {
-  background: rgba(14, 14, 18, 0.85);
+  background: rgba(5, 5, 8, 0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .light .glass-panel {
@@ -327,9 +350,9 @@ body::-webkit-scrollbar {
   --primary-mid-rgb: 168, 85, 247;
   --primary-end-rgb: 124, 58, 237;
 
-  --charcoal-bg: #121216;
-  --charcoal-card: #18181c;
-  --charcoal-border: #272730;
+  --charcoal-bg: #050506;
+  --charcoal-card: #0a0a0d;
+  --charcoal-border: #18181f;
 
   --accent-violet: #a855f7;
   --accent-purple: #8b5cf6;
@@ -338,19 +361,19 @@ body::-webkit-scrollbar {
   --accent-fuchsia: #e879f9;
   --accent-indigo: #6366f1;
 
-  --background: #050508;
+  --background: #000000;
   --foreground: #ffffff;
-  --card: #121216;
+  --card: #070709;
   --card-foreground: #ffffff;
-  --popover: #18181c;
+  --popover: #0a0a0d;
   --popover-foreground: #ffffff;
   --primary: #c084fc;
-  --primary-foreground: #050508;
-  --secondary: #1e1e24;
+  --primary-foreground: #000000;
+  --secondary: #121217;
   --secondary-foreground: #ffffff;
-  --muted: #1e1e24;
+  --muted: #121217;
   --muted-foreground: #94a3b8;
-  --accent: #272730;
+  --accent: #18181f;
   --accent-foreground: #ffffff;
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.15);

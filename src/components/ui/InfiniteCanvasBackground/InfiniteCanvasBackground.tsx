@@ -111,10 +111,12 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
 
       const isMobile = width < 768;
 
-      // Populate Star Dots
-      const starDensityDivisor = isMobile ? 7500 : 11000;
-      const starCount = Math.floor((width * height) / starDensityDivisor);
-      stars = Array.from({ length: Math.max(starCount, isMobile ? 90 : 120) }, () => ({
+      // Populate Star Dots with optimal density for 60/120 FPS performance
+      const starDensityDivisor = isMobile ? 15000 : 18000;
+      const calculatedStarCount = Math.floor((width * height) / starDensityDivisor);
+      const starCount = Math.min(Math.max(calculatedStarCount, isMobile ? 35 : 55), isMobile ? 45 : 70);
+
+      stars = Array.from({ length: starCount }, () => ({
         x: Math.random() * width,
         y: Math.random() * height * 3.5, // Spans down smoothly across scrolls
         z: Math.random() * 0.8 + 0.2,
@@ -127,7 +129,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
 
       // Populate Spaced-Out 3D Wireframe Shapes
       const shapeTypes: ("cube" | "diamond" | "ring" | "tesseract")[] = ["cube", "diamond", "ring", "tesseract"];
-      const maxShapes = isMobile ? 4 : 6;
+      const maxShapes = isMobile ? 3 : 5;
       const minDistance = Math.min(width, height) * (isMobile ? 0.35 : 0.28);
       const padding = isMobile ? 30 : 80;
 
@@ -173,6 +175,14 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       return val || themeConfig.brand.rgb.primaryMid;
     };
     let primaryMidRgb = getPrimaryMidRgb();
+    let isLight = typeof document !== "undefined" ? document.documentElement.classList.contains("light") : false;
+
+    // Cache theme properties and observe changes only when theme toggles, avoiding per-frame layout thrashing
+    const themeObserver = new MutationObserver(() => {
+      isLight = document.documentElement.classList.contains("light");
+      primaryMidRgb = getPrimaryMidRgb();
+    });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
     // Draw 3D Wireframe Cube
     const drawCube = (cx: number, cy: number, size: number, ax: number, ay: number, alpha: number) => {
@@ -370,15 +380,13 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
     let time = 0;
     const render = () => {
       time += 0.015;
-      primaryMidRgb = getPrimaryMidRgb();
-      const isLight = document.documentElement.classList.contains("light");
 
       mouseX += (targetMouseX - mouseX) * 0.05;
       mouseY += (targetMouseY - mouseY) * 0.05;
       scrollY += (targetScrollY - scrollY) * 0.08;
 
       // Base Clear - Dynamic theme background
-      ctx.fillStyle = isLight ? "#f8fafc" : "#050508";
+      ctx.fillStyle = isLight ? "#f8fafc" : "#000000";
       ctx.fillRect(0, 0, width, height);
 
       // Star Particles & Neural Connections
@@ -403,27 +411,24 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       });
       ctx.globalAlpha = 1.0;
 
-      // Draw Neural Connections between nearby stars
+      // Draw Neural Connections between nearby stars (Batched Single Path)
       ctx.lineWidth = 0.5;
-      const maxConnectionDistSq = width < 768 ? 7000 : 9000;
+      ctx.strokeStyle = `rgba(${primaryMidRgb}, ${isLight ? 0.08 : 0.12})`;
+      ctx.beginPath();
+      const maxConnectionDistSq = width < 768 ? 6000 : 8000;
       for (let i = 0; i < visibleStars.length; i++) {
         for (let j = i + 1; j < visibleStars.length; j++) {
           const s1 = visibleStars[i];
           const s2 = visibleStars[j];
           const dx = s1.x - s2.x;
           const dy = s1.y - s2.y;
-          const distSq = dx * dx + dy * dy;
-
-          if (distSq < maxConnectionDistSq) {
-            const alpha = (1 - distSq / maxConnectionDistSq) * 0.12 * Math.min(s1.z, s2.z);
-            ctx.strokeStyle = `rgba(${primaryMidRgb}, ${alpha})`;
-            ctx.beginPath();
+          if (dx * dx + dy * dy < maxConnectionDistSq) {
             ctx.moveTo(s1.x, s1.y);
             ctx.lineTo(s2.x, s2.y);
-            ctx.stroke();
           }
         }
       }
+      ctx.stroke();
 
       // Floating Geometric 3D Wireframes
       shapes.forEach((shape) => {
@@ -521,6 +526,7 @@ export function InfiniteCanvasBackground({ className = "" }: InfiniteCanvasBackg
       window.removeEventListener("mobilescroll", handleMobileScroll);
       window.removeEventListener("resize", initCanvasSize);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
+      themeObserver.disconnect();
     };
   }, []);
 

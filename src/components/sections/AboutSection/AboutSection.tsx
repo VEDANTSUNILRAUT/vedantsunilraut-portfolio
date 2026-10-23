@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Download, User } from "lucide-react";
 import { SocialLinks } from "@/components/ui/SocialLinks";
@@ -84,9 +85,11 @@ export function AboutSection({ className = "" }: AboutSectionProps) {
         >
           {!imageError ? (
             <div className="relative w-full max-w-[380px] rounded-3xl overflow-hidden">
-              <img
-                src="/vedant-hero.png"
+              <Image
+                src="/vedant-hero.webp"
                 alt="Vedant Raut"
+                width={380}
+                height={475}
                 onError={() => setImageError(true)}
                 className="w-full h-auto object-cover rounded-3xl"
               />
