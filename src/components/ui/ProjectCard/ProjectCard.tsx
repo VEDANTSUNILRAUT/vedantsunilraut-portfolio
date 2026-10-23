@@ -39,10 +39,10 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             <div className="w-14 h-14 rounded-2xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-4 shadow-lg">
               <Smartphone className="w-7 h-7" />
             </div>
-            <h4 className="font-eb-garamond text-3xl text-white font-semibold mb-2">
+            <h4 className="font-heading text-2xl sm:text-3xl text-white font-bold tracking-tight mb-1.5">
               {project.previewTitle}
             </h4>
-            <p className="font-source-code-pro text-xs text-neutral-400">
+            <p className="font-sans text-xs text-neutral-300 font-normal">
               {project.previewSubtitle}
             </p>
           </div>
@@ -50,23 +50,23 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       </div>
 
       {/* Right Column: Project Title, Subtitle, Highlights & Badges (6 Cols) */}
-      <div className="lg:col-span-6 z-10 space-y-6">
+      <div className="lg:col-span-6 z-10 space-y-5">
         {/* Project Title */}
-        <h3 className="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-white tracking-tight">
+        <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-neutral-900 dark:text-white tracking-tight">
           {project.title}
         </h3>
 
         {/* Subtitle / Description */}
-        <p className="font-source-code-pro text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">
+        <p className="font-sans text-sm sm:text-base text-neutral-600 dark:text-neutral-300 leading-relaxed font-normal">
           {project.subtitle}
         </p>
 
         {/* Bullet Highlights */}
-        <ul className="space-y-3">
+        <ul className="space-y-2.5">
           {project.highlights.map((highlight, hIdx) => (
             <li key={hIdx} className="flex items-start gap-3">
-              <span className="text-purple-600 dark:text-purple-400 text-sm mt-0.5 select-none font-bold">✦</span>
-              <span className="font-source-code-pro text-[11px] text-neutral-700 dark:text-neutral-300 tracking-wider leading-relaxed uppercase">
+              <span className="text-purple-600 dark:text-purple-400 text-sm mt-0.5 select-none font-bold shrink-0">✦</span>
+              <span className="font-sans text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed font-normal">
                 {highlight}
               </span>
             </li>

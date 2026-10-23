@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, EB_Garamond, Alata, Shadows_Into_Light, Henny_Penny, Source_Code_Pro, Geist } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter, JetBrains_Mono, Outfit, EB_Garamond, Source_Code_Pro } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { ViewModeProvider } from "@/context/ViewModeContext";
@@ -15,39 +15,42 @@ import { DeviceViewToggle } from "@/components/common/DeviceViewToggle";
 import { PortfolioChatbot } from "@/components/ui/PortfolioChatbot";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
+  display: "swap",
 });
 
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
   variable: "--font-eb-garamond",
-});
-
-const alata = Alata({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-alata",
-});
-
-const shadowsIntoLight = Shadows_Into_Light({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-shadows-into-light",
-});
-
-const hennyPenny = Henny_Penny({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-henny-penny",
+  display: "swap",
 });
 
 const sourceCodePro = Source_Code_Pro({
   subsets: ["latin"],
   variable: "--font-source-code-pro",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -118,7 +121,16 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", outfit.variable, ebGaramond.variable, alata.variable, shadowsIntoLight.variable, hennyPenny.variable, sourceCodePro.variable, "font-sans", geist.variable)}
+      className={cn(
+        "antialiased",
+        plusJakartaSans.variable,
+        inter.variable,
+        jetbrainsMono.variable,
+        outfit.variable,
+        ebGaramond.variable,
+        sourceCodePro.variable,
+        "font-sans"
+      )}
     >
       <head>
         <link

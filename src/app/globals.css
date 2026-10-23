@@ -95,11 +95,11 @@
   --color-accent-indigo: var(--accent-indigo);
 
   /* Custom fonts */
-  --font-outfit: var(--font-outfit), sans-serif;
+  --font-heading: var(--font-heading), sans-serif;
+  --font-sans: var(--font-sans), sans-serif;
+  --font-mono: var(--font-mono), monospace;
+  --font-outfit: var(--font-outfit), var(--font-heading), sans-serif;
   --font-eb-garamond: var(--font-eb-garamond), serif;
-  --font-alata: var(--font-alata), sans-serif;
-  --font-shadows-into-light: var(--font-shadows-into-light), cursive;
-  --font-henny-penny: var(--font-henny-penny), cursive;
   --font-source-code-pro: var(--font-source-code-pro), monospace;
 
   /* Custom animations */
@@ -201,9 +201,17 @@ html,
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-outfit);
+  font-family: var(--font-sans);
   overflow-x: hidden;
   transition: background-color 0.5s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.025em;
 }
 
 /* Glassmorphism helpers - Charcoal & Violet Dark Theme */
@@ -251,6 +259,23 @@ body {
   padding-bottom: 0.18em;
   padding-right: 0.15em;
   margin-bottom: -0.18em;
+}
+
+.font-heading .italic-gradient-text {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 800;
+  padding-bottom: 0;
+  padding-right: 0;
+  margin-bottom: 0;
+  letter-spacing: -0.02em;
+}
+
+.light .italic-gradient-text {
+  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 50%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Hide main page right side vertical scrollbar */

@@ -22,11 +22,14 @@ export function FeaturedWorkSection({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="mb-20 text-center"
+        className="mb-16 sm:mb-20 text-center"
       >
-        <h2 className="font-eb-garamond text-5xl sm:text-7xl text-white font-normal tracking-tight">
-          Featured <span className="italic-gradient-text font-semibold">Work</span>
+        <h2 className="font-heading text-4xl sm:text-6xl font-extrabold text-neutral-900 dark:text-white tracking-tight">
+          Featured <span className="italic-gradient-text">Work</span>
         </h2>
+        <p className="mt-3.5 text-sm sm:text-base font-sans text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto leading-relaxed font-normal">
+          Production-grade mobile apps, cross-platform modules, and scalable systems built with Kotlin & modern web stacks.
+        </p>
       </motion.div>
 
       {/* Projects Showcase Stack */}

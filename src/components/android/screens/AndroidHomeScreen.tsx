@@ -150,7 +150,7 @@ export function AndroidHomeScreen({ setActiveTab, onOpenAssistant }: AndroidHome
         </div>
 
         {/* Name Title */}
-        <div className="text-xl font-source-code-pro font-bold tracking-wide">
+        <div className="text-xl font-heading font-bold tracking-tight">
           <ShinyText
             text="I am Vedant Sunil Raut"
             disabled={false}
@@ -163,14 +163,14 @@ export function AndroidHomeScreen({ setActiveTab, onOpenAssistant }: AndroidHome
         </div>
 
         {/* Core Tagline */}
-        <h1 className="font-eb-garamond text-xl sm:text-2xl leading-tight text-balance text-white font-normal px-2">
+        <h1 className="font-heading text-xl sm:text-2xl font-extrabold leading-tight text-balance text-white tracking-tight px-2">
           Architecting high-performance software & shaping{" "}
-          <span className="italic-gradient-text font-semibold">
+          <span className="italic-gradient-text font-extrabold">
             Mobile Realities
           </span>
         </h1>
 
-        <p className="text-xs font-mono text-neutral-300 max-w-xs leading-relaxed px-1">
+        <p className="text-xs font-sans text-neutral-300 max-w-xs leading-relaxed px-1 font-normal">
           Specializing in Kotlin, Jetpack Compose, Kotlin Multiplatform (KMP) & Full-Stack Systems at Logituit.
         </p>
 

@@ -13,11 +13,11 @@ export default function NotFound() {
           404 PAGE NOT FOUND
         </span>
 
-        <h1 className="font-eb-garamond text-4xl sm:text-5xl text-white font-normal mb-3">
+        <h1 className="font-heading text-4xl sm:text-5xl text-white font-extrabold mb-3 tracking-tight">
           Lost in Space
         </h1>
 
-        <p className="font-source-code-pro text-xs sm:text-sm text-neutral-400 leading-relaxed mb-8">
+        <p className="font-sans text-sm sm:text-base text-neutral-400 leading-relaxed mb-8 font-normal">
           The page or route you are looking for does not exist or has been moved.
         </p>
 

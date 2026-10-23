@@ -83,10 +83,10 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="font-eb-garamond text-3xl sm:text-5xl lg:text-6xl text-white font-normal leading-tight max-w-3xl"
+          className="font-heading text-3xl sm:text-5xl lg:text-6xl text-white font-extrabold leading-tight tracking-tight max-w-3xl"
         >
           Work & Professional <br className="hidden sm:inline" />
-          <span className="italic-gradient-text font-semibold">Experience</span>
+          <span className="italic-gradient-text">Experience</span>
         </motion.h2>
 
         <motion.p
@@ -94,7 +94,7 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="mt-4 text-xs sm:text-sm font-source-code-pro text-neutral-400 max-w-2xl leading-relaxed"
+          className="mt-4 text-sm sm:text-base font-sans text-neutral-400 max-w-2xl leading-relaxed font-normal"
         >
           My engineering journey as a Software Engineer & Android Developer at Logituit, including full-time industry impact and mobile internships.
         </motion.p>
@@ -114,8 +114,8 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
               <span className="text-[10px] uppercase font-mono tracking-widest text-purple-400 block mb-1">
                 CURRENT ROLE
               </span>
-              <h4 className="text-xl font-bold text-white tracking-tight">Software Engineer</h4>
-              <p className="text-xs text-neutral-400 mt-1 font-source-code-pro">
+              <h4 className="font-heading text-xl font-bold text-white tracking-tight">Software Engineer</h4>
+              <p className="text-xs text-neutral-400 mt-1 font-sans font-normal">
                 Logituit (Mar 2026 – Present)
               </p>
             </div>
@@ -137,8 +137,8 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
               <span className="text-[10px] uppercase font-mono tracking-widest text-cyan-400 block mb-1">
                 TOTAL EXPERIENCE
               </span>
-              <h4 className="text-xl font-bold text-white tracking-tight">11 mos at Logituit</h4>
-              <p className="text-xs text-neutral-400 mt-1 font-source-code-pro">
+              <h4 className="font-heading text-xl font-bold text-white tracking-tight">11 mos at Logituit</h4>
+              <p className="text-xs text-neutral-400 mt-1 font-sans font-normal">
                 1 Full-Time + 6 Internships
               </p>
             </div>
@@ -160,8 +160,8 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
               <span className="text-[10px] uppercase font-mono tracking-widest text-emerald-400 block mb-1">
                 CORE DOMAIN
               </span>
-              <h4 className="text-xl font-bold text-white tracking-tight">Native Mobile</h4>
-              <p className="text-xs text-neutral-400 mt-1 font-source-code-pro">
+              <h4 className="font-heading text-xl font-bold text-white tracking-tight">Native Mobile</h4>
+              <p className="text-xs text-neutral-400 mt-1 font-sans font-normal">
                 Kotlin, Jetpack Compose, Clean Arch
               </p>
             </div>
@@ -237,11 +237,11 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                         </span>
                       </div>
 
-                      <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                      <h3 className="font-heading text-xl sm:text-2xl font-bold text-white tracking-tight">
                         {item.role}
                       </h3>
 
-                      <p className={`text-sm sm:text-base font-semibold ${item.colorScheme.text}`}>
+                      <p className={`text-sm sm:text-base font-semibold font-sans ${item.colorScheme.text}`}>
                         {item.company}
                       </p>
 
@@ -269,7 +269,7 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                   </div>
 
                   <div className="mt-5 pt-5 border-t border-white/10 relative z-10">
-                    <p className="text-xs sm:text-sm font-source-code-pro text-neutral-300 leading-relaxed">
+                    <p className="text-sm sm:text-base font-sans text-neutral-300 leading-relaxed font-normal">
                       {item.description}
                     </p>
                   </div>
@@ -322,7 +322,7 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                             {item.achievements.map((achievement, aIdx) => (
                               <div key={aIdx} className="flex items-start gap-2.5">
                                 <CheckCircle2 className={`w-4 h-4 mt-0.5 shrink-0 ${item.colorScheme.text}`} />
-                                <span className="text-xs sm:text-sm font-source-code-pro text-neutral-200 leading-normal">
+                                <span className="text-xs sm:text-sm font-sans text-neutral-200 leading-relaxed font-normal">
                                   {achievement}
                                 </span>
                               </div>
@@ -350,7 +350,7 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                 Internship & Specialized Engagements
               </h3>
             </div>
-            <p className="text-xs sm:text-sm font-source-code-pro text-neutral-400 max-w-xl leading-relaxed">
+            <p className="text-xs sm:text-sm font-sans text-neutral-400 max-w-xl leading-relaxed font-normal">
               Hands-on engineering apprenticeships, full-stack microservices, ML research, and cloud computing programs.
             </p>
           </div>
@@ -443,10 +443,10 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
 
                     {/* Job Title & Company */}
                     <div>
-                      <h4 className="text-lg sm:text-xl font-bold text-white tracking-tight group-hover:text-purple-200 transition-colors">
+                      <h4 className="font-heading text-lg sm:text-xl font-bold text-white tracking-tight group-hover:text-purple-200 transition-colors">
                         {item.role}
                       </h4>
-                      <p className={`text-xs sm:text-sm font-semibold mt-1 flex items-center gap-1.5 ${item.colorScheme.text}`}>
+                      <p className={`text-xs sm:text-sm font-semibold font-sans mt-1 flex items-center gap-1.5 ${item.colorScheme.text}`}>
                         <Building2 className="w-3.5 h-3.5 shrink-0 text-neutral-400" />
                         <span>{item.company}</span>
                       </p>
@@ -465,7 +465,7 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                     </div>
 
                     {/* 2-3 Sentence Description */}
-                    <p className="text-xs font-source-code-pro text-neutral-300 leading-relaxed pt-1">
+                    <p className="text-xs sm:text-sm font-sans text-neutral-300 leading-relaxed pt-1 font-normal">
                       {item.description}
                     </p>
 
@@ -571,10 +571,10 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
               {/* Modal Body */}
               <div className="overflow-y-auto space-y-6 pt-5 pr-1 relative z-10">
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                  <h3 className="font-heading text-xl sm:text-2xl font-bold text-white tracking-tight">
                     {selectedInternship.role}
                   </h3>
-                  <p className={`text-sm sm:text-base font-semibold mt-1 ${selectedInternship.colorScheme.text}`}>
+                  <p className={`text-sm sm:text-base font-semibold font-sans mt-1 ${selectedInternship.colorScheme.text}`}>
                     {selectedInternship.company}
                   </p>
                   <div className="flex flex-wrap items-center gap-y-1.5 gap-x-4 text-xs font-mono text-neutral-400 pt-2">
@@ -590,7 +590,7 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                 </div>
 
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                  <p className="text-xs sm:text-sm font-source-code-pro text-neutral-200 leading-relaxed">
+                  <p className="text-xs sm:text-sm font-sans text-neutral-200 leading-relaxed font-normal">
                     {selectedInternship.description}
                   </p>
                 </div>
@@ -605,7 +605,7 @@ export function ExperienceSection({ className = "" }: ExperienceSectionProps) {
                       {selectedInternship.achievements.map((achievement, aIdx) => (
                         <div key={aIdx} className="flex items-start gap-2.5">
                           <CheckCircle2 className={`w-4 h-4 mt-0.5 shrink-0 ${selectedInternship.colorScheme.text}`} />
-                          <span className="text-xs sm:text-sm font-source-code-pro text-neutral-300 leading-relaxed">
+                          <span className="text-xs sm:text-sm font-sans text-neutral-300 leading-relaxed font-normal">
                             {achievement}
                           </span>
                         </div>

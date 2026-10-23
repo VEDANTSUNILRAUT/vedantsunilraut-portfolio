@@ -79,10 +79,10 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="font-eb-garamond text-3xl sm:text-5xl lg:text-6xl text-white font-normal leading-tight max-w-3xl"
+          className="font-heading text-3xl sm:text-5xl lg:text-6xl text-white font-extrabold leading-tight tracking-tight max-w-3xl"
         >
           Education & <br className="hidden sm:inline" />
-          <span className="italic-gradient-text font-semibold">Qualifications</span>
+          <span className="italic-gradient-text">Qualifications</span>
         </motion.h2>
 
         <motion.p
@@ -90,7 +90,7 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="mt-4 text-xs sm:text-sm font-source-code-pro text-neutral-400 max-w-2xl leading-relaxed"
+          className="mt-4 text-sm sm:text-base font-sans text-neutral-400 max-w-2xl leading-relaxed font-normal"
         >
           A detailed breakdown of my academic journey, from secondary schooling to degree specialization in Computer Science & Engineering.
         </motion.p>
@@ -166,8 +166,8 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
                   TOPPER
                 </span>
               </div>
-              <h4 className="text-xl font-bold text-white tracking-tight">9.6 / 10.0 CGPA</h4>
-              <p className="text-xs text-neutral-400 mt-1 font-source-code-pro">
+              <h4 className="font-heading text-xl font-bold text-white tracking-tight">9.6 / 10.0 CGPA</h4>
+              <p className="text-xs text-neutral-400 mt-1 font-sans font-normal">
                 University & College Topper
               </p>
             </div>
@@ -190,8 +190,8 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
               <span className="text-[10px] uppercase font-mono tracking-widest text-cyan-400 block mb-1">
                 12TH CLASS (HSC)
               </span>
-              <h4 className="text-xl font-bold text-white tracking-tight">90.67%</h4>
-              <p className="text-xs text-neutral-400 mt-1 font-source-code-pro">
+              <h4 className="font-heading text-xl font-bold text-white tracking-tight">90.67%</h4>
+              <p className="text-xs text-neutral-400 mt-1 font-sans font-normal">
                 Science Stream · Distinction
               </p>
             </div>
@@ -214,8 +214,8 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
               <span className="text-[10px] uppercase font-mono tracking-widest text-emerald-400 block mb-1">
                 10TH CLASS (SSC)
               </span>
-              <h4 className="text-xl font-bold text-white tracking-tight">85.65%</h4>
-              <p className="text-xs text-neutral-400 mt-1 font-source-code-pro">
+              <h4 className="font-heading text-xl font-bold text-white tracking-tight">85.65%</h4>
+              <p className="text-xs text-neutral-400 mt-1 font-sans font-normal">
                 Secondary School · Team Captain
               </p>
             </div>
@@ -284,12 +284,12 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
                       </div>
 
                       {/* Degree Title */}
-                      <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+                      <h3 className="font-heading text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
                         {item.degree}
                       </h3>
 
                       {/* Field / Specialization */}
-                      <p className={`text-sm sm:text-base font-semibold ${item.colorScheme.text}`}>
+                      <p className={`text-sm sm:text-base font-semibold font-sans ${item.colorScheme.text}`}>
                         {item.field}
                       </p>
 
@@ -328,7 +328,7 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
 
                   {/* Summary Description */}
                   <div className="mt-5 pt-5 border-t border-white/10 relative z-10">
-                    <p className="text-xs sm:text-sm font-source-code-pro text-neutral-300 leading-relaxed">
+                    <p className="text-sm sm:text-base font-sans text-neutral-300 leading-relaxed font-normal">
                       {item.description}
                     </p>
                   </div>
@@ -372,7 +372,7 @@ export function EducationSection({ className = "" }: EducationSectionProps) {
                               {item.highlights.map((highlight, hIdx) => (
                                 <div key={hIdx} className="flex items-start gap-2.5">
                                   <CheckCircle2 className={`w-4 h-4 mt-0.5 shrink-0 ${item.colorScheme.text}`} />
-                                  <span className="text-xs sm:text-sm font-source-code-pro text-neutral-200 leading-normal">
+                                  <span className="text-xs sm:text-sm font-sans text-neutral-200 leading-relaxed font-normal">
                                     {highlight}
                                   </span>
                                 </div>

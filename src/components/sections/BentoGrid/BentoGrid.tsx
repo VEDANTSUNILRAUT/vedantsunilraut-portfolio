@@ -53,10 +53,10 @@ export function BentoGrid({ className = "" }: BentoGridProps) {
 
           {/* Card Typography */}
           <div className="mt-8 z-10 max-w-sm">
-            <p className="text-[13px] font-mono text-neutral-400 leading-relaxed mb-1">
+            <p className="text-xs sm:text-sm font-sans text-neutral-400 leading-relaxed mb-1 font-normal">
               Productive collaboration across global teams, without time barriers.
             </p>
-            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+            <h3 className="font-heading text-xl sm:text-2xl font-bold text-white tracking-tight">
               Time-Zone Agnostic
             </h3>
           </div>
@@ -145,10 +145,10 @@ export function BentoGrid({ className = "" }: BentoGridProps) {
 
           {/* Card Bottom Typography */}
           <div className="z-20 mt-4">
-            <p className="text-[13px] font-mono text-neutral-400 mb-1">
+            <p className="text-xs font-sans text-neutral-400 mb-1 font-normal">
               Real-time engineering pursuits
             </p>
-            <h3 className="text-2xl font-bold text-white tracking-tight">
+            <h3 className="font-heading text-2xl font-bold text-white tracking-tight">
               Live Status & Focus
             </h3>
           </div>
@@ -168,7 +168,7 @@ export function BentoGrid({ className = "" }: BentoGridProps) {
           <div className="absolute top-0 inset-x-0 mx-auto w-3/4 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent shadow-[0_0_15px_rgba(192,132,252,0.9)]" />
 
           <div className="mt-4">
-            <h3 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight font-eb-garamond leading-snug">
+            <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug">
               Let&apos;s build your next product, <br /> the right way.
             </h3>
           </div>
@@ -205,7 +205,7 @@ export function BentoGrid({ className = "" }: BentoGridProps) {
           className="lg:col-span-5 bg-neutral-950/80 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-7 relative overflow-hidden group hover:border-purple-500/30 transition-all duration-500 hover:-translate-y-1 shadow-2xl flex flex-col justify-between min-h-[496px]"
         >
           <div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-white font-eb-garamond tracking-wide leading-tight mb-5">
+            <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight mb-4">
               Enthusiastic About Innovative and futuristic Tech
             </h3>
 
@@ -291,10 +291,10 @@ export function BentoGrid({ className = "" }: BentoGridProps) {
             </div>
 
             <div>
-              <p className="text-[12px] font-mono text-neutral-400 mb-0.5">
+              <p className="text-xs font-sans text-neutral-400 mb-1 font-normal">
                 Design, motion & development experiments
               </p>
-              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              <h3 className="font-heading text-xl sm:text-2xl font-bold text-white tracking-tight">
                 Real-Time Projects
               </h3>
             </div>

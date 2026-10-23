@@ -28,7 +28,7 @@ export function AboutSection({ className = "" }: AboutSectionProps) {
           </span>
 
           {/* Main Headline */}
-          <h2 className="font-eb-garamond text-2xl sm:text-4xl lg:text-5xl text-white font-normal leading-[1.2] mb-5">
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-white font-extrabold leading-[1.2] tracking-tight mb-5">
             I&apos;m{" "}
             <ShinyText
               text="Vedant"
@@ -39,13 +39,13 @@ export function AboutSection({ className = "" }: AboutSectionProps) {
               className="cursor-default"
             />
             , a{" "}
-            <span className="italic-gradient-text font-semibold whitespace-normal sm:whitespace-nowrap">
+            <span className="italic-gradient-text font-extrabold whitespace-normal sm:whitespace-nowrap">
               Software Engineer @ Logituit
             </span>
           </h2>
 
           {/* Detailed Paragraph Text */}
-          <div className="space-y-3.5 text-xs sm:text-sm font-source-code-pro text-neutral-300 leading-relaxed max-w-xl">
+          <div className="space-y-4 text-sm sm:text-base font-sans text-neutral-300 leading-relaxed max-w-xl font-normal">
             <p>
               I&apos;m Vedant Raut, a Software Engineer at Logituit specializing in native Android development, Kotlin, Jetpack Compose, and clean mobile architecture. I love crafting high-performance apps and turning complex ideas into seamless digital experiences.
             </p>

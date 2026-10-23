@@ -42,10 +42,10 @@ export default function BookPage() {
           <span className="text-xs uppercase tracking-widest text-fuchsia-400 font-mono font-semibold mb-2 block">
             1-ON-1 CONSULTATION & STRATEGY
           </span>
-          <h1 className="font-eb-garamond text-4xl sm:text-6xl text-white font-normal tracking-tight">
-            Schedule a <span className="italic-gradient-text font-semibold">1-on-1 Session</span>
+          <h1 className="font-heading text-4xl sm:text-6xl text-white font-extrabold tracking-tight">
+            Schedule a <span className="italic-gradient-text">1-on-1 Session</span>
           </h1>
-          <p className="font-source-code-pro text-sm sm:text-base text-neutral-300 max-w-xl mx-auto mt-3 leading-relaxed">
+          <p className="font-sans text-sm sm:text-base text-neutral-300 max-w-xl mx-auto mt-3 leading-relaxed font-normal">
             Select a topic and duration for technical discussions, mobile architecture reviews, or project consultations.
           </p>
         </div>

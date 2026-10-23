@@ -26,8 +26,8 @@ export function CtaSection({ className = "" }: CtaSectionProps) {
           <span className="text-[11px] sm:text-xs uppercase tracking-widest text-purple-400 font-mono font-medium block">
             NEED A SOFTWARE OR ANDROID DEVELOPER?
           </span>
-          <h2 className="font-eb-garamond text-2xl sm:text-4xl lg:text-5xl text-white font-normal leading-tight">
-            Have an idea? Let&apos;s shape the <span className="italic-gradient-text font-semibold">future</span> together.
+          <h2 className="font-heading text-2xl sm:text-4xl lg:text-5xl text-white font-extrabold leading-tight tracking-tight">
+            Have an idea? Let&apos;s shape the <span className="italic-gradient-text">future</span> together.
           </h2>
         </div>
 

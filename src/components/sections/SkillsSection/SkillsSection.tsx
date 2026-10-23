@@ -71,11 +71,11 @@ export function SkillsSection({ className = "" }: SkillsSectionProps) {
         transition={{ duration: 0.6 }}
         className="mb-10 text-center relative z-10"
       >
-        <h2 className="font-eb-garamond text-5xl sm:text-7xl text-white font-normal mb-4 tracking-tight">
-          Skills & <span className="italic-gradient-text font-semibold">Tools</span>
+        <h2 className="font-heading text-4xl sm:text-6xl text-white font-extrabold mb-3 tracking-tight">
+          Skills & <span className="italic-gradient-text">Tools</span>
         </h2>
-        <p className="font-source-code-pro text-sm sm:text-base text-neutral-400 max-w-lg mx-auto leading-relaxed">
-          Tools Behind the Magic: From code to deployment—tools that bring digital visions to life.
+        <p className="font-sans text-sm sm:text-base text-neutral-400 max-w-lg mx-auto leading-relaxed font-normal">
+          Tools Behind the Magic: From native mobile architecture to cloud deployment and full-stack systems.
         </p>
       </motion.div>
 
@@ -122,13 +122,13 @@ export function SkillsSection({ className = "" }: SkillsSectionProps) {
                   <Smartphone className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+                  <h3 className="font-heading text-xl font-bold text-white tracking-tight flex items-center gap-2">
                     Android & Mobile
                     <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300">
                       Core Specialization
                     </span>
                   </h3>
-                  <p className="text-xs font-mono text-neutral-400 mt-0.5">
+                  <p className="text-xs font-sans text-neutral-400 mt-0.5 font-normal">
                     Native Android, Jetpack Compose & Kotlin Multiplatform
                   </p>
                 </div>
@@ -145,7 +145,7 @@ export function SkillsSection({ className = "" }: SkillsSectionProps) {
                   <div className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
                     {item.symbol}
                   </div>
-                  <span className="text-xs sm:text-[13px] font-mono text-neutral-200 group-hover/item:text-white font-medium leading-tight" title={item.name}>
+                  <span className="text-xs sm:text-[13px] font-sans text-neutral-200 group-hover/item:text-white font-medium leading-tight" title={item.name}>
                     {item.name}
                   </span>
                 </div>
@@ -179,10 +179,10 @@ export function SkillsSection({ className = "" }: SkillsSectionProps) {
                   <Globe className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white tracking-tight">
+                  <h3 className="font-heading text-xl font-bold text-white tracking-tight">
                     Web & Frontend
                   </h3>
-                  <p className="text-xs font-mono text-neutral-400 mt-0.5">
+                  <p className="text-xs font-sans text-neutral-400 mt-0.5 font-normal">
                     Modern React & Next.js Ecosystem
                   </p>
                 </div>
@@ -199,7 +199,7 @@ export function SkillsSection({ className = "" }: SkillsSectionProps) {
                   <div className="min-w-8 h-8 sm:min-w-9 sm:h-9 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
                     {item.symbol}
                   </div>
-                  <span className="text-xs sm:text-[13px] font-mono text-neutral-200 group-hover/item:text-white font-medium leading-tight" title={item.name}>
+                  <span className="text-xs sm:text-[13px] font-sans text-neutral-200 group-hover/item:text-white font-medium leading-tight" title={item.name}>
                     {item.name}
                   </span>
                 </div>
@@ -233,10 +233,10 @@ export function SkillsSection({ className = "" }: SkillsSectionProps) {
                   <Server className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white tracking-tight">
+                  <h3 className="font-heading text-xl font-bold text-white tracking-tight">
                     Backend & DB
                   </h3>
-                  <p className="text-xs font-mono text-neutral-400 mt-0.5">
+                  <p className="text-xs font-sans text-neutral-400 mt-0.5 font-normal">
                     Microservices, REST APIs & Data Systems
                   </p>
                 </div>
@@ -253,7 +253,7 @@ export function SkillsSection({ className = "" }: SkillsSectionProps) {
                   <div className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
                     {item.symbol}
                   </div>
-                  <span className="text-xs sm:text-[13px] font-mono text-neutral-200 group-hover/item:text-white font-medium leading-tight" title={item.name}>
+                  <span className="text-xs sm:text-[13px] font-sans text-neutral-200 group-hover/item:text-white font-medium leading-tight" title={item.name}>
                     {item.name}
                   </span>
                 </div>
@@ -287,13 +287,13 @@ export function SkillsSection({ className = "" }: SkillsSectionProps) {
                   <Wrench className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+                  <h3 className="font-heading text-xl font-bold text-white tracking-tight flex items-center gap-2">
                     Tools & AI Infrastructure
                     <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 flex items-center gap-1">
                       <Sparkles className="w-3 h-3" /> AI Powered
                     </span>
                   </h3>
-                  <p className="text-xs font-mono text-neutral-400 mt-0.5">
+                  <p className="text-xs font-sans text-neutral-400 mt-0.5 font-normal">
                     CI/CD, Containers, IDEs & Agentic Workflows
                   </p>
                 </div>
@@ -310,7 +310,7 @@ export function SkillsSection({ className = "" }: SkillsSectionProps) {
                   <div className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform">
                     {item.symbol}
                   </div>
-                  <span className="text-xs sm:text-[13px] font-mono text-neutral-200 group-hover/item:text-white font-medium leading-tight" title={item.name}>
+                  <span className="text-xs sm:text-[13px] font-sans text-neutral-200 group-hover/item:text-white font-medium leading-tight" title={item.name}>
                     {item.name}
                   </span>
                 </div>

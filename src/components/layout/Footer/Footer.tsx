@@ -20,7 +20,7 @@ export function Footer({ className = "" }: FooterProps) {
           {/* Column 1: Brand Info (5 Cols) */}
           <div className="md:col-span-5 space-y-2.5">
             <Logo />
-            <p className="font-source-code-pro text-xs text-neutral-600 dark:text-neutral-400 max-w-sm leading-relaxed">
+            <p className="font-sans text-xs text-neutral-600 dark:text-neutral-400 max-w-sm leading-relaxed font-normal">
               Vedant Raut — Software Engineer at Logituit. Building high-performance native mobile applications, Kotlin Multiplatform solutions, and modern digital platforms.
             </p>
             <div className="flex items-center gap-2 pt-1">

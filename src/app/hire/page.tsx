@@ -49,11 +49,11 @@ export default function HirePage() {
           <span>SOFTWARE ENGINEER AT LOGITUIT</span>
         </div>
 
-        <h1 className="font-eb-garamond text-4xl sm:text-6xl text-white font-normal tracking-tight mb-4">
-          Get in Touch with <span className="italic-gradient-text font-semibold">Vedant Raut</span>
+        <h1 className="font-heading text-4xl sm:text-6xl text-white font-extrabold tracking-tight mb-4">
+          Get in Touch with <span className="italic-gradient-text">Vedant Raut</span>
         </h1>
 
-        <p className="font-source-code-pro text-sm sm:text-base text-neutral-300 leading-relaxed max-w-2xl mx-auto">
+        <p className="font-sans text-sm sm:text-base text-neutral-300 leading-relaxed max-w-2xl mx-auto font-normal">
           Currently working full-time at Logituit. Open for technical discussions, native Android consultations, open-source projects, and engineering networking.
         </p>
       </motion.div>
@@ -77,10 +77,10 @@ export default function HirePage() {
             <span className="text-[10px] font-mono uppercase tracking-widest text-purple-400 font-semibold block mb-1">
               DIRECT INBOX
             </span>
-            <h3 className="text-xl font-bold text-white tracking-tight mb-2">
+            <h3 className="font-heading text-xl font-bold text-white tracking-tight mb-2">
               Send an Email
             </h3>
-            <p className="text-xs font-source-code-pro text-neutral-400 mb-5 leading-relaxed">
+            <p className="text-xs font-sans text-neutral-400 mb-5 leading-relaxed font-normal">
               Reach out directly to my primary mailbox for fast responses.
             </p>
 
@@ -145,7 +145,7 @@ export default function HirePage() {
               <h3 className="text-2xl font-bold text-white tracking-tight">
                 Message Dispatched!
               </h3>
-              <p className="font-source-code-pro text-xs sm:text-sm text-neutral-300 max-w-md leading-relaxed">
+              <p className="font-sans text-xs sm:text-sm text-neutral-300 max-w-md leading-relaxed font-normal">
                 Thank you, <span className="text-white font-semibold">{formData.name}</span>. Your message draft has been initialized in your mail client and sent to <span className="text-purple-400 font-semibold">{siteConfig.brand.email}</span>.
               </p>
               <button
